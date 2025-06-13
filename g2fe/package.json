@@ -1,0 +1,49 @@
+{
+  "name": "g2fw_ap",
+  "version": "0.0.1",
+  "homepage": ".",
+  "dependencies": {
+    "g2fw": "^2.6.0-beat.20230417"
+  },
+  "devDependencies": {
+    "@g2fw/scripts": "^0.26.11",
+    "@g2fw/lint": "^0.0.8",
+    "prettier": "2.8.1",
+    "ts-pnp": "1.1.6",
+    "typescript": "4.1.2"
+  },
+  "cracoConfig": "node_modules/@g2fw/scripts/craco.config.js",
+  "scripts": {
+    "start": "g2fw start --mode development",
+    "build": "g2fw build --mode prod",
+    "upgrade": "npm install g2fw@latest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "react-app"
+    ]
+  },
+  "eslintIgnore": [
+    "dist",
+    "build",
+    "src/page"
+  ]
+}

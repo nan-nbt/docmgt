@@ -1,0 +1,10 @@
+{
+    "oidc": {
+        "realms": {
+            "pcg": {
+                "client_id": "pcg-g2fw-client",
+                "uri": "https://iam.pouchen.com/auth/realms/pcg"
+            }
+        }
+    }
+}

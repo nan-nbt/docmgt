@@ -1,0 +1,14 @@
+{
+    "oidc": {
+        "realms": {
+            "pcg": {
+                "client_id": "[client_id]",
+                "uri": "https://iamlab.pouchen.com/auth/realms/pcg"
+            },
+            "external-user": {
+                "client_id": "[client_id]",
+                "uri": "https://iamlab.pouchen.com/auth/realms/external"
+            }
+        }
+    }
+}

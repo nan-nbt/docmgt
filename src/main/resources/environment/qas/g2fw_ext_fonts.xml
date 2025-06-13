@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fontFamilies>
+	<!-- 
+	<fontFamily name="微軟正黑體">
+		<normal><![CDATA[com/pouchen/{ap_name}/report/msjhbd.ttf]]></normal>
+		<bold><![CDATA[com/pouchen/{ap_name}/report/msjhbd.ttf]]></bold>
+		<italic><![CDATA[com/pouchen/{ap_name}/report/msjhbd.ttf]]></italic>
+		<boldItalic><![CDATA[com/pouchen/{ap_name}/report/msjhbd.ttf]]></boldItalic>
+		<pdfEncoding>Identity-H</pdfEncoding>
+		<pdfEmbedded><![CDATA[true]]></pdfEmbedded>
+	</fontFamily>
+	-->
+</fontFamilies>
