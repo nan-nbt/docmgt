@@ -5,7 +5,7 @@
     <artifactId>bpms</artifactId>
     <packaging>war</packaging>
     <version>0.0.1</version>
-    <name>g2fwdemo Maven Webapp</name>
+    <name>docmgt Maven Webapp</name>
     <url>https://maven.apache.org</url>
 
     <repositories>
@@ -88,7 +88,7 @@
     </dependencies>
 
     <build>
-        <finalName>g2fwdemo_api</finalName>
+        <finalName>docmgt_api</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
