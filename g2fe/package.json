@@ -14,7 +14,7 @@
   },
   "cracoConfig": "node_modules/@g2fw/scripts/craco.config.js",
   "scripts": {
-    "start": "g2fw start --mode development",
+    "start": "g2fw start --mode dev",
     "build": "g2fw build --mode prod",
     "upgrade": "npm install g2fw@latest"
   },
