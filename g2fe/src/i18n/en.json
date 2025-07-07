@@ -1,1 +1,10 @@
-{}
+{
+    "FLOOR_NO": "Floor No.",
+    "FLOOR_NM": "Floor Name",
+    "CABINET_CODE": "Cabinet No.",
+    "CABINET_NM": "Cabinet Name",
+    "CABIN_NO": "Cabin No.",
+    "CABIN_NM": "Cabin Name",
+    "BOX_NO": "Box No.",
+    "BOX_NM": "Box Name"
+}
