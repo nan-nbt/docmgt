@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "homepage": ".",
   "dependencies": {
-    "g2fw": "^2.6.0-beat.20230417"
+    "g2fw": "^2.6.0-next.20240913",
+    "g2fw_ap": "file:"
   },
   "devDependencies": {
-    "@g2fw/scripts": "^0.26.11",
+    "@g2fw/scripts": "^2.6.0-next.20241022",
     "@g2fw/lint": "^0.0.8",
     "prettier": "2.8.1",
     "ts-pnp": "1.1.6",
