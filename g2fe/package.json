@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "homepage": ".",
   "dependencies": {
-    "g2fw": "^2.6.0-next.20240913",
+    "g2fw": "^2.6.0-next.20241022",
     "g2fw_ap": "file:"
   },
   "devDependencies": {
