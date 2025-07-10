@@ -7,8 +7,8 @@
     "g2fw_ap": "file:"
   },
   "devDependencies": {
-    "@g2fw/scripts": "^2.6.0-next.20241022",
     "@g2fw/lint": "^0.0.8",
+    "@g2fw/scripts": "2.6.0-next.20241022",
     "prettier": "2.8.1",
     "ts-pnp": "1.1.6",
     "typescript": "4.1.2"
