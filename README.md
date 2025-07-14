@@ -42,6 +42,11 @@
    cp target/docmgt.war /path/to/tomcat/webapps/
    ```
 
+5. Configure local database path
+   ```
+   copy conn.sqlite file from folder assets/db/ to D:/u01/pcgfw/docmgt/db/
+   ```
+
 ## Contact
 
 For internal use only. Contact IT support: `asci@pci.co.id`
