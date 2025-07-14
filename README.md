@@ -22,18 +22,19 @@
 
 1. Clone the repository:
    ```bash
-   git clone git@pcggit.pouchen.com:pcag-pci_it/rfidclient.git
-   cd rfidclient
+   git clone ssh://git@pcggit.pouchen.com:2020/pci-g2fw/docmgt.git
+   cd docmgt
    ```
 
-2. Configure the database in:
+2. Configure the node module in:
    ```
-   src/main/resources/config/database.properties
+   cd ./g2fe/
+   npm install && update
    ```
 
 3. Build the project:
    ```bash
-   mvn clean install
+   mvn clean package -P{env}
    ```
 
 4. Deploy the WAR file to Tomcat:
@@ -45,7 +46,7 @@
 
 For internal use only. Contact IT support: `asci@pci.co.id`
 
-###########################################################################################################################################################################################
+#########################################################################################
 
 ## Getting started
 
