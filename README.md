@@ -1,6 +1,57 @@
-# DOCMGT
+# DOCMGT - Document Management System
 
+**DOCMGT** is an internal Document Management System developed using the **G2FW** framework by Pou Chen Group. It is used for uploading, organizing, approving, and storing documents securely across departments.
 
+## Features
+
+- Upload and manage documents
+- Metadata tagging and search
+- Approval workflow
+- Access control by role
+- Audit logs and version control
+
+## Tech Stack
+
+- Java 8+
+- G2FW internal framework
+- PostgreSQL
+- Apache Tomcat
+- Maven
+
+## Setup Instructions
+
+1. Clone the repository:
+   ```bash
+   git clone ssh://git@pcggit.pouchen.com:2020/pci-g2fw/docmgt.git
+   cd docmgt
+   ```
+
+2. Configure the node module in:
+   ```
+   cd ./g2fe/
+   npm install && update
+   ```
+
+3. Build the project:
+   ```bash
+   mvn clean package -P{env}
+   ```
+
+4. Deploy the WAR file to Tomcat:
+   ```bash
+   cp target/docmgt.war /path/to/tomcat/webapps/
+   ```
+
+5. Configure local database path
+   ```
+   copy conn.sqlite file from folder assets/db/ to D:/u01/pcgfw/docmgt/db/
+   ```
+
+## Contact
+
+For internal use only. Contact IT support: `asci@pci.co.id`
+
+#########################################################################################
 
 ## Getting started
 
