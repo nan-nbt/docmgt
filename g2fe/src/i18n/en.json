@@ -1,1 +1,22 @@
-{}
+{
+    "FLOOR_NO": "Floor No.",
+    "FLOOR_NM": "Floor Name",
+    "CABINET_CODE": "Cabinet No.",
+    "CABINET_NM": "Cabinet Name",
+    "CABIN_NO": "Cabin No.",
+    "CABIN_NM": "Cabin Name",
+    "BOX_NO": "Box No.",
+    "BOX_NM": "Box Name",
+    "TEAMNO": "Team Code",
+    "TEAMNAME": "Team Name",
+    "TEAMENGNAME": "English Team Name",
+    "MODIFYUSER": "User Modify",
+    "MODIFYTIME": "Time Modify",
+    "ITEM": "Item",
+    "SSONO": "SSO No.",
+    "EMP_NO": "Employee No.",
+    "EMP_DESC": "Employee Name",
+    "EMAIL": "Email",
+    "ACTIVE_MK": "Is Active",
+    "PASSEDCARDID": "Staff Number"
+}
