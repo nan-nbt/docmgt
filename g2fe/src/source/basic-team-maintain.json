@@ -1,0 +1,230 @@
+{
+    "isReport": false,
+    "hasQuery": false,
+    "pageCnt": 1,
+    "tplNm": "MultipleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_DOCU_TEAM_MAIN",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12,
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_DOCU_TEAM_MAIN",
+                        "unitName": "DU_DOCU_TEAMM",
+                        "pager": true,
+                        "pageSize": 10
+                    },
+                    "toolbar": {
+                        "needButtons": [
+                            "add",
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": true,
+                    "items": [
+                        {
+                            "field": "TEAMNO",
+                            "title": "TEAMNO",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "TEAMNAME",
+                            "title": "TEAMNAME",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "TEAMENGNAME",
+                            "title": "TEAMENGNAME",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MODIFYUSER",
+                            "title": "MODIFYUSER",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MODIFYTIME",
+                            "title": "MODIFYTIME",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Team Department"
+                },
+                {
+                    "xtype": "Tab",
+                    "body": [
+                        {
+                            "xtype": "Table",
+                            "dataConfig": {
+                                "accNo": "_AP_CONN",
+                                "modelName": "DM_DOCU_TEAM_MAIN",
+                                "unitName": "DU_DOCU_TEAMD"
+                            },
+                            "toolbar": {
+                                "needButtons": [
+                                    "add",
+                                    "edit",
+                                    "remove",
+                                    "save",
+                                    "cancel"
+                                ]
+                            },
+                            "rowNumbers": true,
+                            "checkbox": true,
+                            "items": [
+                                {
+                                    "field": "TEAMNO",
+                                    "title": "TEAMNO",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "ITEM",
+                                    "title": "ITEM",
+                                    "editor": {
+                                        "xtype": "TextField"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "SSONO",
+                                    "title": "SSONO",
+                                    "editor": {
+                                        "xtype": "TextField"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "EMP_NO",
+                                    "title": "EMP_NO",
+                                    "editor": {
+                                        "xtype": "TextField"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "EMP_DESC",
+                                    "title": "EMP_DESC",
+                                    "editor": {
+                                        "xtype": "TextField"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "EMAIL",
+                                    "title": "EMAIL",
+                                    "editor": {
+                                        "xtype": "TextField"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "ACTIVE_MK",
+                                    "title": "ACTIVE_MK",
+                                    "editor": {
+                                        "xtype": "Switch"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "MODIFYUSER",
+                                    "title": "MODIFYUSER",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "MODIFYTIME",
+                                    "title": "MODIFYTIME",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date"
+                                    },
+                                    "must": false,
+                                    "freeze": false,
+                                    "sortable": false
+                                }
+                            ],
+                            "expandItems": [],
+                            "listeners": {},
+                            "title": "Team Member"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_DOCU_TEAM_MAIN",
+        "programaccno": "_AP_CONN",
+        "listeners": {}
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
