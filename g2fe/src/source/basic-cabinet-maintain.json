@@ -1,0 +1,312 @@
+{
+    "isReport": false,
+    "hasQuery": true,
+    "pageCnt": 1,
+    "tplNm": "MultipleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_CABINET_MAIN",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "queryarea": {
+            "autoQuery": false,
+            "xtype": "QueryBar",
+            "dataConfig": {
+                "accNo": "_AP_CONN",
+                "modelName": "DM_CABINET_MAIN"
+            },
+            "listeners": {},
+            "items": [
+                {
+                    "field": "FLOOR_NO",
+                    "title": "FLOOR_NO",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
+                    "field": "FLOOR_NM",
+                    "title": "FLOOR_NM",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                }
+            ]
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12,
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_CABINET_MAIN",
+                        "unitName": "DU_FLOOR",
+                        "pager": true,
+                        "pageSize": 10
+                    },
+                    "toolbar": {
+                        "needButtons": [
+                            "add",
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": true,
+                    "items": [
+                        {
+                            "field": "FLOOR_NO",
+                            "title": "FLOOR_NO",
+                            "editor": {
+                                "xtype": "TextField",
+                                "textCase": "upper"
+                            },
+                            "must": true,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "FLOOR_NM",
+                            "title": "FLOOR_NM",
+                            "editor": {
+                                "xtype": "TextField",
+                                "textCase": "upper"
+                            },
+                            "must": true,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Floors Information"
+                },
+                {
+                    "xtype": "Tab",
+                    "body": [
+                        {
+                            "xtype": "Table",
+                            "dataConfig": {
+                                "accNo": "_AP_CONN",
+                                "modelName": "DM_CABINET_MAIN",
+                                "unitName": "DU_CABINET",
+                                "pageSize": 5,
+                                "paginationSize": [
+                                    10,
+                                    30,
+                                    50,
+                                    100
+                                ],
+                                "paginationSupportAll": false,
+                                "clientPager": true
+                            },
+                            "toolbar": {
+                                "needButtons": [
+                                    "add",
+                                    "edit",
+                                    "remove",
+                                    "save",
+                                    "cancel"
+                                ]
+                            },
+                            "rowNumbers": true,
+                            "checkbox": true,
+                            "items": [
+                                {
+                                    "field": "CABINET_CODE",
+                                    "title": "CABINET_CODE",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CABINET_NM",
+                                    "title": "CABINET_NM",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "FLOOR_NM",
+                                    "title": "FLOOR_NM",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "freeze": false,
+                                    "sortable": false,
+                                    "dependencies": null
+                                }
+                            ],
+                            "expandItems": [],
+                            "listeners": {},
+                            "title": "Cabinets Information",
+                            "defaultSort": true
+                        },
+                        {
+                            "xtype": "Table",
+                            "dataConfig": {
+                                "accNo": "_AP_CONN",
+                                "modelName": "DM_CABINET_MAIN",
+                                "unitName": "DU_CABIN",
+                                "pageSize": 5,
+                                "paginationSize": [
+                                    10,
+                                    30,
+                                    50,
+                                    100
+                                ],
+                                "clientPager": true
+                            },
+                            "toolbar": {
+                                "needButtons": [
+                                    "add",
+                                    "edit",
+                                    "remove",
+                                    "save",
+                                    "cancel"
+                                ]
+                            },
+                            "rowNumbers": true,
+                            "checkbox": true,
+                            "items": [
+                                {
+                                    "field": "CABIN_NO",
+                                    "title": "CABIN_NO",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CABIN_NM",
+                                    "title": "CABIN_NM",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CABINET_NM",
+                                    "title": "CABINET_NM",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "freeze": false,
+                                    "sortable": false
+                                }
+                            ],
+                            "expandItems": [],
+                            "listeners": {},
+                            "title": "Cabins Information"
+                        },
+                        {
+                            "xtype": "Table",
+                            "dataConfig": {
+                                "accNo": "_AP_CONN",
+                                "modelName": "DM_CABINET_MAIN",
+                                "unitName": "DU_BOX",
+                                "pageSize": 5,
+                                "paginationSize": [
+                                    10,
+                                    30,
+                                    50,
+                                    100
+                                ],
+                                "clientPager": true
+                            },
+                            "toolbar": {
+                                "needButtons": [
+                                    "add",
+                                    "edit",
+                                    "remove",
+                                    "save",
+                                    "cancel"
+                                ]
+                            },
+                            "rowIndex": true,
+                            "checkbox": true,
+                            "items": [
+                                {
+                                    "field": "BOX_NO",
+                                    "title": "BOX_NO",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "BOX_NM",
+                                    "title": "BOX_NM",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CABIN_NM",
+                                    "title": "CABIN_NM",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "freeze": false,
+                                    "sortable": false
+                                }
+                            ],
+                            "expandItems": [],
+                            "listeners": {},
+                            "title": "Boxs Information"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_CABINET_MAIN",
+        "programaccno": "_AP_CONN",
+        "listeners": {}
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
