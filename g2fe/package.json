@@ -3,12 +3,18 @@
   "version": "0.0.1",
   "homepage": ".",
   "dependencies": {
-    "g2fw": "^2.6.0-next.20241022",
-    "g2fw_ap": "file:"
+    "g2fw": "^2.6.0-next.20240913",
+    "g2fw_ap": "file:",
+    "@g2fw/scripts": "latest",
+    "prettier": "2.8.1",
+    "ts-pnp": "1.1.6",
+    "typescript": "4.1.2",
+    "dotenv": "8.2.0",
+    "dotenv-expand": "5.1.0"
   },
   "devDependencies": {
     "@g2fw/lint": "^0.0.8",
-    "@g2fw/scripts": "2.6.0-next.20241022",
+    "@g2fw/scripts": "^2.6.0-next.20241022",
     "prettier": "2.8.1",
     "ts-pnp": "1.1.6",
     "typescript": "4.1.2"
@@ -16,7 +22,7 @@
   "cracoConfig": "node_modules/@g2fw/scripts/craco.config.js",
   "scripts": {
     "start": "g2fw start --mode dev",
-    "build": "g2fw build --mode prod",
+    "build": "g2fw build",
     "upgrade": "npm install g2fw@latest"
   },
   "browserslist": {
