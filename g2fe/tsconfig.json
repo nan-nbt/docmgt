@@ -1,26 +1,16 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "module": "es6",
-        "moduleResolution": "node",
-        "allowJs": true,
-        "rootDir": "src",
-        "outDir": "src",
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "noImplicitAny": false,
-        "strictNullChecks": true,
-        "allowSyntheticDefaultImports": true
-    },
-    "include": ["src/logic/**/*"],
-    "exclude": [
-        "node_modules",
-        "build",
-        "src/index.js",
-        "src/index.ts",
-        "src/i18n/*",
-        "src/page/*",
-        "src/source/*"
-    ],
-    "types": ["typePatches"]
+  "extends": "g2fw/declaration/g2fw-tsconfig.json",
+  "include": [
+    "src/logic/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "config",
+    "src/index.js",
+    "src/i18n/*",
+    "src/page/*",
+    "src/source/*"
+  ]
 }
