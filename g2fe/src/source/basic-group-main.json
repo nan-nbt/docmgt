@@ -87,7 +87,13 @@
                         "modelName": "DM_BASIC_GROUP",
                         "unitName": "DU_BASIC_GROUPM",
                         "pager": true,
-                        "pageSize": 10
+                        "pageSize": 10,
+                        "paginationSize": [
+                            20,
+                            30,
+                            50,
+                            100
+                        ]
                     },
                     "toolbar": {
                         "needButtons": [
@@ -206,7 +212,14 @@
                     "dataConfig": {
                         "accNo": "_AP_CONN",
                         "modelName": "DM_BASIC_GROUP",
-                        "unitName": "DU_BASIC_GROUPD"
+                        "unitName": "DU_BASIC_GROUPD",
+                        "pageSize": 10,
+                        "paginationSize": [
+                            20,
+                            30,
+                            50,
+                            100
+                        ]
                     },
                     "toolbar": {
                         "needButtons": [
