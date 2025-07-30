@@ -143,7 +143,8 @@
                             "field": "CREATE_TIME",
                             "title": "Create Time",
                             "editor": {
-                                "xtype": "Label"
+                                "xtype": "Label",
+                                "dataType": "Date"
                             },
                             "must": false,
                             "width": 0.1,
@@ -165,7 +166,8 @@
                             "field": "UPDATE_TIME",
                             "title": "Update Time",
                             "editor": {
-                                "xtype": "Label"
+                                "xtype": "Label",
+                                "dataType": "Date"
                             },
                             "must": false,
                             "width": 0.1,
@@ -250,7 +252,8 @@
                                     "field": "CREATE_TIME",
                                     "title": "Create Time",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -272,7 +275,8 @@
                                     "field": "UPDATE_TIME",
                                     "title": "Update Time",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -355,7 +359,8 @@
                                     "field": "CREATE_TIME",
                                     "title": "Create Time",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -377,7 +382,8 @@
                                     "field": "UPDATE_TIME",
                                     "title": "Update Time",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -459,7 +465,8 @@
                                     "field": "CREATE_TIME",
                                     "title": "Create Time",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -481,7 +488,8 @@
                                     "field": "UPDATE_TIME",
                                     "title": "Update Time",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
