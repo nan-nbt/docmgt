@@ -187,7 +187,9 @@
                             "dataConfig": {
                                 "accNo": "_AP_CONN",
                                 "modelName": "DM_BASIC_CABINET",
-                                "unitName": "DU_BASIC_CABINET"
+                                "unitName": "DU_BASIC_CABINET",
+                                "clientPager": true,
+                                "pageSize": 10
                             },
                             "toolbar": {
                                 "needButtons": [
@@ -294,7 +296,8 @@
                                 "accNo": "_AP_CONN",
                                 "modelName": "DM_BASIC_CABINET",
                                 "unitName": "DU_BASIC_CABIN",
-                                "pageSize": 5
+                                "pageSize": 10,
+                                "clientPager": true
                             },
                             "toolbar": {
                                 "needButtons": [
@@ -400,7 +403,9 @@
                             "dataConfig": {
                                 "accNo": "_AP_CONN",
                                 "modelName": "DM_BASIC_CABINET",
-                                "unitName": "DU_BASIC_BOX"
+                                "unitName": "DU_BASIC_BOX",
+                                "pageSize": 10,
+                                "clientPager": true
                             },
                             "toolbar": {
                                 "needButtons": [
