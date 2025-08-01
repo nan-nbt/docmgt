@@ -37,18 +37,6 @@ const logic = {
         } catch (error) {
             console.error("onInputed error:", error);
         }
-    },
-    onFilterCabinet: function({ item, values }) {
-        // Show only cabinets under the selected FLOOR_ID
-        return item.FLOOR_ID === values.FLOOR_ID;
-    },
-    onFilterCabin: function({ item, values }) {
-        // Show only cabins under the selected CABINET_ID
-        return item.CABINET_ID === values.CABINET_ID;
-    },
-    onFilterBox: function({ item, values }) {
-        // Show only boxes under the selected CABIN_ID
-        return item.CABIN_ID === values.CABIN_ID;
     }
 }
 
