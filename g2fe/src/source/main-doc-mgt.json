@@ -281,7 +281,9 @@
                             ]
                         }
                     ],
-                    "listeners": {},
+                    "listeners": {
+                        "onInputed": "(args) => { LOGIC.onInputed(args); }"
+                    },
                     "title": "Document Information",
                     "toolbar": {
                         "needButtons": [
@@ -593,7 +595,8 @@
     "programsetting": {
         "programmodel": "DM_DOC_MANAGE",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {},
+        "logicPath": "logic/main-doc-mgt"
     },
     "requires": [
         "DataProvider",
