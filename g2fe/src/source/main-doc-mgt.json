@@ -20,11 +20,74 @@
             "listeners": {},
             "items": [
                 {
-                    "field": "BARCODE",
-                    "title": "BARCODE",
+                    "field": "DOC_NO",
+                    "title": "DOC_NO",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "DOC_NAME",
+                    "title": "DOC_NAME",
+                    "editor": {
+                        "xtype": "TextField"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "DOC_TYPE",
+                    "title": "DOC_TYPE",
+                    "editor": {
+                        "xtype": "Combo",
+                        "staticData": [
+                            {
+                                "LABEL": "1. Top Secret",
+                                "VALUE": "1"
+                            },
+                            {
+                                "LABEL": "2. Confidential",
+                                "VALUE": "2"
+                            }
+                        ],
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "supportAll": true
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
+                    "field": "DOC_STATUS",
+                    "title": "DOC_STATUS",
+                    "editor": {
+                        "xtype": "Combo",
+                        "staticData": [
+                            {
+                                "LABEL": "1. Create",
+                                "VALUE": "1"
+                            },
+                            {
+                                "LABEL": "2. Transfer",
+                                "VALUE": "2"
+                            },
+                            {
+                                "LABEL": "3. Return",
+                                "VALUE": "3"
+                            },
+                            {
+                                "LABEL": "4. Destroy",
+                                "VALUE": "4"
+                            }
+                        ],
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "supportAll": true
                     },
                     "noWhere": false,
                     "opt": "="
@@ -40,87 +103,190 @@
             ],
             "items": [
                 {
-                    "xtype": "Form",
+                    "xtype": "Table",
+                    "version": 2,
                     "dataConfig": {
                         "accNo": "_AP_CONN",
                         "modelName": "DM_DOC_MANAGE",
-                        "unitName": "DU_DOC_MANAGE"
+                        "unitName": "DU_DOC_MANAGE",
+                        "pager": true,
+                        "pageSize": 10
                     },
+                    "toolbar": {
+                        "needButtons": [
+                            "add",
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": true,
                     "items": [
                         {
-                            "title": "Main Form",
+                            "field": "DOC_NO",
+                            "title": "DOC_NO",
+                            "editor": {
+                                "xtype": "TextField",
+                                "textCase": "upper"
+                            },
+                            "must": true,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_NAME",
+                            "title": "DOC_NAME",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_TYPE",
+                            "title": "DOC_TYPE",
+                            "editor": {
+                                "xtype": "Combo",
+                                "textField": "LABEL",
+                                "manual": false,
+                                "valueField": "VALUE",
+                                "condition": {
+                                    "accNo": "_AP_CONN",
+                                    "sqlNo": "V_COMBO_DOC_TYPE",
+                                    "opType": 2
+                                }
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_STATUS_DESC",
+                            "title": "DOC_STATUS_DESC",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "TRANS_TIME",
+                            "title": "TRANS_TIME",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "RETURN_TIME",
+                            "title": "RETURN_TIME",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DESTROY_TIME",
+                            "title": "DESTROY_TIME",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "CREATE_USER_NM",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "CREATE_TIME",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "UPDATE_USER_NM",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "UPDATE_TIME",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Main Information"
+                },
+                {
+                    "xtype": "Tab",
+                    "body": [
+                        {
+                            "xtype": "Table",
+                            "version": 2,
+                            "dataConfig": {
+                                "accNo": "_AP_CONN",
+                                "modelName": "DM_DOC_MANAGE",
+                                "unitName": "DU_DOC_MANAGE"
+                            },
+                            "toolbar": {
+                                "needButtons": [
+                                    "add",
+                                    "edit",
+                                    "remove",
+                                    "save",
+                                    "cancel"
+                                ]
+                            },
+                            "rowNumbers": true,
+                            "checkbox": true,
                             "items": [
-                                {
-                                    "field": "BARCODE",
-                                    "title": "BARCODE",
-                                    "editor": {
-                                        "xtype": "TextField",
-                                        "textCase": "upper"
-                                    },
-                                    "must": true,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "DOC_NAME",
-                                    "title": "DOC_NAME",
-                                    "editor": {
-                                        "xtype": "TextField"
-                                    },
-                                    "must": true,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "DOC_TYPE",
-                                    "title": "DOC_TYPE",
-                                    "editor": {
-                                        "xtype": "Combo",
-                                        "textField": "LABEL",
-                                        "manual": false,
-                                        "valueField": "VALUE",
-                                        "staticData": [
-                                            {
-                                                "LABEL": "1. Top Secret",
-                                                "VALUE": "1"
-                                            },
-                                            {
-                                                "LABEL": "2. Confidential",
-                                                "VALUE": "2"
-                                            }
-                                        ]
-                                    },
-                                    "must": true,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "DOC_STATUS",
-                                    "title": "DOC_STATUS",
-                                    "editor": {
-                                        "xtype": "Combo",
-                                        "staticData": [
-                                            {
-                                                "LABEL": "1. Created",
-                                                "VALUE": "1"
-                                            },
-                                            {
-                                                "LABEL": "2. In Use",
-                                                "VALUE": "2"
-                                            },
-                                            {
-                                                "LABEL": "3. Return",
-                                                "VALUE": "3"
-                                            },
-                                            {
-                                                "LABEL": "4. Destroy",
-                                                "VALUE": "4"
-                                            }
-                                        ],
-                                        "textField": "LABEL",
-                                        "manual": false,
-                                        "valueField": "VALUE"
-                                    },
-                                    "must": true,
-                                    "colspan": 3
-                                },
                                 {
                                     "field": "GROUPM_ID",
                                     "title": "GROUPM_ID",
@@ -136,7 +302,9 @@
                                         }
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
                                 },
                                 {
                                     "field": "FLOOR_ID",
@@ -154,7 +322,9 @@
                                         "id": "CMP_COMBO_FLOOR"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
                                 },
                                 {
                                     "field": "CABINET_ID",
@@ -169,10 +339,16 @@
                                             "sqlNo": "V_COMBO_BASIC_CABINET",
                                             "opType": 2
                                         },
-                                        "id": "CMP_COMBO_CABINET"
+                                        "id": "CMP_COMBO_CABINET",
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterCabinet(args); }"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false,
+                                    "dependencies": [
+                                        "FLOOR_ID"
+                                    ]
                                 },
                                 {
                                     "field": "CABIN_ID",
@@ -187,10 +363,16 @@
                                             "sqlNo": "V_COMBO_BASIC_CABIN",
                                             "opType": 2
                                         },
-                                        "id": "CMP_COMBO_CABIN"
+                                        "id": "CMP_COMBO_CABIN",
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterCabin(args); }"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false,
+                                    "dependencies": [
+                                        "CABINET_ID"
+                                    ]
                                 },
                                 {
                                     "field": "BOX_ID",
@@ -205,160 +387,66 @@
                                             "sqlNo": "V_COMBO_BASIC_BOX",
                                             "opType": 2
                                         },
-                                        "id": "CMP_COMBO_BOX"
+                                        "id": "CMP_COMBO_BOX",
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterBox(args); }"
                                     },
                                     "must": true,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "TRANS_TIME",
-                                    "title": "TRANS_TIME",
-                                    "editor": {
-                                        "xtype": "Label",
-                                        "dataType": "Date"
-                                    },
-                                    "must": false,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "RETURN_TIME",
-                                    "title": "RETURN_TIME",
-                                    "editor": {
-                                        "xtype": "Label",
-                                        "dataType": "Date"
-                                    },
-                                    "must": false,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "DESTROY_TIME",
-                                    "title": "DESTROY_TIME",
-                                    "editor": {
-                                        "xtype": "Label",
-                                        "dataType": "Date"
-                                    },
-                                    "must": false,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "CREATE_USER_NM",
-                                    "title": "CREATE_USER_NM",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "CREATE_TIME",
-                                    "title": "CREATE_TIME",
-                                    "editor": {
-                                        "xtype": "Label",
-                                        "dataType": "Date"
-                                    },
-                                    "must": false,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "UPDATE_USER_NM",
-                                    "title": "UPDATE_USER_NM",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "colspan": 3
-                                },
-                                {
-                                    "field": "UPDATE_TIME",
-                                    "title": "UPDATE_TIME",
-                                    "editor": {
-                                        "xtype": "Label",
-                                        "dataType": "Date"
-                                    },
-                                    "must": false,
-                                    "colspan": 3
-                                }
-                            ]
-                        }
-                    ],
-                    "listeners": {
-                        "onInputed": "(args) => { LOGIC.onInputed(args); }"
-                    },
-                    "title": "Document Information",
-                    "toolbar": {
-                        "needButtons": [
-                            "add",
-                            "edit",
-                            "remove",
-                            "save",
-                            "cancel"
-                        ]
-                    }
-                },
-                {
-                    "xtype": "Tab",
-                    "body": [
-                        {
-                            "xtype": "Table",
-                            "dataConfig": {
-                                "accNo": "_AP_CONN",
-                                "modelName": "DM_DOC_MANAGE",
-                                "unitName": "DU_DOC_MANAGE",
-                                "pageSize": 10,
-                                "clientPager": true
-                            },
-                            "toolbar": false,
-                            "rowNumbers": true,
-                            "checkbox": true,
-                            "items": [
-                                {
-                                    "field": "DOC_NAME",
-                                    "title": "DOC_NAME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.5,
+                                    "width": 0.1,
                                     "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "DOC_TYPE",
-                                    "title": "DOC_TYPE",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.5,
-                                    "freeze": false,
-                                    "sortable": false
+                                    "sortable": false,
+                                    "dependencies": [
+                                        "CABIN_ID"
+                                    ]
                                 }
                             ],
                             "expandItems": [],
-                            "listeners": {},
-                            "title": "Document List"
+                            "listeners": {
+                                "onInputed": "(args) => { LOGIC.onInputed(args); }"
+                            },
+                            "title": "Detail Information"
                         },
                         {
                             "xtype": "Table",
+                            "version": 2,
                             "dataConfig": {
                                 "accNo": "_AP_CONN",
                                 "modelName": "DM_DOC_MANAGE",
-                                "unitName": "DU_DOC_MANAGE",
-                                "pageSize": 10,
-                                "clientPager": true
+                                "unitName": "DU_DOC_MANAGE_HIS"
                             },
                             "toolbar": false,
                             "rowNumbers": true,
                             "checkbox": true,
                             "items": [
                                 {
-                                    "field": "BARCODE",
-                                    "title": "BARCODE",
+                                    "field": "HIS_TYPE",
+                                    "title": "HIS_TYPE",
                                     "editor": {
                                         "xtype": "Label"
                                     },
                                     "must": false,
-                                    "width": 0.2,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "HIS_TIME",
+                                    "title": "HIS_TIME",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "DOC_NO",
+                                    "title": "DOC_NO",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "width": 0.15,
                                     "freeze": false,
                                     "sortable": false
                                 },
@@ -369,7 +457,7 @@
                                         "xtype": "Label"
                                     },
                                     "must": false,
-                                    "width": 0.2,
+                                    "width": 0.15,
                                     "freeze": false,
                                     "sortable": false
                                 },
@@ -427,165 +515,11 @@
                                     "width": 0.1,
                                     "freeze": false,
                                     "sortable": false
-                                },
-                                {
-                                    "field": "GROUPM_NO",
-                                    "title": "GROUPM_NO",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "GROUPM_NAME",
-                                    "title": "GROUPM_NAME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "FLOOR_NO",
-                                    "title": "FLOOR_NO",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "FLOOR_NAME",
-                                    "title": "FLOOR_NAME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "CABINET_NO",
-                                    "title": "CABINET_NO",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "CABINET_NAME",
-                                    "title": "CABINET_NAME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "CABIN_NO",
-                                    "title": "CABIN_NO",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "CABIN_NAME",
-                                    "title": "CABIN_NAME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "BOX_NO",
-                                    "title": "BOX_NO",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "BOX_NAME",
-                                    "title": "BOX_NAME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "CREATE_USER_NM",
-                                    "title": "CREATE_USER_NM",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "CREATE_TIME",
-                                    "title": "CREATE_TIME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "UPDATE_USER_NM",
-                                    "title": "UPDATE_USER_NM",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "UPDATE_TIME",
-                                    "title": "UPDATE_TIME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
                                 }
                             ],
                             "expandItems": [],
                             "listeners": {},
-                            "title": "History"
+                            "title": "Document History"
                         }
                     ]
                 }

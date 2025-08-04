@@ -1,42 +1,45 @@
 // import { $$ } from "g2fw";
 
+const DATA_UNIT: string = "DU_DOC_MANAGE";
+
 const logic = {
     /**
-     * filter combo [cabinet, column, box] data in query area
-     * @param param0 {cmp, newVal, field}
+     * Auto-clear child combos when parent is changed,
+     * to be used in onInputed event for parent fields (FLOOR_ID, CABINET_ID, CABIN_ID)
      */
-    onInputed: function ({ cmp, newVal, field }) {
-        try {
-            if (field === "FLOOR_ID") {
-                // console.log("onFloorInputed:", cmp, newVal, field);
-                const cabinet = cmp("CMP_COMBO_CABINET");
-                if (cabinet && typeof cabinet.filter === "function") {
-                    cabinet.filter((value, key) => value["FLOOR_ID"] === newVal);
-                } else {
-                    console.warn("[cmp] id CMP_COMBO_CABINET not found or filter() not available!");
-                }
-            }
-            else if (field === "CABINET_ID") {
-                // console.log("onCabinetInputed:", cmp, newVal, field);
-                const column = cmp("CMP_COMBO_CABIN");
-                if (column && typeof column.filter === "function") {
-                    column.filter((value, key) => value["CABINET_ID"] === newVal);
-                } else {
-                    console.warn("[cmp] id CMP_COMBO_CABIN not found or filter() not available!");
-                }
-            }
-            else if (field === "CABIN_ID") {
-                // console.log("onColumnInputed:", cmp, newVal, field);
-                const box = cmp("CMP_COMBO_BOX");
-                if (box && typeof box.filter === "function") {
-                    box.filter((value, key) => value["CABIN_ID"] === newVal);
-                } else {
-                    console.warn("[cmp] id CMP_COMBO_BOX not found or filter() not available!");
-                }
-            }
-        } catch (error) {
-            console.error("onInputed error:", error);
+    onInputed: function ({ field, oldVal, newVal, dataUtil }) {
+        const row = dataUtil.getUnit(DATA_UNIT).getCurrentRow();
+        if (field === "FLOOR_ID" && oldVal !== newVal) {
+            row.input({
+                CABINET_ID: null,
+                CABIN_ID: null,
+                BOX_ID: null
+            });
         }
+        else if (field === "CABINET_ID" && oldVal !== newVal) {
+            row.input({
+                CABIN_ID: null,
+                BOX_ID: null
+            });
+        }
+        else if (field === "CABIN_ID" && oldVal !== newVal) {
+            row.input({
+                BOX_ID: null
+            });
+        }
+    },
+    /**
+     * Filter combo [cabinet, column, box] data in table area
+     * @param param0 { item, values }
+     */
+    onFilterCabinet: function ({ item, values }) {
+        return item?.REF === values?.FLOOR_ID;
+    },
+    onFilterCabin: function ({ item, values }) {
+        return item?.REF === values?.CABINET_ID;
+    },
+    onFilterBox: function ({ item, values }) {
+        return item?.REF === values?.CABIN_ID;
     }
 }
 
