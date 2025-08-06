@@ -116,13 +116,12 @@
                         "needButtons": [
                             "add",
                             "edit",
-                            "remove",
                             "save",
                             "cancel"
                         ]
                     },
                     "rowNumbers": true,
-                    "checkbox": true,
+                    "checkbox": false,
                     "items": [
                         {
                             "field": "DOC_NO",
@@ -171,42 +170,6 @@
                             "title": "DOC_STATUS_DESC",
                             "editor": {
                                 "xtype": "Label"
-                            },
-                            "must": false,
-                            "width": 0.1,
-                            "freeze": false,
-                            "sortable": false
-                        },
-                        {
-                            "field": "TRANS_TIME",
-                            "title": "TRANS_TIME",
-                            "editor": {
-                                "xtype": "Label",
-                                "dataType": "Date"
-                            },
-                            "must": false,
-                            "width": 0.1,
-                            "freeze": false,
-                            "sortable": false
-                        },
-                        {
-                            "field": "RETURN_TIME",
-                            "title": "RETURN_TIME",
-                            "editor": {
-                                "xtype": "Label",
-                                "dataType": "Date"
-                            },
-                            "must": false,
-                            "width": 0.1,
-                            "freeze": false,
-                            "sortable": false
-                        },
-                        {
-                            "field": "DESTROY_TIME",
-                            "title": "DESTROY_TIME",
-                            "editor": {
-                                "xtype": "Label",
-                                "dataType": "Date"
                             },
                             "must": false,
                             "width": 0.1,
@@ -285,7 +248,7 @@
                                 ]
                             },
                             "rowNumbers": true,
-                            "checkbox": true,
+                            "checkbox": false,
                             "items": [
                                 {
                                     "field": "GROUPM_ID",
@@ -415,11 +378,11 @@
                             },
                             "toolbar": false,
                             "rowNumbers": true,
-                            "checkbox": true,
+                            "checkbox": false,
                             "items": [
                                 {
-                                    "field": "HIS_TYPE",
-                                    "title": "HIS_TYPE",
+                                    "field": "ACTION",
+                                    "title": "ACTION",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -429,57 +392,25 @@
                                     "sortable": false
                                 },
                                 {
-                                    "field": "HIS_TIME",
-                                    "title": "HIS_TIME",
+                                    "field": "UPDATE_USER_NM",
+                                    "title": "UPDATE_USER_NM",
                                     "editor": {
                                         "xtype": "Label"
                                     },
                                     "must": false,
-                                    "width": 0.1,
+                                    "width": 0.3,
                                     "freeze": false,
                                     "sortable": false
                                 },
                                 {
-                                    "field": "DOC_NO",
-                                    "title": "DOC_NO",
+                                    "field": "MODIFY_TIME",
+                                    "title": "MODIFY_TIME",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
-                                    "width": 0.15,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "DOC_NAME",
-                                    "title": "DOC_NAME",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.15,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "DOC_TYPE",
-                                    "title": "DOC_TYPE",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
-                                    "freeze": false,
-                                    "sortable": false
-                                },
-                                {
-                                    "field": "DOC_STATUS",
-                                    "title": "DOC_STATUS",
-                                    "editor": {
-                                        "xtype": "Label"
-                                    },
-                                    "must": false,
-                                    "width": 0.1,
+                                    "width": 0.3,
                                     "freeze": false,
                                     "sortable": false
                                 },
@@ -487,7 +418,8 @@
                                     "field": "TRANS_TIME",
                                     "title": "TRANS_TIME",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -498,7 +430,8 @@
                                     "field": "RETURN_TIME",
                                     "title": "RETURN_TIME",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -509,7 +442,8 @@
                                     "field": "DESTROY_TIME",
                                     "title": "DESTROY_TIME",
                                     "editor": {
-                                        "xtype": "Label"
+                                        "xtype": "Label",
+                                        "dataType": "Date"
                                     },
                                     "must": false,
                                     "width": 0.1,
