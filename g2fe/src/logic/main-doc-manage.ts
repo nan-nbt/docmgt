@@ -2,7 +2,7 @@
 
 const logic = {
     /**
-     * Filter combo V2 [cabinet, column, box] data in table area
+     * Filter combo [cabinet, column, box] data in form area v2
      * @param param0 { item, values }
      */
     onFilterCabinet: function ({ item, values }) {
