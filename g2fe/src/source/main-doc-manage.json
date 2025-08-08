@@ -21,7 +21,7 @@
             "items": [
                 {
                     "field": "DOC_NO",
-                    "title": "DOC_NO",
+                    "title": "Document No.",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -31,7 +31,7 @@
                 },
                 {
                     "field": "DOC_NAME",
-                    "title": "DOC_NAME",
+                    "title": "Document Name",
                     "editor": {
                         "xtype": "TextField"
                     },
@@ -53,12 +53,12 @@
                     "items": [
                         {
                             "field": "DOC_NO",
-                            "title": "DOC_NO",
+                            "title": "Document No.",
                             "colspan": 6
                         },
                         {
                             "field": "DOC_NAME",
-                            "title": "DOC_NAME",
+                            "title": "Document Name",
                             "colspan": 6
                         }
                     ],
@@ -77,7 +77,7 @@
                     "items": [
                         {
                             "field": "ACTION",
-                            "title": "ACTION",
+                            "title": "Action",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -88,7 +88,7 @@
                         },
                         {
                             "field": "UPDATE_USER_NM",
-                            "title": "UPDATE_USER_NM",
+                            "title": "Modify User",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -99,7 +99,7 @@
                         },
                         {
                             "field": "MODIFY_TIME",
-                            "title": "MODIFY_TIME",
+                            "title": "Modify Time",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date"
@@ -111,7 +111,7 @@
                         },
                         {
                             "field": "TRANS_TIME",
-                            "title": "TRANS_TIME",
+                            "title": "Transfer Time",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date"
@@ -123,7 +123,7 @@
                         },
                         {
                             "field": "RETURN_TIME",
-                            "title": "RETURN_TIME",
+                            "title": "Return Time",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date"
@@ -135,7 +135,7 @@
                         },
                         {
                             "field": "DESTROY_TIME",
-                            "title": "DESTROY_TIME",
+                            "title": "Destroy Time",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date"
@@ -173,7 +173,7 @@
                     "items": [
                         {
                             "field": "DOC_NO",
-                            "title": "DOC_NO",
+                            "title": "Document No.",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -184,7 +184,7 @@
                         },
                         {
                             "field": "DOC_NAME",
-                            "title": "DOC_NAME",
+                            "title": "Document Name",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -221,7 +221,7 @@
                             "items": [
                                 {
                                     "field": "DOC_NO",
-                                    "title": "DOC_NO",
+                                    "title": "Document No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -231,7 +231,7 @@
                                 },
                                 {
                                     "field": "DOC_NAME",
-                                    "title": "DOC_NAME",
+                                    "title": "Document Name",
                                     "editor": {
                                         "xtype": "TextField"
                                     },
@@ -240,7 +240,7 @@
                                 },
                                 {
                                     "field": "DOC_TYPE",
-                                    "title": "DOC_TYPE",
+                                    "title": "Type",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
@@ -257,7 +257,7 @@
                                 },
                                 {
                                     "field": "DOC_STATUS_DESC",
-                                    "title": "DOC_STATUS_DESC",
+                                    "title": "Status",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -266,7 +266,7 @@
                                 },
                                 {
                                     "field": "GROUPM_ID",
-                                    "title": "GROUPM_ID",
+                                    "title": "Group",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
@@ -283,7 +283,7 @@
                                 },
                                 {
                                     "field": "FLOOR_ID",
-                                    "title": "FLOOR_ID",
+                                    "title": "Floor",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
@@ -301,7 +301,7 @@
                                 },
                                 {
                                     "field": "CABINET_ID",
-                                    "title": "CABINET_ID",
+                                    "title": "Cabinet",
                                     "editor": {
                                         "xtype": "Combo",
                                         "id": "CMP_COMBO_CABINET",
@@ -323,7 +323,7 @@
                                 },
                                 {
                                     "field": "CABIN_ID",
-                                    "title": "CABIN_ID",
+                                    "title": "Cabin",
                                     "editor": {
                                         "xtype": "Combo",
                                         "id": "CMP_COMBO_CABIN",
@@ -345,7 +345,7 @@
                                 },
                                 {
                                     "field": "BOX_ID",
-                                    "title": "BOX_ID",
+                                    "title": "Box",
                                     "editor": {
                                         "xtype": "Combo",
                                         "id": "CMP_COMBO_BOX",
@@ -372,7 +372,7 @@
                             "items": [
                                 {
                                     "field": "CREATE_USER_NM",
-                                    "title": "CREATE_USER_NM",
+                                    "title": "Create User",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -381,7 +381,7 @@
                                 },
                                 {
                                     "field": "CREATE_TIME",
-                                    "title": "CREATE_TIME",
+                                    "title": "Create Time",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date"
@@ -391,7 +391,7 @@
                                 },
                                 {
                                     "field": "UPDATE_USER_NM",
-                                    "title": "UPDATE_USER_NM",
+                                    "title": "Modify User",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -400,7 +400,7 @@
                                 },
                                 {
                                     "field": "UPDATE_TIME",
-                                    "title": "UPDATE_TIME",
+                                    "title": "Modify Time",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date"
