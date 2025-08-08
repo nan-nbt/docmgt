@@ -48,7 +48,7 @@
                         "valueField": "VALUE",
                         "condition": {
                             "accNo": "_AP_CONN",
-                            "sqlNo": "V_COMBO_DOC_TYPE",
+                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
                             "opType": 2
                         }
                     },
@@ -85,7 +85,8 @@
                     "noWhere": false,
                     "opt": "="
                 }
-            ]
+            ],
+            "version": 2
         },
         "detail": {
             "Detail": [
@@ -242,7 +243,8 @@
                     ],
                     "expandItems": [],
                     "listeners": {},
-                    "title": "Index Information"
+                    "title": "Index Information",
+                    "version": 2
                 },
                 {
                     "xtype": "Form",
@@ -285,16 +287,15 @@
                                     "colspan": 3
                                 },
                                 {
-                                    "field": "DOC_TYPE",
-                                    "title": "DOC_TYPE",
+                                    "field": "DOC_TYPE_DESC",
+                                    "title": "DOC_TYPE_DESC",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
                                         "manual": false,
                                         "valueField": "VALUE",
                                         "condition": {
-                                            "accNo": "_AP_CONN",
-                                            "sqlNo": "V_COMBO_DOC_TYPE",
+                                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
                                             "opType": 2
                                         }
                                     },
