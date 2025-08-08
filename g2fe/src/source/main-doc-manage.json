@@ -37,53 +37,6 @@
                     },
                     "noWhere": false,
                     "opt": "%%"
-                },
-                {
-                    "field": "DOC_TYPE",
-                    "title": "DOC_TYPE",
-                    "editor": {
-                        "xtype": "Combo",
-                        "textField": "LABEL",
-                        "manual": false,
-                        "valueField": "VALUE",
-                        "condition": {
-                            "accNo": "_AP_CONN",
-                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
-                            "opType": 2
-                        }
-                    },
-                    "noWhere": false,
-                    "opt": "="
-                },
-                {
-                    "field": "DOC_STATUS",
-                    "title": "DOC_STATUS",
-                    "editor": {
-                        "xtype": "Combo",
-                        "staticData": [
-                            {
-                                "LABEL": "1. CREATE",
-                                "VALUE": "1"
-                            },
-                            {
-                                "LABEL": "2. TRANSFER",
-                                "VALUE": "2"
-                            },
-                            {
-                                "LABEL": "3. RETURN",
-                                "VALUE": "3"
-                            },
-                            {
-                                "LABEL": "4. DESTROY",
-                                "VALUE": "4"
-                            }
-                        ],
-                        "textField": "LABEL",
-                        "manual": false,
-                        "valueField": "VALUE"
-                    },
-                    "noWhere": false,
-                    "opt": "="
                 }
             ],
             "version": 2
@@ -287,14 +240,15 @@
                                     "colspan": 3
                                 },
                                 {
-                                    "field": "DOC_TYPE_DESC",
-                                    "title": "DOC_TYPE_DESC",
+                                    "field": "DOC_TYPE",
+                                    "title": "DOC_TYPE",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
                                         "manual": false,
                                         "valueField": "VALUE",
                                         "condition": {
+                                            "accNo": "_AP_CONN",
                                             "sqlNo": "V_COMBO_BASIC_DOCTYPE",
                                             "opType": 2
                                         }
