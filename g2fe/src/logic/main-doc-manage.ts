@@ -31,15 +31,13 @@ const logic = {
         const DOC_STATUS_DESC = row.getData().DOC_STATUS_DESC;
         const restrictionRules: Record<string, Record<string, string>> = {
             "1. CREATED": {
-                RETURN: "Document is created. Return not allowed.",
-                DESTROY: "Document is created. Destroy not allowed."
+                RETURN: "Document is created. Return not allowed."
             },
             "2. TRANSFER": {
                 TRANSFER: "Document is already transferred. Transfer not allowed.",
-                DESTROY: "Document is already transferred and not returned. Destroy not allowed."
+                DESTROY: "Document is already transferred. Destroy not allowed."
             },
             "3. RETURN": {
-                TRANSFER: "Document is already returned. Transfer not allowed.",
                 RETURN: "Document is already returned. Return not allowed."
             },
             "4. DESTROY": {
