@@ -197,7 +197,39 @@
                     "expandItems": [],
                     "listeners": {},
                     "title": "Index Information",
-                    "version": 2
+                    "version": 2,
+                    "toolbar": {
+                        "needButtons": [],
+                        "others": [
+                            {
+                                "showBtn": 2,
+                                "_rowIndex": 0,
+                                "_rowstatus": "",
+                                "onClick": "(args) => { return LOGIC.onClickTrans(args); }",
+                                "text": "Transfer",
+                                "icon": "send",
+                                "limitNo": "TRANSFER"
+                            },
+                            {
+                                "_rowIndex": 1,
+                                "_rowstatus": "",
+                                "onClick": "(args) => { return LOGIC.onClickReturn(args); }",
+                                "showBtn": 2,
+                                "text": "Return",
+                                "icon": "undo-alt",
+                                "limitNo": "RETURN"
+                            },
+                            {
+                                "_rowIndex": 2,
+                                "_rowstatus": "",
+                                "onClick": "(args) => { return LOGIC.onClickDestroy(args); }",
+                                "showBtn": 2,
+                                "text": "Destroy",
+                                "icon": "reject",
+                                "limitNo": "DESTROY"
+                            }
+                        ]
+                    }
                 },
                 {
                     "xtype": "Form",
@@ -213,7 +245,8 @@
                             "edit",
                             "save",
                             "cancel"
-                        ]
+                        ],
+                        "others": []
                     },
                     "items": [
                         {
