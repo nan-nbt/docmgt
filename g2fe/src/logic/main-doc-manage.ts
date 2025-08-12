@@ -63,23 +63,53 @@ const logic = {
                 "json",
                 "POST"
             );
-            $$.Alert.show({ type: "success", text: `${actionType} Success`, timeout: 2000 });
+            $$.Alert.show({ type: "success", text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`, timeout: 2000 });
 
         } catch (e) {
             console.error("callService error", e);
-            $$.Alert.show({ type: "warning", text: e?.message ?? `${actionType} Failed`, timeout: 2000 });
+            $$.Alert.show({ type: "warning", text: e?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`, timeout: 2000 });
         } finally {
             $$.Loading.hide();
         }
     },
     onClickTrans: async function ({ dataUtil }) {
-        this.syncDocStatus("TRANSFER", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransTime");
+        $$.Dialog.show({
+            title: "Confirmation",
+            text: "Are you sure to transfer document?",
+            buttons: ["Y", "N"],
+            textYes: "Yes",
+            textNo: "No",
+            onYes: async () => {
+                this.syncDocStatus("TRANSFER", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransTime");
+            },
+            onNo: async () => { return true; }
+        });
     },
     onClickReturn: async function ({ dataUtil }) {
-        this.syncDocStatus("RETURN", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnTime");
+        $$.Dialog.show({
+            title: "Confirmation",
+            text: "Are you sure to return document?",
+            buttons: ["Y", "N"],
+            textYes: "Yes",
+            textNo: "No",
+            onYes: async () => {
+                this.syncDocStatus("RETURN", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnTime");
+            },
+            onNo: async () => { return true; }
+        });
     },
     onClickDestroy: async function ({ dataUtil }) {
-        this.syncDocStatus("DESTROY", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyTime");
+        $$.Dialog.show({
+            title: "Confirmation",
+            text: "Are you sure to destroy document?",
+            buttons: ["Y", "N"],
+            textYes: "Yes",
+            textNo: "No",
+            onYes: async () => {
+                this.syncDocStatus("DESTROY", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyTime");
+            },
+            onNo: async () => { return true; }
+        });
     }
 }
 
