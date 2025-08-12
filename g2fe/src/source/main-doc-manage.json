@@ -21,7 +21,7 @@
             "items": [
                 {
                     "field": "DOC_NO",
-                    "title": "DOC_NO",
+                    "title": "Document No.",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -31,61 +31,15 @@
                 },
                 {
                     "field": "DOC_NAME",
-                    "title": "DOC_NAME",
+                    "title": "Document Name",
                     "editor": {
                         "xtype": "TextField"
                     },
                     "noWhere": false,
                     "opt": "%%"
-                },
-                {
-                    "field": "DOC_TYPE",
-                    "title": "DOC_TYPE",
-                    "editor": {
-                        "xtype": "Combo",
-                        "textField": "LABEL",
-                        "manual": false,
-                        "valueField": "VALUE",
-                        "condition": {
-                            "accNo": "_AP_CONN",
-                            "sqlNo": "V_COMBO_DOC_TYPE",
-                            "opType": 2
-                        }
-                    },
-                    "noWhere": false,
-                    "opt": "="
-                },
-                {
-                    "field": "DOC_STATUS",
-                    "title": "DOC_STATUS",
-                    "editor": {
-                        "xtype": "Combo",
-                        "staticData": [
-                            {
-                                "LABEL": "1. CREATE",
-                                "VALUE": "1"
-                            },
-                            {
-                                "LABEL": "2. TRANSFER",
-                                "VALUE": "2"
-                            },
-                            {
-                                "LABEL": "3. RETURN",
-                                "VALUE": "3"
-                            },
-                            {
-                                "LABEL": "4. DESTROY",
-                                "VALUE": "4"
-                            }
-                        ],
-                        "textField": "LABEL",
-                        "manual": false,
-                        "valueField": "VALUE"
-                    },
-                    "noWhere": false,
-                    "opt": "="
                 }
-            ]
+            ],
+            "version": 2
         },
         "detail": {
             "Detail": [
@@ -99,12 +53,12 @@
                     "items": [
                         {
                             "field": "DOC_NO",
-                            "title": "DOC_NO",
+                            "title": "Document No.",
                             "colspan": 6
                         },
                         {
                             "field": "DOC_NAME",
-                            "title": "DOC_NAME",
+                            "title": "Document Name",
                             "colspan": 6
                         }
                     ],
@@ -123,7 +77,7 @@
                     "items": [
                         {
                             "field": "ACTION",
-                            "title": "ACTION",
+                            "title": "Action",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -134,7 +88,7 @@
                         },
                         {
                             "field": "UPDATE_USER_NM",
-                            "title": "UPDATE_USER_NM",
+                            "title": "Modify User",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -145,7 +99,7 @@
                         },
                         {
                             "field": "MODIFY_TIME",
-                            "title": "MODIFY_TIME",
+                            "title": "Modify Time",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date"
@@ -157,7 +111,7 @@
                         },
                         {
                             "field": "TRANS_TIME",
-                            "title": "TRANS_TIME",
+                            "title": "Transfer Time",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date"
@@ -169,7 +123,7 @@
                         },
                         {
                             "field": "RETURN_TIME",
-                            "title": "RETURN_TIME",
+                            "title": "Return Time",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date"
@@ -181,7 +135,7 @@
                         },
                         {
                             "field": "DESTROY_TIME",
-                            "title": "DESTROY_TIME",
+                            "title": "Destroy Time",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date"
@@ -219,7 +173,7 @@
                     "items": [
                         {
                             "field": "DOC_NO",
-                            "title": "DOC_NO",
+                            "title": "Document No.",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -230,7 +184,7 @@
                         },
                         {
                             "field": "DOC_NAME",
-                            "title": "DOC_NAME",
+                            "title": "Document Name",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -242,7 +196,40 @@
                     ],
                     "expandItems": [],
                     "listeners": {},
-                    "title": "Index Information"
+                    "title": "Index Information",
+                    "version": 2,
+                    "toolbar": {
+                        "needButtons": [],
+                        "others": [
+                            {
+                                "showBtn": 2,
+                                "_rowIndex": 0,
+                                "_rowstatus": "",
+                                "onClick": "(args) => { return LOGIC.onClickTrans(args); }",
+                                "text": "Transfer",
+                                "icon": "send",
+                                "limitNo": "TRANSFER"
+                            },
+                            {
+                                "_rowIndex": 1,
+                                "_rowstatus": "",
+                                "onClick": "(args) => { return LOGIC.onClickReturn(args); }",
+                                "showBtn": 2,
+                                "text": "Return",
+                                "icon": "undo-alt",
+                                "limitNo": "RETURN"
+                            },
+                            {
+                                "_rowIndex": 2,
+                                "_rowstatus": "",
+                                "onClick": "(args) => { return LOGIC.onClickDestroy(args); }",
+                                "showBtn": 2,
+                                "text": "Destroy",
+                                "icon": "reject",
+                                "limitNo": "DESTROY"
+                            }
+                        ]
+                    }
                 },
                 {
                     "xtype": "Form",
@@ -256,10 +243,10 @@
                         "needButtons": [
                             "add",
                             "edit",
-                            "remove",
                             "save",
                             "cancel"
-                        ]
+                        ],
+                        "others": []
                     },
                     "items": [
                         {
@@ -267,7 +254,7 @@
                             "items": [
                                 {
                                     "field": "DOC_NO",
-                                    "title": "DOC_NO",
+                                    "title": "Document No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -277,7 +264,7 @@
                                 },
                                 {
                                     "field": "DOC_NAME",
-                                    "title": "DOC_NAME",
+                                    "title": "Document Name",
                                     "editor": {
                                         "xtype": "TextField"
                                     },
@@ -286,7 +273,7 @@
                                 },
                                 {
                                     "field": "DOC_TYPE",
-                                    "title": "DOC_TYPE",
+                                    "title": "Type",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
@@ -294,7 +281,7 @@
                                         "valueField": "VALUE",
                                         "condition": {
                                             "accNo": "_AP_CONN",
-                                            "sqlNo": "V_COMBO_DOC_TYPE",
+                                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
                                             "opType": 2
                                         }
                                     },
@@ -303,7 +290,7 @@
                                 },
                                 {
                                     "field": "DOC_STATUS_DESC",
-                                    "title": "DOC_STATUS_DESC",
+                                    "title": "Status",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -312,7 +299,7 @@
                                 },
                                 {
                                     "field": "GROUPM_ID",
-                                    "title": "GROUPM_ID",
+                                    "title": "Group",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
@@ -329,7 +316,7 @@
                                 },
                                 {
                                     "field": "FLOOR_ID",
-                                    "title": "FLOOR_ID",
+                                    "title": "Floor",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
@@ -347,7 +334,7 @@
                                 },
                                 {
                                     "field": "CABINET_ID",
-                                    "title": "CABINET_ID",
+                                    "title": "Cabinet",
                                     "editor": {
                                         "xtype": "Combo",
                                         "id": "CMP_COMBO_CABINET",
@@ -369,7 +356,7 @@
                                 },
                                 {
                                     "field": "CABIN_ID",
-                                    "title": "CABIN_ID",
+                                    "title": "Cabin",
                                     "editor": {
                                         "xtype": "Combo",
                                         "id": "CMP_COMBO_CABIN",
@@ -391,7 +378,7 @@
                                 },
                                 {
                                     "field": "BOX_ID",
-                                    "title": "BOX_ID",
+                                    "title": "Box",
                                     "editor": {
                                         "xtype": "Combo",
                                         "id": "CMP_COMBO_BOX",
@@ -418,7 +405,7 @@
                             "items": [
                                 {
                                     "field": "CREATE_USER_NM",
-                                    "title": "CREATE_USER_NM",
+                                    "title": "Create User",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -427,7 +414,7 @@
                                 },
                                 {
                                     "field": "CREATE_TIME",
-                                    "title": "CREATE_TIME",
+                                    "title": "Create Time",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date"
@@ -437,7 +424,7 @@
                                 },
                                 {
                                     "field": "UPDATE_USER_NM",
-                                    "title": "UPDATE_USER_NM",
+                                    "title": "Modify User",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -446,7 +433,7 @@
                                 },
                                 {
                                     "field": "UPDATE_TIME",
-                                    "title": "UPDATE_TIME",
+                                    "title": "Modify Time",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date"
