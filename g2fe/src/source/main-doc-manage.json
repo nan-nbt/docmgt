@@ -272,7 +272,7 @@
                                     "colspan": 3
                                 },
                                 {
-                                    "field": "DOC_TYPE",
+                                    "field": "DOCTYPE_ID",
                                     "title": "Type",
                                     "editor": {
                                         "xtype": "Combo",
