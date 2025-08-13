@@ -39,18 +39,18 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "DOCTYPE_ID",
+                    "field": "DOC_TYPE_DESC",
                     "title": "Type",
                     "editor": {
                         "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
                         "condition": {
                             "accNo": "_AP_CONN",
                             "sqlNo": "V_COMBO_BASIC_DOCTYPE",
                             "opType": 2
-                        },
-                        "textField": "LABEL",
-                        "manual": false,
-                        "valueField": "VALUE"
+                        }
                     },
                     "noWhere": false,
                     "opt": "="
@@ -62,7 +62,7 @@
                         "xtype": "Combo",
                         "textField": "LABEL",
                         "manual": false,
-                        "valueField": "VALUE",
+                        "valueField": "LABEL",
                         "condition": {
                             "accNo": "_AP_CONN",
                             "sqlNo": "V_COMBO_DOC_STATUS",
