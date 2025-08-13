@@ -37,6 +37,40 @@
                     },
                     "noWhere": false,
                     "opt": "%%"
+                },
+                {
+                    "field": "DOC_TYPE_DESC",
+                    "title": "Type",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
+                    "field": "DOC_STATUS_DESC",
+                    "title": "Status",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_DOC_STATUS",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
                 }
             ],
             "version": 2
