@@ -15,6 +15,34 @@ const logic = {
         return item?.REF === values?.CABIN_ID;
     },
     /**
+     * onInputed event handler for filter combo [cabinet, column, box]
+     * @param param0 { field, dataUtil }
+     */
+    onInputed: function ({ field, dataUtil }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const row = du.getCurrentRow();
+
+        if (field === "FLOOR_ID") {
+            row.input({
+                CABINET_ID: null,
+                CABIN_ID: null,
+                BOX_ID: null
+            });
+        }
+        else if (field === "CABINET_ID") {
+            row.input({
+                CABIN_ID: null,
+                BOX_ID: null
+            });
+        }
+        else if (field === "CABIN_ID") {
+            row.input({
+                BOX_ID: null
+            });
+        }
+    },
+    /**
      * Handle custom action from toolbar to update doc status and sync data
      * @param ctx Context object from G2FW (includes actionType, dataUtil, serviceUri, ...)
      */

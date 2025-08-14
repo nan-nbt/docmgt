@@ -72,7 +72,8 @@
                     "noWhere": false,
                     "opt": "="
                 }
-            ]
+            ],
+            "version": 2
         },
         "detail": {},
         "main": {
@@ -278,7 +279,8 @@
                     ],
                     "expandItems": [],
                     "listeners": {},
-                    "title": "Main Information"
+                    "title": "Main Information",
+                    "version": 2
                 }
             ]
         }

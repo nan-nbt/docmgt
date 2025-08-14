@@ -70,7 +70,8 @@
                     "noWhere": false,
                     "opt": "="
                 }
-            ]
+            ],
+            "version": 2
         },
         "detail": {},
         "main": {
@@ -205,7 +206,8 @@
                     "expandItems": [],
                     "listeners": {},
                     "title": "Master Group Information",
-                    "singleCheck": false
+                    "singleCheck": false,
+                    "version": 2
                 },
                 {
                     "xtype": "Table",
@@ -447,7 +449,8 @@
                     ],
                     "expandItems": [],
                     "listeners": {},
-                    "title": "Detail Group Information"
+                    "title": "Detail Group Information",
+                    "version": 2
                 }
             ]
         }
