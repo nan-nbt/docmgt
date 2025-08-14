@@ -1,1 +1,528 @@
-{"isReport":false,"hasQuery":true,"pageCnt":1,"tplNm":"MultipleTable","accNo":"_AP_CONN","mname":"DM_BASIC_CABINET","page":{"config":{"xtype":"MultipleTable","useData":"useData"},"queryarea":{"autoQuery":true,"xtype":"QueryBar","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_CABINET"},"listeners":{},"items":[{"field":"FLOOR_NO","title":"Floor No","editor":{"xtype":"TextField","textCase":"upper"},"noWhere":false,"opt":"%%"},{"field":"FLOOR_NAME","title":"Floor Name","editor":{"xtype":"TextField"},"noWhere":false,"opt":"%%"},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Combo","staticData":[{"LABEL":"Enabled","VALUE":"Y"},{"LABEL":"Disabled","VALUE":"N"}],"textField":"LABEL","manual":false,"valueField":"VALUE","supportAll":true},"noWhere":false,"opt":"="}],"version":2},"detail":{},"main":{"xtype":"GridLayout","layoutConfig":[12,12],"items":[{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_CABINET","unitName":"DU_BASIC_FLOOR","pager":true,"pageSize":10},"toolbar":{"needButtons":["add","edit","remove","save","cancel"]},"rowNumbers":true,"checkbox":true,"items":[{"field":"FLOOR_NO","title":"Floor No","editor":{"xtype":"TextField","textCase":"upper"},"must":true,"width":0.2,"freeze":false,"sortable":false},{"field":"FLOOR_NAME","title":"Floor Name","editor":{"xtype":"TextField"},"must":true,"width":0.3,"freeze":false,"sortable":false},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Switch","on":"Y","off":"N"},"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_USER_NM","title":"Create User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_TIME","title":"Create Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_USER_NM","title":"Update User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_TIME","title":"Update Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Floor Information","version":2},{"xtype":"Tab","body":[{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_CABINET","unitName":"DU_BASIC_CABINET","clientPager":true,"pageSize":10},"toolbar":{"needButtons":["add","edit","remove","save","cancel"]},"rowNumbers":true,"checkbox":true,"items":[{"field":"CABINET_NO","title":"Cabinet No","editor":{"xtype":"TextField","textCase":"upper"},"must":true,"width":0.2,"freeze":false,"sortable":false},{"field":"CABINET_NAME","title":"Cabinet Name","editor":{"xtype":"TextField"},"must":true,"width":0.3,"freeze":false,"sortable":false},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Switch","on":"Y","off":"N"},"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_USER_NM","title":"Create User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_TIME","title":"Create Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_USER_NM","title":"Update User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_TIME","title":"Update Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Cabinet Information","version":2},{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_CABINET","unitName":"DU_BASIC_CABIN","pageSize":10,"clientPager":true},"toolbar":{"needButtons":["add","edit","remove","save","cancel"]},"rowNumbers":true,"checkbox":true,"items":[{"field":"CABIN_NO","title":"Cabin No","editor":{"xtype":"TextField","textCase":"upper"},"must":true,"width":0.2,"freeze":false,"sortable":false},{"field":"CABIN_NAME","title":"Cabin Name","editor":{"xtype":"TextField"},"must":true,"width":0.3,"freeze":false,"sortable":false},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Switch","on":"Y","off":"N"},"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_USER_NM","title":"Create User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_TIME","title":"Create Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_USER_NM","title":"Update User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_TIME","title":"Update Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Cabin Information","version":2},{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_CABINET","unitName":"DU_BASIC_BOX","pageSize":10,"clientPager":true},"toolbar":{"needButtons":["add","edit","remove","save","cancel"]},"rowIndex":true,"checkbox":true,"items":[{"field":"BOX_NO","title":"Box No","editor":{"xtype":"TextField","textCase":"upper"},"must":true,"width":0.2,"freeze":false,"sortable":false},{"field":"BOX_NAME","title":"Box Name","editor":{"xtype":"TextField"},"must":true,"width":0.3,"freeze":false,"sortable":false},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Switch","on":"Y","off":"N"},"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_USER_NM","title":"Create User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_TIME","title":"Create Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_USER_NM","title":"Update User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_TIME","title":"Update Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Box Information","version":2}]}]}},"programsetting":{"programmodel":"DM_BASIC_CABINET","programaccno":"_AP_CONN","listeners":{}},"requires":["DataProvider","useData"]}
+{
+    "isReport": false,
+    "hasQuery": true,
+    "pageCnt": 1,
+    "tplNm": "MultipleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_BASIC_CABINET",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "queryarea": {
+            "autoQuery": true,
+            "xtype": "QueryBar",
+            "dataConfig": {
+                "accNo": "_AP_CONN",
+                "modelName": "DM_BASIC_CABINET"
+            },
+            "listeners": {},
+            "items": [
+                {
+                    "field": "FLOOR_NO",
+                    "title": "Floor No",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "FLOOR_NAME",
+                    "title": "Floor Name",
+                    "editor": {
+                        "xtype": "TextField"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "ENABLED",
+                    "title": "Status Enabled",
+                    "editor": {
+                        "xtype": "Combo",
+                        "staticData": [
+                            {
+                                "LABEL": "Enabled",
+                                "VALUE": "Y"
+                            },
+                            {
+                                "LABEL": "Disabled",
+                                "VALUE": "N"
+                            }
+                        ],
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "supportAll": true
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                }
+            ],
+            "version": 2
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12,
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_BASIC_CABINET",
+                        "unitName": "DU_BASIC_FLOOR",
+                        "pager": true,
+                        "pageSize": 10
+                    },
+                    "toolbar": {
+                        "needButtons": [
+                            "add",
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": true,
+                    "items": [
+                        {
+                            "field": "FLOOR_NO",
+                            "title": "Floor No",
+                            "editor": {
+                                "xtype": "TextField",
+                                "textCase": "upper"
+                            },
+                            "must": true,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "FLOOR_NAME",
+                            "title": "Floor Name",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "width": 0.3,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "ENABLED",
+                            "title": "Status Enabled",
+                            "editor": {
+                                "xtype": "Switch",
+                                "on": "Y",
+                                "off": "N"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "Create User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "Create Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "Update User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "Update Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Floor Information",
+                    "version": 2
+                },
+                {
+                    "xtype": "Tab",
+                    "body": [
+                        {
+                            "xtype": "Table",
+                            "dataConfig": {
+                                "accNo": "_AP_CONN",
+                                "modelName": "DM_BASIC_CABINET",
+                                "unitName": "DU_BASIC_CABINET",
+                                "clientPager": true,
+                                "pageSize": 10
+                            },
+                            "toolbar": {
+                                "needButtons": [
+                                    "add",
+                                    "edit",
+                                    "remove",
+                                    "save",
+                                    "cancel"
+                                ]
+                            },
+                            "rowNumbers": true,
+                            "checkbox": true,
+                            "items": [
+                                {
+                                    "field": "CABINET_NO",
+                                    "title": "Cabinet No",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "width": 0.2,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CABINET_NAME",
+                                    "title": "Cabinet Name",
+                                    "editor": {
+                                        "xtype": "TextField"
+                                    },
+                                    "must": true,
+                                    "width": 0.3,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "ENABLED",
+                                    "title": "Status Enabled",
+                                    "editor": {
+                                        "xtype": "Switch",
+                                        "on": "Y",
+                                        "off": "N"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CREATE_USER_NM",
+                                    "title": "Create User",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CREATE_TIME",
+                                    "title": "Create Time",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "UPDATE_USER_NM",
+                                    "title": "Update User",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "UPDATE_TIME",
+                                    "title": "Update Time",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                }
+                            ],
+                            "expandItems": [],
+                            "listeners": {},
+                            "title": "Cabinet Information",
+                            "version": 2
+                        },
+                        {
+                            "xtype": "Table",
+                            "dataConfig": {
+                                "accNo": "_AP_CONN",
+                                "modelName": "DM_BASIC_CABINET",
+                                "unitName": "DU_BASIC_CABIN",
+                                "pageSize": 10,
+                                "clientPager": true
+                            },
+                            "toolbar": {
+                                "needButtons": [
+                                    "add",
+                                    "edit",
+                                    "remove",
+                                    "save",
+                                    "cancel"
+                                ]
+                            },
+                            "rowNumbers": true,
+                            "checkbox": true,
+                            "items": [
+                                {
+                                    "field": "CABIN_NO",
+                                    "title": "Cabin No",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "width": 0.2,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CABIN_NAME",
+                                    "title": "Cabin Name",
+                                    "editor": {
+                                        "xtype": "TextField"
+                                    },
+                                    "must": true,
+                                    "width": 0.3,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "ENABLED",
+                                    "title": "Status Enabled",
+                                    "editor": {
+                                        "xtype": "Switch",
+                                        "on": "Y",
+                                        "off": "N"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CREATE_USER_NM",
+                                    "title": "Create User",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CREATE_TIME",
+                                    "title": "Create Time",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "UPDATE_USER_NM",
+                                    "title": "Update User",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "UPDATE_TIME",
+                                    "title": "Update Time",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                }
+                            ],
+                            "expandItems": [],
+                            "listeners": {},
+                            "title": "Cabin Information",
+                            "version": 2
+                        },
+                        {
+                            "xtype": "Table",
+                            "dataConfig": {
+                                "accNo": "_AP_CONN",
+                                "modelName": "DM_BASIC_CABINET",
+                                "unitName": "DU_BASIC_BOX",
+                                "pageSize": 10,
+                                "clientPager": true
+                            },
+                            "toolbar": {
+                                "needButtons": [
+                                    "add",
+                                    "edit",
+                                    "remove",
+                                    "save",
+                                    "cancel"
+                                ]
+                            },
+                            "rowIndex": true,
+                            "checkbox": true,
+                            "items": [
+                                {
+                                    "field": "BOX_NO",
+                                    "title": "Box No",
+                                    "editor": {
+                                        "xtype": "TextField",
+                                        "textCase": "upper"
+                                    },
+                                    "must": true,
+                                    "width": 0.2,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "BOX_NAME",
+                                    "title": "Box Name",
+                                    "editor": {
+                                        "xtype": "TextField"
+                                    },
+                                    "must": true,
+                                    "width": 0.3,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "ENABLED",
+                                    "title": "Status Enabled",
+                                    "editor": {
+                                        "xtype": "Switch",
+                                        "on": "Y",
+                                        "off": "N"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CREATE_USER_NM",
+                                    "title": "Create User",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "CREATE_TIME",
+                                    "title": "Create Time",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "UPDATE_USER_NM",
+                                    "title": "Update User",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
+                                    "field": "UPDATE_TIME",
+                                    "title": "Update Time",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date"
+                                    },
+                                    "must": false,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                }
+                            ],
+                            "expandItems": [],
+                            "listeners": {},
+                            "title": "Box Information",
+                            "version": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_BASIC_CABINET",
+        "programaccno": "_AP_CONN",
+        "listeners": {}
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
