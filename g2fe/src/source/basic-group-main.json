@@ -1,1 +1,467 @@
-{"isReport":false,"hasQuery":true,"pageCnt":1,"tplNm":"MultipleTable","accNo":"_AP_CONN","mname":"DM_BASIC_GROUP","page":{"config":{"xtype":"MultipleTable","useData":"useData"},"queryarea":{"autoQuery":true,"xtype":"QueryBar","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_GROUP"},"listeners":{},"items":[{"field":"GROUPM_NO","title":"Group No","editor":{"xtype":"TextField","textCase":"upper"},"noWhere":false,"opt":"%%"},{"field":"GROUPM_NAME","title":"Group Name","editor":{"xtype":"TextField"},"noWhere":false,"opt":"%%"},{"field":"GROUP_NAME_EN","title":"Group Name (EN)","editor":{"xtype":"TextField"},"noWhere":false,"opt":"%%"},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Combo","staticData":[{"VALUE":"Y","LABEL":"Enabled"},{"VALUE":"N","LABEL":"Disabled"}],"textField":"LABEL","manual":false,"valueField":"VALUE","supportAll":true},"noWhere":false,"opt":"="}],"version":2},"detail":{},"main":{"xtype":"GridLayout","layoutConfig":[12,12],"items":[{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_GROUP","unitName":"DU_BASIC_GROUPM","pager":true,"pageSize":10,"paginationSize":[20,30,50,100]},"toolbar":{"needButtons":["add","edit","remove","save","cancel"]},"rowNumbers":true,"checkbox":true,"items":[{"field":"GROUPM_NO","title":"Group No","editor":{"xtype":"TextField","textCase":"upper"},"ident":null,"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"GROUPM_NAME","title":"Group Name","editor":{"xtype":"TextField"},"must":true,"width":0.2,"freeze":false,"sortable":false},{"field":"GROUPM_NAME_EN","title":"Group Name (EN)","editor":{"xtype":"TextField"},"must":false,"width":0.2,"freeze":false,"sortable":false},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Switch","on":"Y","off":"N"},"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_USER_NM","title":"Create User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_TIME","title":"Create Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_USER_NM","title":"Update User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_TIME","title":"Update Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Master Group Information","singleCheck":false,"version":2},{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_GROUP","unitName":"DU_BASIC_GROUPD","pageSize":10,"paginationSize":[20,30,50,100]},"toolbar":{"needButtons":["edit","remove","save","cancel"],"others":[{"onUploading":"(args) => { return true; }","onUploaded":"","hasPopupWin":1,"popupWinCfg":{"xtype":"QueryPicker","base":{"title":"Query Picker Global Users","width":50,"accNo":"_AP_CONN","source":"[SQL] V_QP_GLOBAL_USER","sqlNo":"V_QP_GLOBAL_USER","pageSize":10,"paginationSize":[20,30,50,100],"pager":true,"lazyload":false},"columns":[{"field":"FACT_NO","title":"FACT_NO","editor":{"xtype":"TextField","textCase":"upper"},"noWhere":false,"querySort":1,"opt":"=","tableSort":1},{"field":"PCCUID","title":"PCCUID","editor":{"xtype":"Label"},"noWhere":false,"querySort":null,"opt":"=","tableSort":2,"cover":"PCCUID"},{"field":"SSO_ACCT","title":"SSO_ACCT","editor":{"xtype":"TextField","textCase":"upper"},"noWhere":false,"querySort":2,"opt":"%%","tableSort":3},{"field":"LOCAL_PNL_NM","title":"LOCAL_PNL_NM","editor":{"xtype":"TextField","textCase":"upper"},"noWhere":false,"querySort":3,"opt":"%%","tableSort":4,"cover":"EMP_NAME"},{"field":"SEX","title":"SEX","editor":{"xtype":"Label"},"noWhere":false,"querySort":null,"opt":"%%","tableSort":5},{"field":"CONTACT_MAIL","title":"CONTACT_MAIL","editor":{"xtype":"TextField"},"noWhere":false,"querySort":4,"opt":"%%","tableSort":6,"cover":"EMP_EMAIL"}]},"_rowIndex":0,"showBtn":2,"icon":"add","type":"add","text":"Add","onClick":"(args) => { return true; }","picker":"query","_rowstatus":""}]},"rowNumbers":true,"checkbox":true,"items":[{"field":"EMP_NO","title":"Employee No","editor":{"xtype":"TextField","textCase":"upper"},"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"PCCUID","title":"PCCUID","editor":{"xtype":"Label"},"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"EMP_NAME","title":"Employee Name","editor":{"xtype":"Label"},"must":true,"width":0.15,"freeze":false,"sortable":false},{"field":"EMP_EMAIL","title":"Employee Email","editor":{"xtype":"Label"},"must":true,"width":0.15,"freeze":false,"sortable":false},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Switch","on":"Y","off":"N"},"must":true,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_USER_NM","title":"Create User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_TIME","title":"Create Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_USER_NM","title":"Update User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_TIME","title":"Update Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Detail Group Information","version":2}]}},"programsetting":{"programmodel":"DM_BASIC_GROUP","programaccno":"_AP_CONN","listeners":{}},"requires":["DataProvider","useData"]}
+{
+    "isReport": false,
+    "hasQuery": true,
+    "pageCnt": 1,
+    "tplNm": "MultipleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_BASIC_GROUP",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "queryarea": {
+            "autoQuery": true,
+            "xtype": "QueryBar",
+            "dataConfig": {
+                "accNo": "_AP_CONN",
+                "modelName": "DM_BASIC_GROUP"
+            },
+            "listeners": {},
+            "items": [
+                {
+                    "field": "GROUPM_NO",
+                    "title": "Group No",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "GROUPM_NAME",
+                    "title": "Group Name",
+                    "editor": {
+                        "xtype": "TextField"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "GROUP_NAME_EN",
+                    "title": "Group Name (EN)",
+                    "editor": {
+                        "xtype": "TextField"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "ENABLED",
+                    "title": "Status Enabled",
+                    "editor": {
+                        "xtype": "Combo",
+                        "staticData": [
+                            {
+                                "VALUE": "Y",
+                                "LABEL": "Enabled"
+                            },
+                            {
+                                "VALUE": "N",
+                                "LABEL": "Disabled"
+                            }
+                        ],
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "supportAll": true
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                }
+            ],
+            "version": 2
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12,
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_BASIC_GROUP",
+                        "unitName": "DU_BASIC_GROUPM",
+                        "pager": true,
+                        "pageSize": 10,
+                        "paginationSize": [
+                            20,
+                            30,
+                            50,
+                            100
+                        ]
+                    },
+                    "toolbar": {
+                        "needButtons": [
+                            "add",
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": true,
+                    "items": [
+                        {
+                            "field": "GROUPM_NO",
+                            "title": "Group No",
+                            "editor": {
+                                "xtype": "TextField",
+                                "textCase": "upper"
+                            },
+                            "ident": null,
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "GROUPM_NAME",
+                            "title": "Group Name",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "GROUPM_NAME_EN",
+                            "title": "Group Name (EN)",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": false,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "ENABLED",
+                            "title": "Status Enabled",
+                            "editor": {
+                                "xtype": "Switch",
+                                "on": "Y",
+                                "off": "N"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "Create User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "Create Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "Update User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "Update Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Master Group Information",
+                    "singleCheck": false,
+                    "version": 2
+                },
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_BASIC_GROUP",
+                        "unitName": "DU_BASIC_GROUPD",
+                        "pageSize": 10,
+                        "paginationSize": [
+                            20,
+                            30,
+                            50,
+                            100
+                        ]
+                    },
+                    "toolbar": {
+                        "needButtons": [
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ],
+                        "others": [
+                            {
+                                "onUploading": "(args) => { return true; }",
+                                "onUploaded": "",
+                                "hasPopupWin": 1,
+                                "popupWinCfg": {
+                                    "xtype": "QueryPicker",
+                                    "base": {
+                                        "title": "Query Picker Global Users",
+                                        "width": 50,
+                                        "accNo": "_AP_CONN",
+                                        "source": "[SQL] V_QP_GLOBAL_USER",
+                                        "sqlNo": "V_QP_GLOBAL_USER",
+                                        "pageSize": 10,
+                                        "paginationSize": [
+                                            20,
+                                            30,
+                                            50,
+                                            100
+                                        ],
+                                        "pager": true,
+                                        "lazyload": false
+                                    },
+                                    "columns": [
+                                        {
+                                            "field": "FACT_NO",
+                                            "title": "FACT_NO",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "textCase": "upper"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 1,
+                                            "opt": "=",
+                                            "tableSort": 1
+                                        },
+                                        {
+                                            "field": "PCCUID",
+                                            "title": "PCCUID",
+                                            "editor": {
+                                                "xtype": "Label"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": null,
+                                            "opt": "=",
+                                            "tableSort": 2,
+                                            "cover": "PCCUID"
+                                        },
+                                        {
+                                            "field": "SSO_ACCT",
+                                            "title": "SSO_ACCT",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "textCase": "upper"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 2,
+                                            "opt": "%%",
+                                            "tableSort": 3
+                                        },
+                                        {
+                                            "field": "LOCAL_PNL_NM",
+                                            "title": "LOCAL_PNL_NM",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "textCase": "upper"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 3,
+                                            "opt": "%%",
+                                            "tableSort": 4,
+                                            "cover": "EMP_NAME"
+                                        },
+                                        {
+                                            "field": "SEX",
+                                            "title": "SEX",
+                                            "editor": {
+                                                "xtype": "Label"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": null,
+                                            "opt": "%%",
+                                            "tableSort": 5
+                                        },
+                                        {
+                                            "field": "CONTACT_MAIL",
+                                            "title": "CONTACT_MAIL",
+                                            "editor": {
+                                                "xtype": "TextField"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 4,
+                                            "opt": "%%",
+                                            "tableSort": 6,
+                                            "cover": "EMP_EMAIL"
+                                        }
+                                    ]
+                                },
+                                "_rowIndex": 0,
+                                "showBtn": 2,
+                                "icon": "add",
+                                "type": "add",
+                                "text": "Add",
+                                "onClick": "(args) => { return true; }",
+                                "picker": "query",
+                                "_rowstatus": ""
+                            }
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": true,
+                    "items": [
+                        {
+                            "field": "EMP_NO",
+                            "title": "Employee No",
+                            "editor": {
+                                "xtype": "TextField",
+                                "textCase": "upper"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "PCCUID",
+                            "title": "PCCUID",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "EMP_NAME",
+                            "title": "Employee Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.15,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "EMP_EMAIL",
+                            "title": "Employee Email",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.15,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "ENABLED",
+                            "title": "Status Enabled",
+                            "editor": {
+                                "xtype": "Switch",
+                                "on": "Y",
+                                "off": "N"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "Create User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "Create Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "Update User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "Update Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Detail Group Information",
+                    "version": 2
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_BASIC_GROUP",
+        "programaccno": "_AP_CONN",
+        "listeners": {}
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
