@@ -61,7 +61,8 @@
                     "noWhere": false,
                     "opt": "="
                 }
-            ]
+            ],
+            "version": 2
         },
         "detail": {},
         "main": {
@@ -177,7 +178,8 @@
                     ],
                     "expandItems": [],
                     "listeners": {},
-                    "title": "Floor Information"
+                    "title": "Floor Information",
+                    "version": 2
                 },
                 {
                     "xtype": "Tab",
@@ -288,7 +290,8 @@
                             ],
                             "expandItems": [],
                             "listeners": {},
-                            "title": "Cabinet Information"
+                            "title": "Cabinet Information",
+                            "version": 2
                         },
                         {
                             "xtype": "Table",
@@ -396,7 +399,8 @@
                             ],
                             "expandItems": [],
                             "listeners": {},
-                            "title": "Cabin Information"
+                            "title": "Cabin Information",
+                            "version": 2
                         },
                         {
                             "xtype": "Table",
@@ -504,7 +508,8 @@
                             ],
                             "expandItems": [],
                             "listeners": {},
-                            "title": "Box Information"
+                            "title": "Box Information",
+                            "version": 2
                         }
                     ]
                 }
