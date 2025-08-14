@@ -1,1 +1,175 @@
-{"isReport":false,"hasQuery":true,"pageCnt":1,"tplNm":"SingleTable","accNo":"_AP_CONN","mname":"DM_RPT_DOC_MANAGE","page":{"config":{"xtype":"MultipleTable","useData":"useData"},"queryarea":{"autoQuery":true,"xtype":"QueryBar","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_RPT_DOC_MANAGE"},"listeners":{},"items":[{"field":"DOCTYPE_ID","title":"Type","editor":{"xtype":"Combo","condition":{"accNo":"_AP_CONN","sqlNo":"V_COMBO_BASIC_DOCTYPE","opType":2},"textField":"LABEL","manual":false,"valueField":"VALUE"},"noWhere":true,"opt":"=","parm":"DOCTYPE_ID"},{"field":"FLOOR_ID","title":"Floor","editor":{"xtype":"Combo","textField":"LABEL","manual":false,"valueField":"VALUE","condition":{"accNo":"_AP_CONN","sqlNo":"V_COMBO_BASIC_FLOOR","opType":2}},"noWhere":true,"opt":"=","parm":"FLOOR_ID"},{"field":"CABINET_ID","title":"Cabinet","editor":{"xtype":"Combo","textField":"LABEL","manual":false,"valueField":"VALUE","condition":{"accNo":"_AP_CONN","sqlNo":"V_COMBO_BASIC_CABINET","opType":2}},"noWhere":true,"opt":"=","parm":"CABINET_ID"},{"field":"CABIN_ID","title":"Cabin","editor":{"xtype":"Combo","textField":"LABEL","manual":false,"valueField":"VALUE","condition":{"accNo":"_AP_CONN","sqlNo":"V_COMBO_BASIC_CABIN","opType":2}},"noWhere":true,"opt":"=","parm":"CABIN_ID"},{"field":"BOX_ID","title":"Box","editor":{"xtype":"Combo","textField":"LABEL","manual":false,"valueField":"VALUE","condition":{"accNo":"_AP_CONN","sqlNo":"V_COMBO_BASIC_BOX","opType":2}},"noWhere":true,"opt":"=","parm":"BOX_ID"}],"version":2},"detail":{},"main":{"xtype":"GridLayout","layoutConfig":[12],"items":[{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_RPT_DOC_MANAGE","unitName":"V_RPT_DOC_MANAGE","pager":true,"pageSize":10},"toolbar":false,"rowNumbers":true,"checkbox":false,"items":[{"field":"KIND","title":"Kind","editor":{"xtype":"Label"},"must":false,"width":0.5,"freeze":false,"sortable":false},{"field":"COUNT","title":"Total","editor":{"xtype":"Label"},"must":false,"width":0.5,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Main Information","version":2}]}},"programsetting":{"programmodel":"DM_RPT_DOC_MANAGE","programaccno":"_AP_CONN","listeners":{}},"requires":["DataProvider","useData"]}
+{
+    "isReport": false,
+    "hasQuery": true,
+    "pageCnt": 1,
+    "tplNm": "SingleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_RPT_DOC_MANAGE",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "queryarea": {
+            "autoQuery": true,
+            "xtype": "QueryBar",
+            "dataConfig": {
+                "accNo": "_AP_CONN",
+                "modelName": "DM_RPT_DOC_MANAGE"
+            },
+            "listeners": {},
+            "items": [
+                {
+                    "field": "DOCTYPE_ID",
+                    "title": "Type",
+                    "editor": {
+                        "xtype": "Combo",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
+                            "opType": 2
+                        },
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE"
+                    },
+                    "noWhere": true,
+                    "opt": "=",
+                    "parm": "DOCTYPE_ID"
+                },
+                {
+                    "field": "FLOOR_ID",
+                    "title": "Floor",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_FLOOR",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": true,
+                    "opt": "=",
+                    "parm": "FLOOR_ID"
+                },
+                {
+                    "field": "CABINET_ID",
+                    "title": "Cabinet",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_CABINET",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": true,
+                    "opt": "=",
+                    "parm": "CABINET_ID"
+                },
+                {
+                    "field": "CABIN_ID",
+                    "title": "Cabin",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_CABIN",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": true,
+                    "opt": "=",
+                    "parm": "CABIN_ID"
+                },
+                {
+                    "field": "BOX_ID",
+                    "title": "Box",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_BOX",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": true,
+                    "opt": "=",
+                    "parm": "BOX_ID"
+                }
+            ],
+            "version": 2
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_RPT_DOC_MANAGE",
+                        "unitName": "V_RPT_DOC_MANAGE",
+                        "pager": true,
+                        "pageSize": 10
+                    },
+                    "toolbar": false,
+                    "rowNumbers": true,
+                    "checkbox": false,
+                    "items": [
+                        {
+                            "field": "KIND",
+                            "title": "Kind",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.5,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "COUNT",
+                            "title": "Total",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.5,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Main Information",
+                    "version": 2
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_RPT_DOC_MANAGE",
+        "programaccno": "_AP_CONN",
+        "listeners": {}
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
