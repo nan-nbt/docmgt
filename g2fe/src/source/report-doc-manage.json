@@ -17,7 +17,9 @@
                 "accNo": "_AP_CONN",
                 "modelName": "DM_RPT_DOC_MANAGE"
             },
-            "listeners": {},
+            "listeners": {
+                "onInputed": "(args) => { LOGIC.onInputed(args); }"
+            },
             "items": [
                 {
                     "field": "DOCTYPE_ID",
@@ -49,7 +51,8 @@
                             "accNo": "_AP_CONN",
                             "sqlNo": "V_COMBO_BASIC_FLOOR",
                             "opType": 2
-                        }
+                        },
+                        "id": "CMP_COMBO_FLOOR"
                     },
                     "noWhere": true,
                     "opt": "=",
@@ -67,11 +70,16 @@
                             "accNo": "_AP_CONN",
                             "sqlNo": "V_COMBO_BASIC_CABINET",
                             "opType": 2
-                        }
+                        },
+                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterCabinet(args); }",
+                        "id": "CMP_COMBO_CABINET"
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "CABINET_ID"
+                    "parm": "CABINET_ID",
+                    "dependencies": [
+                        "FLOOR_ID"
+                    ]
                 },
                 {
                     "field": "CABIN_ID",
@@ -85,11 +93,16 @@
                             "accNo": "_AP_CONN",
                             "sqlNo": "V_COMBO_BASIC_CABIN",
                             "opType": 2
-                        }
+                        },
+                        "id": "CMP_COMBO_CABIN",
+                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterCabin(args); }"
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "CABIN_ID"
+                    "parm": "CABIN_ID",
+                    "dependencies": [
+                        "CABINET_ID"
+                    ]
                 },
                 {
                     "field": "BOX_ID",
@@ -103,11 +116,16 @@
                             "accNo": "_AP_CONN",
                             "sqlNo": "V_COMBO_BASIC_BOX",
                             "opType": 2
-                        }
+                        },
+                        "id": "CMP_COMBO_BOX",
+                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterBox(args); }"
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "BOX_ID"
+                    "parm": "BOX_ID",
+                    "dependencies": [
+                        "CABIN_ID"
+                    ]
                 }
             ],
             "version": 2
@@ -166,7 +184,8 @@
     "programsetting": {
         "programmodel": "DM_RPT_DOC_MANAGE",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {},
+        "logicPath": "logic/report-doc-manage"
     },
     "requires": [
         "DataProvider",
