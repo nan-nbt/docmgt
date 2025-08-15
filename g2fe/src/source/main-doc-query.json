@@ -1,1 +1,297 @@
-{"isReport":false,"hasQuery":true,"pageCnt":1,"tplNm":"SingleTable","accNo":"_AP_CONN","mname":"DM_DOC_MANAGE","page":{"config":{"xtype":"MultipleTable","useData":"useData"},"queryarea":{"autoQuery":true,"xtype":"QueryBar","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_DOC_MANAGE"},"listeners":{},"items":[{"field":"DOC_NO","title":"Document No.","editor":{"xtype":"TextField","textCase":"upper"},"noWhere":false,"opt":"%%"},{"field":"DOC_NAME","title":"Document Name","editor":{"xtype":"TextField"},"noWhere":false,"opt":"%%"},{"field":"DOC_TYPE_DESC","title":"Type","editor":{"xtype":"Combo","textField":"LABEL","manual":false,"valueField":"LABEL","condition":{"accNo":"_AP_CONN","sqlNo":"V_COMBO_BASIC_DOCTYPE","opType":2}},"noWhere":false,"opt":"="},{"field":"DOC_STATUS_DESC","title":"Status","editor":{"xtype":"Combo","textField":"LABEL","manual":false,"valueField":"LABEL","condition":{"accNo":"_AP_CONN","sqlNo":"V_COMBO_DOC_STATUS","opType":2}},"noWhere":false,"opt":"="}],"version":2},"detail":{},"main":{"xtype":"GridLayout","layoutConfig":[12],"items":[{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_DOC_MANAGE","unitName":"DU_DOC_MANAGE","pager":true,"pageSize":10},"toolbar":false,"rowNumbers":true,"checkbox":false,"items":[{"field":"DOC_NO","title":"Document No.","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":true,"sortable":false},{"field":"DOC_NAME","title":"Document Name","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":true,"sortable":false},{"field":"DOC_TYPE_DESC","title":"Type","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":true,"sortable":false},{"field":"DOC_STATUS_DESC","title":"Status","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":true,"sortable":false},{"field":"TRANS_TIME","title":"Transfer Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"RETURN_TIME","title":"Return Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"DESTROY_TIME","title":"Destroy Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"GROUPM_NAME","title":"Group","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"FLOOR_NAME","title":"Floor","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CABINET_NAME","title":"Cabinet","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CABIN_NAME","title":"Cabin","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"BOX_NAME","title":"Box","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_USER_NM","title":"Create User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_TIME","title":"Create Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_USER_NM","title":"Update User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_TIME","title":"Update Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Main Information","version":2}]}},"programsetting":{"programmodel":"DM_DOC_MANAGE","programaccno":"_AP_CONN","listeners":{}},"requires":["DataProvider","useData"]}
+{
+    "isReport": false,
+    "hasQuery": true,
+    "pageCnt": 1,
+    "tplNm": "SingleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_DOC_MANAGE",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "queryarea": {
+            "autoQuery": true,
+            "xtype": "QueryBar",
+            "dataConfig": {
+                "accNo": "_AP_CONN",
+                "modelName": "DM_DOC_MANAGE"
+            },
+            "listeners": {},
+            "items": [
+                {
+                    "field": "DOC_NO",
+                    "title": "Document No.",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "DOC_NAME",
+                    "title": "Document Name",
+                    "editor": {
+                        "xtype": "TextField"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "DOC_TYPE_DESC",
+                    "title": "Type",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
+                    "field": "DOC_STATUS_DESC",
+                    "title": "Status",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_DOC_STATUS",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                }
+            ],
+            "version": 2
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_DOC_MANAGE",
+                        "unitName": "DU_DOC_MANAGE",
+                        "pager": true,
+                        "pageSize": 10
+                    },
+                    "toolbar": false,
+                    "rowNumbers": true,
+                    "checkbox": false,
+                    "items": [
+                        {
+                            "field": "DOC_NO",
+                            "title": "Document No.",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_NAME",
+                            "title": "Document Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_TYPE_DESC",
+                            "title": "Type",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_STATUS_DESC",
+                            "title": "Status",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "TRANS_TIME",
+                            "title": "Transfer Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "RETURN_TIME",
+                            "title": "Return Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DESTROY_TIME",
+                            "title": "Destroy Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "GROUPM_NAME",
+                            "title": "Group",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "FLOOR_NAME",
+                            "title": "Floor",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CABINET_NAME",
+                            "title": "Cabinet",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CABIN_NAME",
+                            "title": "Cabin",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "BOX_NAME",
+                            "title": "Box",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "Create User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "Create Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "Update User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "Update Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Main Information",
+                    "version": 2
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_DOC_MANAGE",
+        "programaccno": "_AP_CONN",
+        "listeners": {}
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
