@@ -130,7 +130,228 @@
             ],
             "version": 2
         },
-        "detail": {},
+        "detail": {
+            "Detail": [
+                {
+                    "xtype": "Jumbotron",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_RPT_DOC_MANAGE",
+                        "unitName": "V_RPT_DOC_MANAGE_MAIN"
+                    },
+                    "items": [
+                        {
+                            "field": "KIND",
+                            "title": "Kind",
+                            "colspan": 6
+                        },
+                        {
+                            "field": "COUNT",
+                            "title": "Total",
+                            "colspan": 6
+                        }
+                    ]
+                },
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_RPT_DOC_MANAGE",
+                        "unitName": "V_RPT_DOC_MANAGE_DETAIL"
+                    },
+                    "toolbar": false,
+                    "rowNumbers": true,
+                    "checkbox": false,
+                    "items": [
+                        {
+                            "field": "DOC_NO",
+                            "title": "Document No.",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_NAME",
+                            "title": "Document Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_TYPE_DESC",
+                            "title": "Type",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_STATUS_DESC",
+                            "title": "Status",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "TRANS_TIME",
+                            "title": "Transfer Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "RETURN_TIME",
+                            "title": "Return Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DESTROY_TIME",
+                            "title": "Destroy Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "GROUPM_NAME",
+                            "title": "Group",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "FLOOR_NAME",
+                            "title": "Floor",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CABINET_NAME",
+                            "title": "Cabinet",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CABIN_NAME",
+                            "title": "Cabin",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "BOX_NAME",
+                            "title": "Box",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "Create User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "Create Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "Update User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "Update Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Detail Information",
+                    "version": 2
+                }
+            ]
+        },
         "main": {
             "xtype": "GridLayout",
             "layoutConfig": [
@@ -142,7 +363,7 @@
                     "dataConfig": {
                         "accNo": "_AP_CONN",
                         "modelName": "DM_RPT_DOC_MANAGE",
-                        "unitName": "V_RPT_DOC_MANAGE",
+                        "unitName": "V_RPT_DOC_MANAGE_MAIN",
                         "pager": true,
                         "pageSize": 10
                     },
@@ -176,7 +397,8 @@
                     "expandItems": [],
                     "listeners": {},
                     "title": "Main Information",
-                    "version": 2
+                    "version": 2,
+                    "nextDetail": "Detail"
                 }
             ]
         }
