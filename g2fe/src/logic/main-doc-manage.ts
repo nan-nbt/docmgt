@@ -45,17 +45,30 @@ const logic = {
         }
     },
     /**
-     * for handle docId to focus when onDataLoaded
+     * Handle onEndEdit event from form retrieve data
+     * @param param0 { dataUtil }
+     */
+    onEndEdit: async function ({ dataUtil }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const row = du.getCurrentRow();
+
+        _docIdToFocus = row.getData().DOC_ID;
+
+        await dataUtil.retrieve();
+    },
+    /**
+     * Handle onDataLoaded event from DataProvider
      * @param param0 { dataUtil }
      * @returns 
      */
-    onDataLoaded: function ({ dataUtil }) {
+    onDataLoaded: async function ({ dataUtil }) {
         if (!_docIdToFocus) return;
 
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
         const target = du.findRows({ DOC_ID: _docIdToFocus })[0];
-        if (target) du.setCurrentRow(target);
+        if (target) await du.setCurrentRow(target);
 
         _docIdToFocus = null;
     },
