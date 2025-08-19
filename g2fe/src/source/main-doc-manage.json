@@ -502,7 +502,9 @@
     "programsetting": {
         "programmodel": "DM_DOC_MANAGE",
         "programaccno": "_AP_CONN",
-        "listeners": {},
+        "listeners": {
+            "onDataLoaded": "(args) => { LOGIC.onDataLoaded(args); }"
+        },
         "logicPath": "logic/main-doc-manage"
     },
     "requires": [
