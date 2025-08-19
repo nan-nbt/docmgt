@@ -1,5 +1,7 @@
 import { $$, DataModel, DataUnit } from "g2fw";
 
+let _docIdToFocus: string | null = null;
+
 const logic = {
     /**
      * Filter combo [cabinet, column, box] data in form area v2
@@ -43,6 +45,34 @@ const logic = {
         }
     },
     /**
+     * Handle onEndEdit event from form retrieve data
+     * @param param0 { dataUtil }
+     */
+    onEndEdit: async function ({ dataUtil }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const row = du.getCurrentRow();
+
+        _docIdToFocus = row.getData().DOC_ID;
+
+        await dataUtil.retrieve();
+    },
+    /**
+     * Handle onDataLoaded event from DataProvider
+     * @param param0 { dataUtil }
+     * @returns 
+     */
+    onDataLoaded: async function ({ dataUtil }) {
+        if (!_docIdToFocus) return;
+
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const target = du.findRows({ DOC_ID: _docIdToFocus })[0];
+        if (target) await du.setCurrentRow(target);
+
+        _docIdToFocus = null;
+    },
+    /**
      * Handle custom action from toolbar to update doc status and sync data
      * @param ctx Context object from G2FW (includes actionType, dataUtil, serviceUri, ...)
      */
@@ -84,15 +114,19 @@ const logic = {
 
         try {
             $$.Loading.show();
-            $$.Ajax.callService(
+            await $$.Ajax.callService(
                 dataUtil,
                 serviceUri,
                 { DOC_ID: row.getData().DOC_ID },
                 "json",
                 "POST"
             );
-            $$.Alert.show({ type: "success", text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`, timeout: 2000 });
 
+            _docIdToFocus = row.getData().DOC_ID;
+
+            await dataUtil.retrieve();
+
+            $$.Alert.show({ type: "success", text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`, timeout: 2000 });
         } catch (e) {
             console.error("callService error", e);
             $$.Alert.show({ type: "warning", text: e?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`, timeout: 2000 });
@@ -100,6 +134,10 @@ const logic = {
             $$.Loading.hide();
         }
     },
+    /**
+     * Handle onClick event action from toolbar (Transfer, Return, Destroy)
+     * @param param0 { dataUtil }
+     */
     onClickTrans: async function ({ dataUtil }) {
         $$.Dialog.show({
             title: "Confirmation",
