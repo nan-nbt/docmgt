@@ -1,1 +1,194 @@
-{"isReport":false,"hasQuery":true,"pageCnt":1,"tplNm":"SingleTable","accNo":"_AP_CONN","mname":"DM_BASIC_DOCTYPE","page":{"config":{"xtype":"MultipleTable","useData":"useData"},"queryarea":{"autoQuery":true,"xtype":"QueryBar","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_DOCTYPE"},"listeners":{},"items":[{"field":"DOCTYPE_NO","title":"Type No.","editor":{"xtype":"TextField","textCase":"upper"},"noWhere":false,"opt":"%%"},{"field":"DOCTYPE_NAME","title":"Type Name","editor":{"xtype":"TextField"},"noWhere":false,"opt":"%%"},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Combo","textField":"LABEL","manual":false,"valueField":"VALUE","staticData":[{"VALUE":"Y","LABEL":"Enabled"},{"VALUE":"N","LABEL":"Disabled"}],"supportAll":true},"noWhere":false,"opt":"="}],"version":2},"detail":{},"main":{"xtype":"GridLayout","layoutConfig":[12],"items":[{"xtype":"Table","dataConfig":{"accNo":"_AP_CONN","modelName":"DM_BASIC_DOCTYPE","unitName":"DU_BASIC_DOCTYPE","pager":true,"pageSize":10},"toolbar":{"needButtons":["add","edit","remove","save","cancel"]},"rowNumbers":true,"checkbox":false,"items":[{"field":"DOCTYPE_NO","title":"Type No.","editor":{"xtype":"TextField"},"must":false,"width":0.2,"freeze":false,"sortable":false},{"field":"DOCTYPE_NAME","title":"Type Name","editor":{"xtype":"TextField"},"must":false,"width":0.3,"freeze":false,"sortable":false},{"field":"ENABLED","title":"Status Enabled","editor":{"xtype":"Switch","on":"Y","off":"N"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_USER_NM","title":"Create User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"CREATE_TIME","title":"Create Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_USER_NM","title":"Update User","editor":{"xtype":"Label"},"must":false,"width":0.1,"freeze":false,"sortable":false},{"field":"UPDATE_TIME","title":"Update Time","editor":{"xtype":"Label","dataType":"Date"},"must":false,"width":0.1,"freeze":false,"sortable":false}],"expandItems":[],"listeners":{},"title":"Main Information","version":2}]}},"programsetting":{"programmodel":"DM_BASIC_DOCTYPE","programaccno":"_AP_CONN","listeners":{}},"requires":["DataProvider","useData"]}
+{
+    "isReport": false,
+    "hasQuery": true,
+    "pageCnt": 1,
+    "tplNm": "SingleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_BASIC_DOCTYPE",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "queryarea": {
+            "autoQuery": true,
+            "xtype": "QueryBar",
+            "dataConfig": {
+                "accNo": "_AP_CONN",
+                "modelName": "DM_BASIC_DOCTYPE"
+            },
+            "listeners": {},
+            "items": [
+                {
+                    "field": "DOCTYPE_NO",
+                    "title": "Type No.",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "DOCTYPE_NAME",
+                    "title": "Type Name",
+                    "editor": {
+                        "xtype": "TextField"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "ENABLED",
+                    "title": "Status Enabled",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "staticData": [
+                            {
+                                "VALUE": "Y",
+                                "LABEL": "Enabled"
+                            },
+                            {
+                                "VALUE": "N",
+                                "LABEL": "Disabled"
+                            }
+                        ],
+                        "supportAll": true
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                }
+            ],
+            "version": 2
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_BASIC_DOCTYPE",
+                        "unitName": "DU_BASIC_DOCTYPE",
+                        "pager": true,
+                        "pageSize": 10
+                    },
+                    "toolbar": {
+                        "needButtons": [
+                            "add",
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": false,
+                    "items": [
+                        {
+                            "field": "DOCTYPE_NO",
+                            "title": "Type No.",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": false,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOCTYPE_NAME",
+                            "title": "Type Name",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": false,
+                            "width": 0.3,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "ENABLED",
+                            "title": "Status Enabled",
+                            "editor": {
+                                "xtype": "Switch",
+                                "on": "Y",
+                                "off": "N"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "Create User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "Create Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "Update User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "Update Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Main Information",
+                    "version": 2
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_BASIC_DOCTYPE",
+        "programaccno": "_AP_CONN",
+        "listeners": {}
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
