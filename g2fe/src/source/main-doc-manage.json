@@ -491,7 +491,8 @@
                         }
                     ],
                     "listeners": {
-                        "onInputed": "(args) => { LOGIC.onInputed(args); }"
+                        "onInputed": "(args) => { LOGIC.onInputed(args); }",
+                        "onEndEdit": "(args) => { LOGIC.onEndEdit(args); }"
                     },
                     "title": "Main Information",
                     "nextDetail": "Detail"
@@ -502,7 +503,9 @@
     "programsetting": {
         "programmodel": "DM_DOC_MANAGE",
         "programaccno": "_AP_CONN",
-        "listeners": {},
+        "listeners": {
+            "onDataLoaded": "(args) => { LOGIC.onDataLoaded(args); }"
+        },
         "logicPath": "logic/main-doc-manage"
     },
     "requires": [
