@@ -128,7 +128,7 @@
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.2,
+                            "width": 0.1,
                             "freeze": false,
                             "sortable": false
                         },
@@ -144,13 +144,24 @@
                             "sortable": false
                         },
                         {
+                            "field": "PERSON_IN_CHARGE",
+                            "title": "Person In Charge",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "UPDATE_USER_NM",
                             "title": "Modify User",
                             "editor": {
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.2,
+                            "width": 0.1,
                             "freeze": false,
                             "sortable": false
                         },
@@ -355,10 +366,33 @@
                                             "accNo": "_AP_CONN",
                                             "sqlNo": "V_COMBO_BASIC_GROUPM",
                                             "opType": 2
-                                        }
+                                        },
+                                        "id": "CMP_COMBO_GROUPM"
                                     },
                                     "must": true,
                                     "colspan": 3
+                                },
+                                {
+                                    "field": "GROUPD_ID",
+                                    "title": "Person In Charge",
+                                    "editor": {
+                                        "xtype": "Combo",
+                                        "id": "CMP_COMBO_GROUPD",
+                                        "textField": "LABEL",
+                                        "manual": false,
+                                        "valueField": "VALUE",
+                                        "condition": {
+                                            "accNo": "_AP_CONN",
+                                            "sqlNo": "V_COMBO_BASIC_GROUPD",
+                                            "opType": 2
+                                        },
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterGroupd(args); }"
+                                    },
+                                    "must": true,
+                                    "colspan": 3,
+                                    "dependencies": [
+                                        "GROUPM_ID"
+                                    ]
                                 },
                                 {
                                     "field": "FLOOR_ID",
