@@ -11,9 +11,12 @@ let _DOC_ID_TO_SET_FOCUS: string | null = null;
 
 const logic = {
     /**
-     * Filter combo [cabinet, column, box] data in form area v2
+     * Filter combo [groupd, cabinet, column, box] data in form area v2
      * @param param0 { item, values }
      */
+    onFilterGroupd: function ({ item, values }) {
+        return item?.REF === values?.GROUPM_ID;
+    },
     onFilterCabinet: function ({ item, values }) {
         return item?.REF === values?.FLOOR_ID;
     },
@@ -32,7 +35,11 @@ const logic = {
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
         const row = du.getCurrentRow();
 
-        if (field === "FLOOR_ID") {
+        if (field === "GROUPM_ID") {
+            row.input({
+                GROUPD_ID: null
+            });
+        }else if (field === "FLOOR_ID") {
             row.input({
                 CABINET_ID: null,
                 CABIN_ID: null,
@@ -60,7 +67,7 @@ const logic = {
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
         const row = du.getCurrentRow();
 
-        _DOC_ID_TO_SET_FOCUS = row.getData().DOC_ID;
+        _DOC_ID_TO_SET_FOCUS = row ? row.getData().DOC_ID : null;
 
         try {
             await dataUtil.retrieve();
@@ -134,7 +141,7 @@ const logic = {
                 "POST"
             );
 
-            _DOC_ID_TO_SET_FOCUS = row.getData().DOC_ID;
+            _DOC_ID_TO_SET_FOCUS = row ? row.getData().DOC_ID : null;
 
             await dataUtil.retrieve();
 
