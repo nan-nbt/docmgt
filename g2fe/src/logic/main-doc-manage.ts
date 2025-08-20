@@ -1,6 +1,13 @@
 import { $$, DataModel, DataUnit } from "g2fw";
 
-let _docIdToFocus: string | null = null;
+/**
+ * Declare global variables for service uri and others
+ */
+const _SERVICE_UPDATE_TRANS_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransTime";
+const _SERVICE_UPDATE_RETURN_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnTime";
+const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyTime";
+
+let _DOC_ID_TO_SET_FOCUS: string | null = null;
 
 const logic = {
     /**
@@ -53,7 +60,7 @@ const logic = {
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
         const row = du.getCurrentRow();
 
-        _docIdToFocus = row.getData().DOC_ID;
+        _DOC_ID_TO_SET_FOCUS = row.getData().DOC_ID;
 
         await dataUtil.retrieve();
     },
@@ -63,14 +70,14 @@ const logic = {
      * @returns 
      */
     onDataLoaded: async function ({ dataUtil }) {
-        if (!_docIdToFocus) return;
+        if (!_DOC_ID_TO_SET_FOCUS) return;
 
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const target = du.findRows({ DOC_ID: _docIdToFocus })[0];
+        const target = du.findRows({ DOC_ID: _DOC_ID_TO_SET_FOCUS })[0];
         if (target) await du.setCurrentRow(target);
 
-        _docIdToFocus = null;
+        _DOC_ID_TO_SET_FOCUS = null;
     },
     /**
      * Handle custom action from toolbar to update doc status and sync data
@@ -86,7 +93,7 @@ const logic = {
             return;
         }
 
-        const DOC_STATUS_DESC = row.getData().DOC_STATUS_DESC;
+        const docStatusDesc = row.getData().DOC_STATUS_DESC;
         const restrictionRules: Record<string, Record<string, string>> = {
             "1. CREATED": {
                 RETURN: "Document is created. Return not allowed."
@@ -105,7 +112,7 @@ const logic = {
             }
         };
 
-        const warningMsg = restrictionRules[DOC_STATUS_DESC]?.[actionType] || "";
+        const warningMsg = restrictionRules[docStatusDesc]?.[actionType] || "";
 
         if (warningMsg) {
             $$.Alert.show({ type: "warning", text: warningMsg, timeout: 2000 });
@@ -122,14 +129,21 @@ const logic = {
                 "POST"
             );
 
-            _docIdToFocus = row.getData().DOC_ID;
+            _DOC_ID_TO_SET_FOCUS = row.getData().DOC_ID;
 
             await dataUtil.retrieve();
 
-            $$.Alert.show({ type: "success", text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`, timeout: 2000 });
+            $$.Alert.show({
+                type: "success",
+                text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`,
+                timeout: 2000
+            });
         } catch (e) {
-            console.error("callService error", e);
-            $$.Alert.show({ type: "warning", text: e?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`, timeout: 2000 });
+            $$.Alert.show({
+                type: "warning",
+                text: e?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`,
+                timeout: 2000
+            });
         } finally {
             $$.Loading.hide();
         }
@@ -146,7 +160,7 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus("TRANSFER", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransTime");
+                this.syncDocStatus("TRANSFER", dataUtil, _SERVICE_UPDATE_TRANS_TIME);
             },
             onNo: async () => { return true; }
         });
@@ -159,7 +173,7 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus("RETURN", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnTime");
+                this.syncDocStatus("RETURN", dataUtil, _SERVICE_UPDATE_RETURN_TIME);
             },
             onNo: async () => { return true; }
         });
@@ -172,7 +186,7 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus("DESTROY", dataUtil, "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyTime");
+                this.syncDocStatus("DESTROY", dataUtil, _SERVICE_UPDATE_DESTROY_TIME);
             },
             onNo: async () => { return true; }
         });
