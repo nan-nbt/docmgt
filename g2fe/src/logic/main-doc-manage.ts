@@ -133,14 +133,16 @@ const logic = {
 
             await dataUtil.retrieve();
 
-            $$.Alert.show({ type: "success", 
-                text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`, 
-                timeout: 2000 
+            $$.Alert.show({
+                type: "success",
+                text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`,
+                timeout: 2000
             });
         } catch (e) {
-            $$.Alert.show({ type: "warning", 
-                            text: e?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`, 
-                            timeout: 2000 
+            $$.Alert.show({
+                type: "warning",
+                text: e?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`,
+                timeout: 2000
             });
         } finally {
             $$.Loading.hide();
