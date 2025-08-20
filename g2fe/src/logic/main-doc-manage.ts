@@ -62,20 +62,25 @@ const logic = {
 
         _DOC_ID_TO_SET_FOCUS = row.getData().DOC_ID;
 
-        await dataUtil.retrieve();
+        try {
+            await dataUtil.retrieve();
+        } catch (e) {
+            $$.Alert.show(e.message);
+        }
     },
     /**
      * Handle onDataLoaded event from DataProvider
      * @param param0 { dataUtil }
      * @returns 
      */
-    onDataLoaded: async function ({ dataUtil }) {
+    onDataLoaded: function ({ dataUtil }) {
         if (!_DOC_ID_TO_SET_FOCUS) return;
 
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
         const target = du.findRows({ DOC_ID: _DOC_ID_TO_SET_FOCUS })[0];
-        if (target) await du.setCurrentRow(target);
+
+        if (target) du.setCurrentRow(target);
 
         _DOC_ID_TO_SET_FOCUS = null;
     },
