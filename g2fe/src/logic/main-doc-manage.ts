@@ -11,6 +11,59 @@ let _DOC_ID_TO_SET_FOCUS: string | null = null;
 
 const logic = {
     /**
+     * Handle Modal Form Action Transfer, Return, Destroy
+     * @param param0 { dataUtil }
+     */
+    modalFormId: "MODAL_PERSON_IN_CHARGE",
+    fieldName: {
+        PERSON_IN_CHARGE: "PERSON_IN_CHARGE"
+    },
+    initialValuesModal: async function ({ dataUtil, cmp }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const mainRow = du.getCurrentRow();
+
+        if (!mainRow) {
+            $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
+            cmp(this.modalFormId).close();
+            return;
+        }
+
+        return {
+            [this.fieldName.PERSON_IN_CHARGE]: mainRow.getData().PERSON_IN_CHARGE
+        };
+    },
+    configModal: async function () {
+        return [
+            {
+                isNoWrapper: true,
+                columns: [
+                    {
+                        component: "Select",
+                        name: this.fieldName.PERSON_IN_CHARGE,
+                        label: "Person In Charge",
+                        rules: [{ required: true, message: "Person In Charge is required" }],
+                        col: 6,
+                        editor: {
+                            valueField: "value",
+                            labelField: "text",
+                            options: [
+                                // get data resource from V_COMBO_BASIC_GROUPD (LABEL, VALUE)
+                            ],
+                            allowClear: false
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    onClosingModal: async function () {
+        return true;
+    },
+    onConfirmModal: async function () {
+
+    },    
+    /**
      * Filter combo [groupd, cabinet, column, box] data in form area v2
      * @param param0 { item, values }
      */
@@ -131,6 +184,8 @@ const logic = {
             return;
         }
 
+        let alertConfig:{ type: string; text: string; timeout: number } | null = null;
+
         try {
             $$.Loading.show();
             await $$.Ajax.callService(
@@ -145,19 +200,23 @@ const logic = {
 
             await dataUtil.retrieve();
 
-            $$.Alert.show({
+            alertConfig = {
                 type: "success",
                 text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`,
-                timeout: 2000
-            });
-        } catch (e) {
-            $$.Alert.show({
+                timeout: 2000                
+            };
+        } catch (error) {
+            alertConfig = {
                 type: "warning",
-                text: e?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`,
-                timeout: 2000
-            });
+                text: error?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`,
+                timeout: 2000                
+            }
         } finally {
             $$.Loading.hide();
+
+            if (alertConfig) {
+                $$.Alert.show(alertConfig);
+            }
         }
     },
     /**
