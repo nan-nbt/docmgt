@@ -6,8 +6,35 @@ import { $$, DataModel, DataUnit } from "g2fw";
 const _SERVICE_UPDATE_TRANS_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransTime";
 const _SERVICE_UPDATE_RETURN_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnTime";
 const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyTime";
+const _SERVICE_GET_PERSON_IN_CHARGE = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.getPersonInCharge";
 
 let _DOC_ID_TO_SET_FOCUS: string | null = null;
+
+
+interface PersonInCharge {
+    VALUE: string;
+    LABEL: string;
+    REF: string;
+}
+const getPersonInCharge = async function ({ dataUtil }) {
+    try {
+        const res = await $$.Ajax.callService(
+            dataUtil, 
+            _SERVICE_GET_PERSON_IN_CHARGE, 
+            {}, 
+            "json", 
+            "GET"
+        );
+
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(res);
+            }, 1000);
+        });
+    } catch (e) {
+        return $$.Alert.show(e.message);
+    }
+}
 
 const logic = {
     /**
@@ -33,7 +60,9 @@ const logic = {
             [this.fieldName.PERSON_IN_CHARGE]: mainRow.getData().PERSON_IN_CHARGE
         };
     },
-    configModal: async function () {
+    configModal: async function (args) {
+        const personInCharge = await getPersonInCharge(args);
+
         return [
             {
                 isNoWrapper: true,
@@ -45,10 +74,10 @@ const logic = {
                         rules: [{ required: true, message: "Person In Charge is required" }],
                         col: 6,
                         editor: {
-                            valueField: "value",
-                            labelField: "text",
+                            valueField: "VALUE",
+                            labelField: "LABEL",
                             options: [
-                                // get data resource from V_COMBO_BASIC_GROUPD (LABEL, VALUE)
+                                ...(personInCharge as PersonInCharge[] || [])
                             ],
                             allowClear: false
                         }
