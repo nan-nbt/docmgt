@@ -139,7 +139,18 @@
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.2,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "GROUPM_NAME",
+                            "title": "Group",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
                             "freeze": false,
                             "sortable": false
                         },
