@@ -2,8 +2,8 @@
 package com.pouchen.docmgt.service;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import com.pouchen.module.data.RequestInfo;
 import com.pouchen.module.dataaccess.DbUtils;
@@ -18,7 +18,9 @@ public class MainDocManageService {
     private static String updateTransTimeSQL = "UPDATE DOC_MANAGE DM SET TRANS_TIME = EXTRACT(EPOCH FROM CLOCK_TIMESTAMP()) * 1000, DOC_STATUS = 2, RETURN_TIME = NULL WHERE DM.DOC_ID = :DOC_ID";
     private static String updateReturnTimeSQL = "UPDATE DOC_MANAGE DM SET RETURN_TIME = EXTRACT(EPOCH FROM CLOCK_TIMESTAMP()) * 1000, DOC_STATUS = 3 WHERE DM.DOC_ID = :DOC_ID";
     private static String updateDestroyTimeSQL = "UPDATE DOC_MANAGE DM SET DESTROY_TIME = EXTRACT(EPOCH FROM CLOCK_TIMESTAMP()) * 1000, DOC_STATUS = 4 WHERE DM.DOC_ID = :DOC_ID";
-    private static String getPersonInChargeSQL = "SELECT BG.GROUPD_ID AS VALUE, CONCAT(BG.EMP_NO  , '-', BG.EMP_NAME) AS LABEL, BG.GROUPM_ID AS REF FROM BASIC_GROUPD BG ORDER BY CONCAT(BG.EMP_NO  , '-', BG.EMP_NAME)";
+    
+    private static String getComboGroupMasterSQL = "SELECT BG.GROUPM_ID AS VALUE, CONCAT(BG.GROUPM_NO , '-', BG.GROUPM_NAME) AS LABEL FROM BASIC_GROUPM BG ORDER BY CONCAT(BG.GROUPM_NO , '-', BG.GROUPM_NAME)";
+    private static String getComboGroupDetailSQL = "SELECT BG.GROUPD_ID AS VALUE, CONCAT(BG.EMP_NO , '-', BG.EMP_NAME) AS LABEL, BG.GROUPM_ID AS REF FROM BASIC_GROUPD BG ORDER BY CONCAT(BG.EMP_NO , '-', BG.EMP_NAME)";
 
     public static void updateTransTime (RequestInfo requestInfo, Map<String, Object> args) {
         Map<String, Object> params = new HashMap<>();
@@ -53,9 +55,17 @@ public class MainDocManageService {
         }
     }
 
-    public static List<Map<String, Object>> getPersonInCharge (RequestInfo requestInfo, Map<String, Object> args) {
+    public static List<Map<String, Object>> getComboGroupMaster (RequestInfo requestInfo, Map<String, Object> args) {
         try {
-            return DbUtils.queryList(DB_ALIAS, getPersonInChargeSQL);
+            return DbUtils.queryList(DB_ALIAS, getComboGroupMasterSQL);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static List<Map<String, Object>> getComboGroupDetail (RequestInfo requestInfo, Map<String, Object> args) {
+        try {
+            return DbUtils.queryList(DB_ALIAS, getComboGroupDetailSQL);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

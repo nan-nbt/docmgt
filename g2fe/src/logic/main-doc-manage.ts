@@ -1,4 +1,5 @@
 import { $$, DataModel, DataUnit } from "g2fw";
+import { ExportModalPicAction } from "./modal-pic-action";
 
 /**
  * Declare global variables for service uri and others
@@ -6,92 +7,15 @@ import { $$, DataModel, DataUnit } from "g2fw";
 const _SERVICE_UPDATE_TRANS_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransTime";
 const _SERVICE_UPDATE_RETURN_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnTime";
 const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyTime";
-const _SERVICE_GET_PERSON_IN_CHARGE = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.getPersonInCharge";
 
 let _DOC_ID_TO_SET_FOCUS: string | null = null;
 
-
-interface PersonInCharge {
-    VALUE: string;
-    LABEL: string;
-    REF: string;
-}
-const getPersonInCharge = async function ({ dataUtil }) {
-    try {
-        const res = await $$.Ajax.callService(
-            dataUtil, 
-            _SERVICE_GET_PERSON_IN_CHARGE, 
-            {}, 
-            "json", 
-            "GET"
-        );
-
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(res);
-            }, 1000);
-        });
-    } catch (e) {
-        return $$.Alert.show(e.message);
-    }
-}
-
 const logic = {
     /**
-     * Handle Modal Form Action Transfer, Return, Destroy
+     * invoke and export modal-pic-action
      * @param param0 { dataUtil }
      */
-    modalFormId: "MODAL_PERSON_IN_CHARGE",
-    fieldName: {
-        PERSON_IN_CHARGE: "PERSON_IN_CHARGE"
-    },
-    initialValuesModal: async function ({ dataUtil, cmp }) {
-        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
-        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const mainRow = du.getCurrentRow();
-
-        if (!mainRow) {
-            $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
-            cmp(this.modalFormId).close();
-            return;
-        }
-
-        return {
-            [this.fieldName.PERSON_IN_CHARGE]: mainRow.getData().PERSON_IN_CHARGE
-        };
-    },
-    configModal: async function (args) {
-        const personInCharge = await getPersonInCharge(args);
-
-        return [
-            {
-                isNoWrapper: true,
-                columns: [
-                    {
-                        component: "Select",
-                        name: this.fieldName.PERSON_IN_CHARGE,
-                        label: "Person In Charge",
-                        rules: [{ required: true, message: "Person In Charge is required" }],
-                        col: 6,
-                        editor: {
-                            valueField: "VALUE",
-                            labelField: "LABEL",
-                            options: [
-                                ...(personInCharge as PersonInCharge[] || [])
-                            ],
-                            allowClear: false
-                        }
-                    }
-                ]
-            }
-        ]
-    },
-    onClosingModal: async function () {
-        return true;
-    },
-    onConfirmModal: async function () {
-
-    },    
+    exportModalPicAction: ExportModalPicAction,
     /**
      * Filter combo [groupd, cabinet, column, box] data in form area v2
      * @param param0 { item, values }
@@ -121,20 +45,18 @@ const logic = {
             row.input({
                 GROUPD_ID: null
             });
-        }else if (field === "FLOOR_ID") {
+        } else if (field === "FLOOR_ID") {
             row.input({
                 CABINET_ID: null,
                 CABIN_ID: null,
                 BOX_ID: null
             });
-        }
-        else if (field === "CABINET_ID") {
+        } else if (field === "CABINET_ID") {
             row.input({
                 CABIN_ID: null,
                 BOX_ID: null
             });
-        }
-        else if (field === "CABIN_ID") {
+        } else if (field === "CABIN_ID") {
             row.input({
                 BOX_ID: null
             });
@@ -213,7 +135,7 @@ const logic = {
             return;
         }
 
-        let alertConfig:{ type: string; text: string; timeout: number } | null = null;
+        let alertConfig: { type: string; text: string; timeout: number } | null = null;
 
         try {
             $$.Loading.show();
@@ -232,13 +154,13 @@ const logic = {
             alertConfig = {
                 type: "success",
                 text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`,
-                timeout: 2000                
+                timeout: 2000
             };
         } catch (error) {
             alertConfig = {
                 type: "warning",
                 text: error?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`,
-                timeout: 2000                
+                timeout: 2000
             }
         } finally {
             $$.Loading.hide();
