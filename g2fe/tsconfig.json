@@ -1,5 +1,5 @@
 {
-  "extends": "g2fw/declaration/g2fw-tsconfig.json",
+  // "extends": "g2fw/declaration/g2fw-tsconfig.json",
   "include": [
     "src/logic/**/*"
   ],

@@ -139,24 +139,46 @@
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.2,
+                            "width": 0.1,
                             "freeze": false,
                             "sortable": false
                         },
                         {
-                            "field": "PERSON_IN_CHARGE",
-                            "title": "Person In Charge",
+                            "field": "OWNER_GROUP",
+                            "title": "Owner Group",
                             "editor": {
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.2,
+                            "width": 0.1,
                             "freeze": false,
                             "sortable": false
                         },
                         {
-                            "field": "UPDATE_USER_NM",
-                            "title": "Modify User",
+                            "field": "OWNER_NAME",
+                            "title": "Owner",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "BO_GROUP",
+                            "title": "PIC Group",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "BO_NAME",
+                            "title": "PIC",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -268,22 +290,45 @@
                                 "limitNo": "TRANSFER"
                             },
                             {
+                                "showBtn": 2,
                                 "_rowIndex": 1,
                                 "_rowstatus": "",
                                 "onClick": "(args) => { return LOGIC.onClickReturn(args); }",
-                                "showBtn": 2,
                                 "text": "Return",
                                 "icon": "undo-alt",
                                 "limitNo": "RETURN"
                             },
                             {
+                                "showBtn": 2,
                                 "_rowIndex": 2,
                                 "_rowstatus": "",
                                 "onClick": "(args) => { return LOGIC.onClickDestroy(args); }",
-                                "showBtn": 2,
                                 "text": "Destroy",
                                 "icon": "reject",
                                 "limitNo": "DESTROY"
+                            },
+                            {
+                                "hasPopupWin": 5,
+                                "popupWinCfg": {
+                                    "xtype": "ModalForm",
+                                    "width": 50,
+                                    "id": "MODAL_PIC",
+                                    "title": "PIC Information",
+                                    "initialValues": "(args) => { return await LOGIC.exportModalPIC.initialValues(args); }",
+                                    "config": "(args) => { return await LOGIC.exportModalPIC.config(args); }",
+                                    "onConfirm": "(args) => { return await LOGIC.exportModalPIC.onConfirm(args); }",
+                                    "onClosing": "(args) => { return await LOGIC.exportModalPIC.onClosing(args); }",
+                                    "onInputed": "(args) => { return await LOGIC.exportModalPIC.onInputed(args); }",
+                                    "onOpen": "(args) => { return await LOGIC.exportModalPIC.onOpen(args); }",
+                                    "onClose": "(args) => { return await LOGIC.exportModalPIC.onClose(args); }"
+                                },
+                                "_rowIndex": 3,
+                                "showBtn": 2,
+                                "icon": "cog",
+                                "text": "Modal",
+                                "onClick": "(args) => { return true; }",
+                                "picker": "modalForm",
+                                "_rowstatus": ""
                             }
                         ]
                     }
@@ -356,7 +401,7 @@
                                 },
                                 {
                                     "field": "GROUPM_ID",
-                                    "title": "Group",
+                                    "title": "Owner Group",
                                     "editor": {
                                         "xtype": "Combo",
                                         "textField": "LABEL",
@@ -374,7 +419,7 @@
                                 },
                                 {
                                     "field": "GROUPD_ID",
-                                    "title": "Person In Charge",
+                                    "title": "Owner",
                                     "editor": {
                                         "xtype": "Combo",
                                         "id": "CMP_COMBO_GROUPD",
@@ -393,6 +438,24 @@
                                     "dependencies": [
                                         "GROUPM_ID"
                                     ]
+                                },
+                                {
+                                    "field": "BO_GROUP",
+                                    "title": "PIC Group",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "BO_NAME",
+                                    "title": "PIC",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
                                 },
                                 {
                                     "field": "FLOOR_ID",
