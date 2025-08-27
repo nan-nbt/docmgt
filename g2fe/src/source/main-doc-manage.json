@@ -308,6 +308,7 @@
                                 "limitNo": "DESTROY"
                             },
                             {
+                                "showBtn": 2,
                                 "hasPopupWin": 5,
                                 "popupWinCfg": {
                                     "xtype": "ModalForm",
@@ -320,15 +321,16 @@
                                     "onClosing": "(args) => { return await LOGIC.exportModalPIC.onClosing(args); }",
                                     "onInputed": "(args) => { return await LOGIC.exportModalPIC.onInputed(args); }",
                                     "onOpen": "(args) => { return await LOGIC.exportModalPIC.onOpen(args); }",
-                                    "onClose": "(args) => { return await LOGIC.exportModalPIC.onClose(args); }"
+                                    "onClose": "(args) => { return await LOGIC.exportModalPIC.onClose(args); }",
+                                    "onConfirming": "(args) => { return await LOGIC.exportModalPIC.onConfirming(args); }"
                                 },
                                 "_rowIndex": 3,
-                                "showBtn": 2,
-                                "icon": "cog",
-                                "text": "Modal",
+                                "icon": "external-link",
+                                "text": "Modal Transfer",
                                 "onClick": "(args) => { return true; }",
                                 "picker": "modalForm",
-                                "_rowstatus": ""
+                                "_rowstatus": "",
+                                "limitNo": "MODAL_TRANSFER"
                             }
                         ]
                     }
