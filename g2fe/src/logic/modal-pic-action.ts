@@ -113,10 +113,7 @@ const ExportModalPIC = {
     onOpen: async function ({ dataUtil }) {
         return true;
     },
-    onClosing: async function () {
-        return true;
-    },
-    onClose: async function ({ dataUtil }) {
+    onConfirming: async function ({ dataUtil }) {
         return true;
     },
     onConfirm: async function ({ dataUtil, values }) {
@@ -129,13 +126,16 @@ const ExportModalPIC = {
                 GROUPM_BO_ID: values[this.fieldName.GROUPM_ID_MODAL],
                 GROUPD_BO_ID: values[this.fieldName.GROUPD_ID_MODAL]
             });
-            await logic.syncDocStatus("TRANSFER", dataUtil, _SERVICE_UPDATE_TRANS_TIME);
+            await logic.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
         } else {
             $$.Alert.show({ type: "warning", text: "PIC Group and PIC is required.", timeout: 2000 });
         }
         return true;
     },
-    onConfirming: async function ({ dataUtil }) {
+    onClosing: async function ({ dataUtil }) {
+        return true;
+    },
+    onClose: async function ({ dataUtil }) {
         return true;
     },
     onInputed: async function ({ field, cmp }) {

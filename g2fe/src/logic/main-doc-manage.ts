@@ -99,7 +99,7 @@ const logic = {
      * Handle custom action from toolbar to update doc status and sync data
      * @param ctx Context object from G2FW (includes actionType, dataUtil, serviceUri, ...)
      */
-    syncDocStatus: async function (actionType, dataUtil, serviceUri) {
+    syncDocStatus: async function ({ actionType, dataUtil, serviceUri }) {
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
         const row = du.getCurrentRow();
@@ -186,7 +186,7 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus("TRANSFER", dataUtil, _SERVICE_UPDATE_TRANS_TIME);
+                this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
             },
             onNo: async () => { return true; }
         });
@@ -199,7 +199,7 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus("RETURN", dataUtil, _SERVICE_UPDATE_RETURN_TIME);
+                this.syncDocStatus({ actionType: "RETURN", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_RETURN_TIME });
             },
             onNo: async () => { return true; }
         });
@@ -212,7 +212,7 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus("DESTROY", dataUtil, _SERVICE_UPDATE_DESTROY_TIME);
+                this.syncDocStatus({ actionType: "DESTROY", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_DESTROY_TIME });
             },
             onNo: async () => { return true; }
         });
