@@ -16,7 +16,7 @@ public class MainDocManageService {
     private static final String DB_ALIAS = "_AP_CONN";
 
     private static String updateTransInfoSQL = "UPDATE DOC_MANAGE DM SET TRANS_TIME = EXTRACT(EPOCH FROM CLOCK_TIMESTAMP()) * 1000, DOC_STATUS = 2, GROUPM_BO_ID = :GROUPM_BO_ID, GROUPD_BO_ID = :GROUPD_BO_ID, RETURN_TIME = NULL WHERE DM.DOC_ID = :DOC_ID";
-    private static String updateReturnInfoSQL = "UPDATE DOC_MANAGE DM SET RETURN_TIME = EXTRACT(EPOCH FROM CLOCK_TIMESTAMP()) * 1000, DOC_STATUS = 3 WHERE DM.DOC_ID = :DOC_ID";
+    private static String updateReturnInfoSQL = "UPDATE DOC_MANAGE DM SET RETURN_TIME = EXTRACT(EPOCH FROM CLOCK_TIMESTAMP()) * 1000, DOC_STATUS = 3, GROUPM_BO_ID = NULL, GROUPD_BO_ID = NULL WHERE DM.DOC_ID = :DOC_ID";
     private static String updateDestroyInfoSQL = "UPDATE DOC_MANAGE DM SET DESTROY_TIME = EXTRACT(EPOCH FROM CLOCK_TIMESTAMP()) * 1000, DOC_STATUS = 4 WHERE DM.DOC_ID = :DOC_ID";
     
     private static String getComboGroupMasterSQL = "SELECT BG.GROUPM_ID AS VALUE, CONCAT(BG.GROUPM_NO , '-', BG.GROUPM_NAME) AS LABEL FROM BASIC_GROUPM BG ORDER BY CONCAT(BG.GROUPM_NO , '-', BG.GROUPM_NAME)";
@@ -26,6 +26,8 @@ public class MainDocManageService {
         Map<String, Object> params = new HashMap<>();
         try {
             params.put("DOC_ID", args.get("DOC_ID"));
+            params.put("GROUPM_BO_ID", args.get("GROUPM_BO_ID"));
+            params.put("GROUPD_BO_ID", args.get("GROUPD_BO_ID"));
             DbUtils.execute(DB_ALIAS, updateTransInfoSQL, params);
             DbUtils.commit(DB_ALIAS);
         } catch (Exception e) {
