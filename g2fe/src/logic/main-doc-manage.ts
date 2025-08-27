@@ -1,12 +1,12 @@
 import { $$, DataModel, DataUnit } from "g2fw";
-import { ExportModalPicAction } from "./modal-pic-action";
+import { ExportModalPIC } from "./modal-pic-action";
 
 /**
  * Declare global variables for service uri and others
  */
-const _SERVICE_UPDATE_TRANS_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransTime";
-const _SERVICE_UPDATE_RETURN_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnTime";
-const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyTime";
+export const _SERVICE_UPDATE_TRANS_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransInfo";
+export const _SERVICE_UPDATE_RETURN_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnInfo";
+export const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyInfo";
 
 let _DOC_ID_TO_SET_FOCUS: string | null = null;
 
@@ -15,7 +15,7 @@ const logic = {
      * invoke and export modal-pic-action
      * @param param0 { dataUtil }
      */
-    exportModalPicAction: ExportModalPicAction,
+    exportModalPIC: ExportModalPIC,
     /**
      * Filter combo [groupd, cabinet, column, box] data in form area v2
      * @param param0 { item, values }
@@ -142,7 +142,11 @@ const logic = {
             await $$.Ajax.callService(
                 dataUtil,
                 serviceUri,
-                { DOC_ID: row.getData().DOC_ID },
+                {
+                    DOC_ID: row.getData().DOC_ID,
+                    GROUPM_BO_ID: row.getData().GROUPM_BO_ID,
+                    GROUPD_BO_ID: row.getData().GROUPD_BO_ID
+                },
                 "json",
                 "POST"
             );

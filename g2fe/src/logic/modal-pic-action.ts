@@ -1,4 +1,5 @@
 import { $$, DataModel, DataUnit } from "g2fw";
+import logic, { _SERVICE_UPDATE_TRANS_TIME } from "./main-doc-manage";
 
 /**
  * Declare global variables for service uri and others
@@ -41,12 +42,12 @@ const getComboGroupDetail = async function ({ dataUtil }) {
     }
 }
 
-const ExportModalPicAction = {
+const ExportModalPIC = {
     /**
      * Handle Modal Form Action Transfer, Return, Destroy
      * @param param0 { dataUtil }
      */
-    modalFormId: "MODAL_ACTION",
+    modalFormId: "MODAL_PIC",
     fieldName: {
         GROUPM_ID_MODAL: "GROUPM_ID_MODAL",
         GROUPD_ID_MODAL: "GROUPD_ID_MODAL"
@@ -63,8 +64,8 @@ const ExportModalPicAction = {
         }
 
         return {
-            [this.fieldName.GROUPM_ID_MODAL]: mainRow.getData().GROUPM_ID,
-            [this.fieldName.GROUPD_ID_MODAL]: mainRow.getData().GROUPD_ID
+            [this.fieldName.GROUPM_ID_MODAL]: mainRow.getData().GROUPM_BO_ID,
+            [this.fieldName.GROUPD_ID_MODAL]: mainRow.getData().GROUPD_BO_ID
         };
     },
     config: async function (args) {
@@ -78,8 +79,8 @@ const ExportModalPicAction = {
                     {
                         component: "Select",
                         name: this.fieldName.GROUPM_ID_MODAL,
-                        label: "Group Name",
-                        rules: [{ required: true, message: "Group Name is required" }],
+                        label: "PIC Group",
+                        rules: [{ required: true, message: "PIC Group is required" }],
                         col: 6,
                         editor: {
                             valueField: "VALUE",
@@ -91,8 +92,8 @@ const ExportModalPicAction = {
                     {
                         component: "Select",
                         name: this.fieldName.GROUPD_ID_MODAL,
-                        label: "Person In Charge",
-                        rules: [{ required: true, message: "Person In Charge is required" }],
+                        label: "PIC",
+                        rules: [{ required: true, message: "PIC is required" }],
                         col: 6,
                         editor: {
                             valueField: "VALUE",
@@ -100,7 +101,6 @@ const ExportModalPicAction = {
                             options: ComboGroupDetail,
                             allowClear: false,
                             onFilter: ({ item, values }) => {
-                                console.log("onFilter:", item, values);
                                 return item?.REF === values?.GROUPM_ID_MODAL;
                             }
                         },
@@ -110,18 +110,42 @@ const ExportModalPicAction = {
             }
         ]
     },
+    onOpen: async function ({ dataUtil }) {
+        return true;
+    },
     onClosing: async function () {
         return true;
     },
-    onConfirm: async function () {
-
+    onClose: async function ({ dataUtil }) {
+        return true;
     },
-    onInputed: async function ({ field, dataUtil }) {
-        console.log("onInputedModal:", field, dataUtil);
+    onConfirm: async function ({ dataUtil, values }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const row = du.getCurrentRow();
+
+        if (values[this.fieldName.GROUPM_ID_MODAL] !== null && values[this.fieldName.GROUPD_ID_MODAL] !== null) {
+            row.setInitialData({
+                GROUPM_BO_ID: values[this.fieldName.GROUPM_ID_MODAL],
+                GROUPD_BO_ID: values[this.fieldName.GROUPD_ID_MODAL]
+            });
+            await logic.syncDocStatus("TRANSFER", dataUtil, _SERVICE_UPDATE_TRANS_TIME);
+        } else {
+            $$.Alert.show({ type: "warning", text: "PIC Group and PIC is required.", timeout: 2000 });
+        }
+        return true;
+    },
+    onConfirming: async function ({ dataUtil }) {
+        return true;
+    },
+    onInputed: async function ({ field, cmp }) {
+        const cmpModal = cmp(this.modalFormId);
         if (field === this.fieldName.GROUPM_ID_MODAL) {
-            //
+            cmpModal.setValue({ 
+                [this.fieldName.GROUPD_ID_MODAL]: null 
+            });
         }
     }
 }
 
-export { ExportModalPicAction } 
+export { ExportModalPIC } 

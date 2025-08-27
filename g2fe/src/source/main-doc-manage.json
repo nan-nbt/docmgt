@@ -314,12 +314,13 @@
                                     "width": 50,
                                     "id": "MODAL_PIC",
                                     "title": "PIC Information",
-                                    "initialValues": "(args) => { return await LOGIC.exportModalPicAction.initialValues(args); }",
-                                    "config": "(args) => { return await LOGIC.exportModalPicAction.config(args); }",
-                                    "onConfirm": "(args) => { return await LOGIC.exportModalPicAction.onConfirm(args); }",
-                                    "onClosing": "(args) => { return await LOGIC.exportModalPicAction.onClosing(args); }",
-                                    "onInputed": "(args) => { return await LOGIC.exportModalPicAction.onInputed(args); }",
-                                    "onOpen": "(args) => { return await LOGIC.exportModalPicAction.onOpen(args); }"
+                                    "initialValues": "(args) => { return await LOGIC.exportModalPIC.initialValues(args); }",
+                                    "config": "(args) => { return await LOGIC.exportModalPIC.config(args); }",
+                                    "onConfirm": "(args) => { return await LOGIC.exportModalPIC.onConfirm(args); }",
+                                    "onClosing": "(args) => { return await LOGIC.exportModalPIC.onClosing(args); }",
+                                    "onInputed": "(args) => { return await LOGIC.exportModalPIC.onInputed(args); }",
+                                    "onOpen": "(args) => { return await LOGIC.exportModalPIC.onOpen(args); }",
+                                    "onClose": "(args) => { return await LOGIC.exportModalPIC.onClose(args); }"
                                 },
                                 "_rowIndex": 3,
                                 "showBtn": 2,
@@ -439,7 +440,7 @@
                                     ]
                                 },
                                 {
-                                    "field": "GROUPM_BO_ID",
+                                    "field": "BO_GROUP",
                                     "title": "PIC Group",
                                     "editor": {
                                         "xtype": "Label"
@@ -448,7 +449,7 @@
                                     "colspan": 3
                                 },
                                 {
-                                    "field": "GROUPD_BO_ID",
+                                    "field": "BO_NAME",
                                     "title": "PIC",
                                     "editor": {
                                         "xtype": "Label"
