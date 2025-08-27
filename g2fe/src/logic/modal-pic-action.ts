@@ -113,10 +113,7 @@ const ExportModalPIC = {
     onOpen: async function ({ dataUtil }) {
         return true;
     },
-    onClosing: async function () {
-        return true;
-    },
-    onClose: async function ({ dataUtil }) {
+    onConfirming: async function ({ dataUtil }) {
         return true;
     },
     onConfirm: async function ({ dataUtil, values }) {
@@ -135,7 +132,10 @@ const ExportModalPIC = {
         }
         return true;
     },
-    onConfirming: async function ({ dataUtil }) {
+    onClosing: async function ({ dataUtil }) {
+        return true;
+    },
+    onClose: async function ({ dataUtil }) {
         return true;
     },
     onInputed: async function ({ field, cmp }) {
