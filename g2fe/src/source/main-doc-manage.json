@@ -308,6 +308,7 @@
                                 "limitNo": "DESTROY"
                             },
                             {
+                                "showBtn": 2,
                                 "hasPopupWin": 5,
                                 "popupWinCfg": {
                                     "xtype": "ModalForm",
@@ -324,12 +325,12 @@
                                     "onConfirming": "(args) => { return await LOGIC.exportModalPIC.onConfirming(args); }"
                                 },
                                 "_rowIndex": 3,
-                                "showBtn": 2,
-                                "icon": "cog",
-                                "text": "Modal",
+                                "icon": "external-link",
+                                "text": "Modal Transfer",
                                 "onClick": "(args) => { return true; }",
                                 "picker": "modalForm",
-                                "_rowstatus": ""
+                                "_rowstatus": "",
+                                "limitNo": "MODAL_TRANSFER"
                             }
                         ]
                     }
