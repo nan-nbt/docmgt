@@ -91,7 +91,7 @@
                         ]
                     },
                     "rowNumbers": true,
-                    "checkbox": true,
+                    "checkbox": false,
                     "items": [
                         {
                             "field": "FLOOR_NO",
@@ -203,7 +203,7 @@
                                 ]
                             },
                             "rowNumbers": true,
-                            "checkbox": true,
+                            "checkbox": false,
                             "items": [
                                 {
                                     "field": "CABINET_NO",
@@ -312,7 +312,7 @@
                                 ]
                             },
                             "rowNumbers": true,
-                            "checkbox": true,
+                            "checkbox": false,
                             "items": [
                                 {
                                     "field": "CABIN_NO",
@@ -421,7 +421,7 @@
                                 ]
                             },
                             "rowIndex": true,
-                            "checkbox": true,
+                            "checkbox": false,
                             "items": [
                                 {
                                     "field": "BOX_NO",
@@ -509,7 +509,8 @@
                             "expandItems": [],
                             "listeners": {},
                             "title": "Box Information",
-                            "version": 2
+                            "version": 2,
+                            "rowNumbers": true
                         }
                     ]
                 }
