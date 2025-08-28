@@ -106,7 +106,7 @@
                         ]
                     },
                     "rowNumbers": true,
-                    "checkbox": true,
+                    "checkbox": false,
                     "items": [
                         {
                             "field": "GROUPM_NO",
@@ -340,7 +340,7 @@
                         ]
                     },
                     "rowNumbers": true,
-                    "checkbox": true,
+                    "checkbox": false,
                     "items": [
                         {
                             "field": "EMP_NO",
