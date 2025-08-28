@@ -442,6 +442,46 @@
                                     ]
                                 },
                                 {
+                                    "field": "GROUPM_BO_ID",
+                                    "title": "PIC Group #1",
+                                    "editor": {
+                                        "xtype": "Combo",
+                                        "id": "CMP_COMBO_GROUPM_BO",
+                                        "textField": "LABEL",
+                                        "manual": false,
+                                        "valueField": "VALUE",
+                                        "condition": {
+                                            "accNo": "_AP_CONN",
+                                            "sqlNo": "V_COMBO_BASIC_GROUPM",
+                                            "opType": 2
+                                        }
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "GROUPD_BO_ID",
+                                    "title": "PIC #1",
+                                    "editor": {
+                                        "xtype": "Combo",
+                                        "id": "CMP_COMBO_GROUPD_BO",
+                                        "textField": "LABEL",
+                                        "manual": false,
+                                        "valueField": "VALUE",
+                                        "condition": {
+                                            "accNo": "_AP_CONN",
+                                            "sqlNo": "V_COMBO_BASIC_GROUPD",
+                                            "opType": 2
+                                        },
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterGroupdBO(args); }"
+                                    },
+                                    "must": false,
+                                    "colspan": 3,
+                                    "dependencies": [
+                                        "GROUPM_BO_ID"
+                                    ]
+                                },
+                                {
                                     "field": "BO_GROUP",
                                     "title": "PIC Group",
                                     "editor": {
