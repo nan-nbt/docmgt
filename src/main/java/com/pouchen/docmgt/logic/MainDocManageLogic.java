@@ -19,14 +19,22 @@ public class MainDocManageLogic {
                 String docStatusDesc = null;
                 Object docStatus = row.getData(DOC_STATUS);
                 int docStatusVal = docStatus == null ? 0 : Integer.parseInt(docStatus.toString());
-                if (docStatusVal == 1) {
-                    docStatusDesc = "1. CREATED";
-                } else if (docStatusVal == 2) {
-                    docStatusDesc = "2. TRANSFER";
-                } else if (docStatusVal == 3) {
-                    docStatusDesc = "3. RETURN";
-                } else if (docStatusVal == 4) {
-                    docStatusDesc = "4. DESTROY";
+                switch (docStatusVal) {
+                    case 1:
+                        docStatusDesc = "1. CREATED";
+                        break;
+                    case 2:
+                        docStatusDesc = "2. TRANSFER";
+                        break;
+                    case 3:
+                        docStatusDesc = "3. RETURN";
+                        break;
+                    case 4:
+                        docStatusDesc = "4. DESTROY";
+                        break;
+                    default:
+                        docStatusDesc = "UNKNOWN STATUS";
+                        break;
                 }
                 row.setData(DOC_STATUS_DESC, docStatusDesc);
             }
