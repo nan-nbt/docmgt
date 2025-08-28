@@ -23,6 +23,9 @@ const logic = {
     onFilterGroupd: function ({ item, values }) {
         return item?.REF === values?.GROUPM_ID;
     },
+    onFilterGroupdBO: function ({ item, values }) {
+        return item?.REF === values?.GROUPM_BO_ID;
+    },
     onFilterCabinet: function ({ item, values }) {
         return item?.REF === values?.FLOOR_ID;
     },
@@ -44,6 +47,10 @@ const logic = {
         if (field === "GROUPM_ID") {
             row.input({
                 GROUPD_ID: null
+            });
+        } else if (field === "GROUPM_BO_ID") {
+            row.input({
+                GROUPD_BO_ID: null
             });
         } else if (field === "FLOOR_ID") {
             row.input({
@@ -107,6 +114,13 @@ const logic = {
         if (!row) {
             $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
             return;
+        }
+
+        if (actionType === "TRANSFER") {
+            if (!row.getData().GROUPM_BO_ID || !row.getData().GROUPD_BO_ID) {
+                $$.Alert.show({ type: "warning", text: "PIC Group and PIC is required.", timeout: 2000 });
+                return;
+            }
         }
 
         const docStatusDesc = row.getData().DOC_STATUS_DESC;
@@ -185,7 +199,7 @@ const logic = {
             buttons: ["Y", "N"],
             textYes: "Yes",
             textNo: "No",
-            onYes: async () => {
+            onYes: async () => {                
                 this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
             },
             onNo: async () => { return true; }
