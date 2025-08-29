@@ -171,13 +171,13 @@ const logic = {
 
             alertConfig = {
                 type: "success",
-                text: `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Success`,
+                text: actionType.substring(0, 1).toUpperCase() + actionType.substring(1).toLowerCase() + " Success",
                 timeout: 2000
             };
         } catch (error) {
             alertConfig = {
                 type: "warning",
-                text: error?.message ?? `${actionType.substring(0, 1).toUpperCase()}${actionType.substring(1).toLowerCase()} Failed`,
+                text: error?.message ?? actionType.substring(0, 1).toUpperCase() + actionType.substring(1).toLowerCase() + " Failed",
                 timeout: 2000
             }
         } finally {
