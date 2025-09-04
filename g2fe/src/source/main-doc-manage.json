@@ -306,31 +306,6 @@
                                 "text": "Destroy",
                                 "icon": "reject",
                                 "limitNo": "DESTROY"
-                            },
-                            {
-                                "showBtn": 2,
-                                "hasPopupWin": 5,
-                                "popupWinCfg": {
-                                    "xtype": "ModalForm",
-                                    "width": 50,
-                                    "id": "MODAL_PIC",
-                                    "title": "PIC Information",
-                                    "initialValues": "(args) => { return await LOGIC.exportModalPIC.initialValues(args); }",
-                                    "config": "(args) => { return await LOGIC.exportModalPIC.config(args); }",
-                                    "onConfirm": "(args) => { return await LOGIC.exportModalPIC.onConfirm(args); }",
-                                    "onClosing": "(args) => { return await LOGIC.exportModalPIC.onClosing(args); }",
-                                    "onInputed": "(args) => { return await LOGIC.exportModalPIC.onInputed(args); }",
-                                    "onOpen": "(args) => { return await LOGIC.exportModalPIC.onOpen(args); }",
-                                    "onClose": "(args) => { return await LOGIC.exportModalPIC.onClose(args); }",
-                                    "onConfirming": "(args) => { return await LOGIC.exportModalPIC.onConfirming(args); }"
-                                },
-                                "_rowIndex": 3,
-                                "icon": "external-link",
-                                "text": "Modal Transfer",
-                                "onClick": "(args) => { return true; }",
-                                "picker": "modalForm",
-                                "_rowstatus": "",
-                                "limitNo": "MODAL_TRANSFER"
                             }
                         ]
                     }
