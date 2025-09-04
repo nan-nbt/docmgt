@@ -23,6 +23,7 @@
   "scripts": {
     "start": "g2fw start --mode dev",
     "build": "g2fw build",
+    "build:qas": "g2fw build --mode qas",
     "upgrade": "npm install g2fw@latest"
   },
   "browserslist": {
