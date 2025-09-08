@@ -112,18 +112,16 @@ const logic = {
         const row = du.getCurrentRow();
 
         if (!row) {
-            $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
-            return;
+            return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
         }
 
         if (actionType === "TRANSFER") {
             if (!row.getData().GROUPM_BO_ID || !row.getData().GROUPD_BO_ID) {
-                $$.Alert.show({ type: "warning", text: "PIC Group and PIC is required.", timeout: 2000 });
-                return;
+                return $$.Alert.show({ type: "warning", text: "PIC Group and PIC is required.", timeout: 2000 });
             }
         }
 
-        const docStatusDesc = row.getData().DOC_STATUS_DESC;
+        const { DOC_STATUS_DESC} = row.getData();
         const restrictionRules: Record<string, Record<string, string>> = {
             "1. CREATED": {
                 RETURN: "Document is created. Return not allowed."
@@ -142,11 +140,10 @@ const logic = {
             }
         };
 
-        const warningMsg = restrictionRules[docStatusDesc]?.[actionType] || "";
+        const warningMsg = restrictionRules[DOC_STATUS_DESC]?.[actionType] || "";
 
         if (warningMsg) {
-            $$.Alert.show({ type: "warning", text: warningMsg, timeout: 2000 });
-            return;
+            return $$.Alert.show({ type: "warning", text: warningMsg, timeout: 2000 });
         }
 
         let alertConfig: { type: string; text: string; timeout: number } | null = null;
@@ -200,14 +197,6 @@ const logic = {
         if (!row) {
             return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
         }         
-
-        const { DOC_STATUS_DESC } = row.getData();
-
-        if (DOC_STATUS_DESC === "2. TRANSFER") {
-            return $$.Alert.show({ type: "warning", text: "Document is already transferred. Transfer not allowed.", timeout: 2000 });           
-        } else if (DOC_STATUS_DESC === "4. DESTROY") {
-            return $$.Alert.show({ type: "warning", text: "Document is already destroyed. Transfer not allowed.", timeout: 2000 });
-        }
         
         return { 
             canOpen: true, 
