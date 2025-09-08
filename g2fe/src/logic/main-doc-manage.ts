@@ -193,17 +193,26 @@ const logic = {
      * @param param0 { dataUtil }
      */
     onClickTrans: async function ({ dataUtil }) {
-        $$.Dialog.show({
-            title: "Confirmation",
-            text: "Are you sure to transfer document?",
-            buttons: ["Y", "N"],
-            textYes: "Yes",
-            textNo: "No",
-            onYes: async () => {                
-                this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
-            },
-            onNo: async () => { return true; }
-        });
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const row = du.getCurrentRow();
+
+        if (!row) {
+            return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
+        }         
+
+        const { DOC_STATUS_DESC } = row.getData();
+
+        if (DOC_STATUS_DESC === "2. TRANSFER") {
+            return $$.Alert.show({ type: "warning", text: "Document is already transferred. Transfer not allowed.", timeout: 2000 });           
+        } else if (DOC_STATUS_DESC === "4. DESTROY") {
+            return $$.Alert.show({ type: "warning", text: "Document is already destroyed. Transfer not allowed.", timeout: 2000 });
+        }
+        
+        return { 
+            canOpen: true, 
+            canEdit: false
+        };
     },
     onClickReturn: async function ({ dataUtil }) {
         $$.Dialog.show({
@@ -227,6 +236,28 @@ const logic = {
             textNo: "No",
             onYes: async () => {
                 this.syncDocStatus({ actionType: "DESTROY", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_DESTROY_TIME });
+            },
+            onNo: async () => { return true; }
+        });
+    },
+    onConfirmPicker: async function ({ dataUtil, checkedRows }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const row = du.getCurrentRow();
+
+        row.setInitialData({
+            GROUPM_BO_ID: checkedRows[0].GROUPM_BO_ID,
+            GROUPD_BO_ID: checkedRows[0].GROUPD_BO_ID
+        });
+
+        $$.Dialog.show({
+            title: "Confirmation",
+            text: "Are you sure to transfer document?",
+            buttons: ["Y", "N"],
+            textYes: "Yes",
+            textNo: "No",
+            onYes: async () => {                
+                this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
             },
             onNo: async () => { return true; }
         });

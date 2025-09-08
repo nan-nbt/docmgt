@@ -282,12 +282,67 @@
                         "others": [
                             {
                                 "showBtn": 2,
+                                "onUploading": "(args) => { return true; }",
+                                "onUploaded": "",
+                                "hasPopupWin": 1,
+                                "popupWinCfg": {
+                                    "xtype": "QueryPicker",
+                                    "base": {
+                                        "title": "Query Picker PIC",
+                                        "width": 50,
+                                        "single": true,
+                                        "autoQuery": true,
+                                        "accNo": "_AP_CONN",
+                                        "source": "[SQL] V_QP_PIC",
+                                        "sqlNo": "V_QP_PIC",
+                                        "pager": true,
+                                        "pageSize": 20,
+                                        "lazyload": false,
+                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }"
+                                    },
+                                    "columns": [
+                                        {
+                                            "field": "GROUPM_NAME_EN",
+                                            "title": "PIC Group",
+                                            "editor": {
+                                                "xtype": "TextField"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 1,
+                                            "opt": "%%",
+                                            "tableSort": 1
+                                        },
+                                        {
+                                            "field": "EMP_NAME",
+                                            "title": "PIC User",
+                                            "editor": {
+                                                "xtype": "TextField"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 2,
+                                            "opt": "%%",
+                                            "tableSort": 2
+                                        },
+                                        {
+                                            "field": "GROUPM_ID",
+                                            "editor": {},
+                                            "noWhere": true,
+                                            "cover": "GROUPM_BO_ID"
+                                        },
+                                        {
+                                            "field": "GROUPD_ID",
+                                            "noWhere": true,
+                                            "cover": "GROUPD_BO_ID"
+                                        }
+                                    ]
+                                },
                                 "_rowIndex": 0,
-                                "_rowstatus": "",
-                                "onClick": "(args) => { return LOGIC.onClickTrans(args); }",
-                                "text": "Transfer",
+                                "limitNo": "TRANSFER",
                                 "icon": "send",
-                                "limitNo": "TRANSFER"
+                                "text": "Transfer",
+                                "onClick": "(args) => { return LOGIC.onClickTrans(args); }",
+                                "picker": "query",
+                                "_rowstatus": ""
                             },
                             {
                                 "showBtn": 2,
