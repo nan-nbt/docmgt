@@ -106,14 +106,28 @@ const logic = {
      * Handle custom action from toolbar to update doc status and sync data
      * @param ctx Context object from G2FW (includes actionType, dataUtil, serviceUri, ...)
      */
-    syncDocStatus: async function ({ actionType, dataUtil, serviceUri }) {
+    getIndexRow: function ({ dataUtil }) {
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const row = du.getCurrentRow();
+        const row = du.getCurrentRow();        
 
         if (!row) {
-            return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
+            $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
+            return null;
         }
+
+        return row;
+    },
+    syncDocStatus: async function ({ actionType, dataUtil, serviceUri }) {
+        // const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        // const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        // const row = du.getCurrentRow();
+
+        // if (!row) {
+        //     return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
+        // }
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
 
         if (actionType === "TRANSFER") {
             if (!row.getData().GROUPM_BO_ID || !row.getData().GROUPD_BO_ID) {
@@ -190,20 +204,18 @@ const logic = {
      * @param param0 { dataUtil }
      */
     onClickTrans: async function ({ dataUtil }) {
-        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
-        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const row = du.getCurrentRow();
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
 
-        if (!row) {
-            return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
-        }         
-        
         return { 
             canOpen: true, 
             canEdit: false
         };
     },
     onClickReturn: async function ({ dataUtil }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
         $$.Dialog.show({
             title: "Confirmation",
             text: "Are you sure to return document?",
@@ -211,12 +223,15 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus({ actionType: "RETURN", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_RETURN_TIME });
+                await this.syncDocStatus({ actionType: "RETURN", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_RETURN_TIME });
             },
             onNo: async () => { return true; }
         });
     },
     onClickDestroy: async function ({ dataUtil }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
         $$.Dialog.show({
             title: "Confirmation",
             text: "Are you sure to destroy document?",
@@ -224,20 +239,23 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus({ actionType: "DESTROY", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_DESTROY_TIME });
+                await this.syncDocStatus({ actionType: "DESTROY", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_DESTROY_TIME });
             },
             onNo: async () => { return true; }
         });
     },
     onConfirmPicker: async function ({ dataUtil, checkedRows }) {
-        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
-        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const row = du.getCurrentRow();
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
 
-        row.setInitialData({
-            GROUPM_BO_ID: checkedRows[0].GROUPM_BO_ID,
-            GROUPD_BO_ID: checkedRows[0].GROUPD_BO_ID
-        });
+        try {
+            row.setInitialData({
+                GROUPM_BO_ID: checkedRows[0].GROUPM_BO_ID,
+                GROUPD_BO_ID: checkedRows[0].GROUPD_BO_ID
+            });
+        } catch (e) {
+            $$.Alert.show(e.message);
+        }
 
         $$.Dialog.show({
             title: "Confirmation",
@@ -246,7 +264,7 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {                
-                this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
+                await this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
             },
             onNo: async () => { return true; }
         });
