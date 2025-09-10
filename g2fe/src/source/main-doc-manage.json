@@ -281,7 +281,7 @@
                         "needButtons": [],
                         "others": [
                             {
-                                "showBtn": 2,
+                                "showBtn": 0,
                                 "onUploading": "(args) => { return true; }",
                                 "onUploaded": "",
                                 "hasPopupWin": 1,
@@ -316,7 +316,8 @@
                                             "field": "EMP_NAME",
                                             "title": "PIC User",
                                             "editor": {
-                                                "xtype": "TextField"
+                                                "xtype": "TextField",
+                                                "textCase": "upper"
                                             },
                                             "noWhere": false,
                                             "querySort": 2,
@@ -345,7 +346,7 @@
                                 "_rowstatus": ""
                             },
                             {
-                                "showBtn": 2,
+                                "showBtn": 0,
                                 "_rowIndex": 1,
                                 "_rowstatus": "",
                                 "onClick": "(args) => { return LOGIC.onClickReturn(args); }",
@@ -354,7 +355,7 @@
                                 "limitNo": "RETURN"
                             },
                             {
-                                "showBtn": 2,
+                                "showBtn": 0,
                                 "_rowIndex": 2,
                                 "_rowstatus": "",
                                 "onClick": "(args) => { return LOGIC.onClickDestroy(args); }",
