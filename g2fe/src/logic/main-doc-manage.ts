@@ -74,9 +74,8 @@ const logic = {
      * @param param0 { dataUtil }
      */
     onEndEdit: async function ({ dataUtil }) {
-        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
-        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const row = du.getCurrentRow();
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
 
         _DOC_ID_TO_SET_FOCUS = row ? row.getData().DOC_ID : null;
 
@@ -119,13 +118,6 @@ const logic = {
         return row;
     },
     syncDocStatus: async function ({ actionType, dataUtil, serviceUri }) {
-        // const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
-        // const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        // const row = du.getCurrentRow();
-
-        // if (!row) {
-        //     return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
-        // }
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return;
 
