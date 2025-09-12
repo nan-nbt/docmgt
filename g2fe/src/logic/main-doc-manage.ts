@@ -87,14 +87,14 @@ const logic = {
      * Handle onEndEdit event from form retrieve data
      * @param param0 { dataUtil }
      */
-    onEndEdit: async function ({ dataUtil }) {
+    onEndEdit: function ({ dataUtil }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return;
 
         _DOC_ID_TO_SET_FOCUS = row ? row.getData().DOC_ID : null;
 
         try {
-            await dataUtil.retrieve();
+            dataUtil.retrieve();
         } catch (e) {
             $$.Alert.show(e.message);
         }
