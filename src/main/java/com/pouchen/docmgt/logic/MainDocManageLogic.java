@@ -9,9 +9,10 @@ public class MainDocManageLogic {
 
     }
 
+    private static final String DOC_STATUS_DESC = "DOC_STATUS_DESC";
+    private static final String DOC_STATUS = "DOC_STATUS";
+
     public static class SetDocStatusDesc implements EventResponse<EventArgsDataUpdate> {
-        private static final String DOC_STATUS_DESC = "DOC_STATUS_DESC";
-        private static final String DOC_STATUS = "DOC_STATUS";
 
         @Override
         public void response(EventArgsDataUpdate args) {
