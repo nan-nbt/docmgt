@@ -70,6 +70,20 @@ const logic = {
         }
     },
     /**
+     * Handle onAccepting event from form
+     * @param param0 { dataUtil }
+     */
+    onAccepting: function ({ dataUtil }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
+        if (row.getData().DOC_STATUS_DESC === "4. DESTROY") {
+            return $$.Alert.show({ type: "warning", text: "Document is already destroyed. Update not allowed.", timeout: 2000 });
+        }
+
+        return true;
+    },
+    /**
      * Handle onEndEdit event from form retrieve data
      * @param param0 { dataUtil }
      */

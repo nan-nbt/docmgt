@@ -622,7 +622,8 @@
                     ],
                     "listeners": {
                         "onInputed": "(args) => { LOGIC.onInputed(args); }",
-                        "onEndEdit": "(args) => { LOGIC.onEndEdit(args); }"
+                        "onEndEdit": "(args) => { LOGIC.onEndEdit(args); }",
+                        "onAccepting": "(args) => { return LOGIC.onAccepting(args); }"
                     },
                     "title": "Main Information",
                     "nextDetail": "Detail"
