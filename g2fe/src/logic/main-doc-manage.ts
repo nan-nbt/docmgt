@@ -70,18 +70,31 @@ const logic = {
         }
     },
     /**
+     * Handle onAccepting event from form
+     * @param param0 { dataUtil }
+     */
+    onAccepting: function ({ dataUtil }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
+        if (row.getData().DOC_STATUS_DESC === "4. DESTROY") {
+            return $$.Alert.show({ type: "warning", text: "Document is already destroyed. Update not allowed.", timeout: 2000 });
+        }
+
+        return true;
+    },
+    /**
      * Handle onEndEdit event from form retrieve data
      * @param param0 { dataUtil }
      */
-    onEndEdit: async function ({ dataUtil }) {
-        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
-        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const row = du.getCurrentRow();
+    onEndEdit: function ({ dataUtil }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
 
         _DOC_ID_TO_SET_FOCUS = row ? row.getData().DOC_ID : null;
 
         try {
-            await dataUtil.retrieve();
+            dataUtil.retrieve();
         } catch (e) {
             $$.Alert.show(e.message);
         }
@@ -106,24 +119,29 @@ const logic = {
      * Handle custom action from toolbar to update doc status and sync data
      * @param ctx Context object from G2FW (includes actionType, dataUtil, serviceUri, ...)
      */
-    syncDocStatus: async function ({ actionType, dataUtil, serviceUri }) {
+    getIndexRow: function ({ dataUtil }) {
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const row = du.getCurrentRow();
+        const row = du.getCurrentRow();        
 
         if (!row) {
             $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
-            return;
+            return null;
         }
+
+        return row;
+    },
+    syncDocStatus: async function ({ actionType, dataUtil, serviceUri }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
 
         if (actionType === "TRANSFER") {
             if (!row.getData().GROUPM_BO_ID || !row.getData().GROUPD_BO_ID) {
-                $$.Alert.show({ type: "warning", text: "PIC Group and PIC is required.", timeout: 2000 });
-                return;
+                return $$.Alert.show({ type: "warning", text: "PIC Group and PIC is required.", timeout: 2000 });
             }
         }
 
-        const docStatusDesc = row.getData().DOC_STATUS_DESC;
+        const { DOC_STATUS_DESC} = row.getData();
         const restrictionRules: Record<string, Record<string, string>> = {
             "1. CREATED": {
                 RETURN: "Document is created. Return not allowed."
@@ -142,11 +160,10 @@ const logic = {
             }
         };
 
-        const warningMsg = restrictionRules[docStatusDesc]?.[actionType] || "";
+        const warningMsg = restrictionRules[DOC_STATUS_DESC]?.[actionType] || "";
 
         if (warningMsg) {
-            $$.Alert.show({ type: "warning", text: warningMsg, timeout: 2000 });
-            return;
+            return $$.Alert.show({ type: "warning", text: warningMsg, timeout: 2000 });
         }
 
         let alertConfig: { type: string; text: string; timeout: number } | null = null;
@@ -193,19 +210,18 @@ const logic = {
      * @param param0 { dataUtil }
      */
     onClickTrans: async function ({ dataUtil }) {
-        $$.Dialog.show({
-            title: "Confirmation",
-            text: "Are you sure to transfer document?",
-            buttons: ["Y", "N"],
-            textYes: "Yes",
-            textNo: "No",
-            onYes: async () => {                
-                this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
-            },
-            onNo: async () => { return true; }
-        });
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
+        return { 
+            canOpen: true, 
+            canEdit: false
+        };
     },
     onClickReturn: async function ({ dataUtil }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
         $$.Dialog.show({
             title: "Confirmation",
             text: "Are you sure to return document?",
@@ -213,12 +229,15 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus({ actionType: "RETURN", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_RETURN_TIME });
+                await this.syncDocStatus({ actionType: "RETURN", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_RETURN_TIME });
             },
             onNo: async () => { return true; }
         });
     },
     onClickDestroy: async function ({ dataUtil }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
         $$.Dialog.show({
             title: "Confirmation",
             text: "Are you sure to destroy document?",
@@ -226,7 +245,32 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
-                this.syncDocStatus({ actionType: "DESTROY", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_DESTROY_TIME });
+                await this.syncDocStatus({ actionType: "DESTROY", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_DESTROY_TIME });
+            },
+            onNo: async () => { return true; }
+        });
+    },
+    onConfirmPicker: async function ({ dataUtil, checkedRows }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
+        try {
+            row.setInitialData({
+                GROUPM_BO_ID: checkedRows[0].GROUPM_BO_ID,
+                GROUPD_BO_ID: checkedRows[0].GROUPD_BO_ID
+            });
+        } catch (e) {
+            $$.Alert.show(e.message);
+        }
+
+        $$.Dialog.show({
+            title: "Confirmation",
+            text: "Are you sure to transfer document?",
+            buttons: ["Y", "N"],
+            textYes: "Yes",
+            textNo: "No",
+            onYes: async () => {                
+                await this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
             },
             onNo: async () => { return true; }
         });
