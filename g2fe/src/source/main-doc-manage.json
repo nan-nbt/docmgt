@@ -394,7 +394,7 @@
                                         "textCase": "upper"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "colspan": 12
                                 },
                                 {
                                     "field": "DOC_NAME",
@@ -420,6 +420,15 @@
                                         }
                                     },
                                     "must": true,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "DOC_CAT_DESC",
+                                    "title": "Category",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
                                     "colspan": 3
                                 },
                                 {
