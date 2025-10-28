@@ -8,17 +8,14 @@ const logic = {
     onInputed: function ({ cmp, newVal, field }) {
         try {
             if (field === "FLOOR") {
-                // console.log("onFloorInputed:", cmp, newVal, field);
                 let cabinet = cmp("CMP_COMBO_CABINET");
                 cabinet.filter((value, key) => value["FLOOR_NO"] === newVal);
             }
             else if (field === "CABINET") {
-                // console.log("onCabinetInputed:", cmp, newVal, field);
                 let column = cmp("CMP_COMBO_CABIN");
                 column.filter((value, key) => value["CABINET_NO"] === newVal);
             }
             else if (field === "CABIN") {
-                // console.log("onColumnInputed:", cmp, newVal, field);
                 let box = cmp("CMP_COMBO_BOX");
                 box.filter((value, key) => value["CABIN_NO"] === newVal);
             }
