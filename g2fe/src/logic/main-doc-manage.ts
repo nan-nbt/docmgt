@@ -17,6 +17,21 @@ const logic = {
      */
     exportModalPIC: ExportModalPIC,
     /**
+     * set default value for query area
+     * @param param0 { args, query }
+     */
+    onCreated: function ({ args, query }) {
+      const today = new Date();
+      const som = new Date(today.getFullYear(), today.getMonth(), 1);
+      const eom = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+      const ctb = som.getTime();
+      const cte = eom.getTime();
+
+      query.CREATE_TIME_B = ctb;
+      query.CREATE_TIME_E = cte;      
+    },
+    /**
      * Filter combo [groupd, cabinet, column, box] data in form area v2
      * @param param0 { item, values }
      */

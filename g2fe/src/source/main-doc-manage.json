@@ -11,7 +11,7 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": false,
+            "autoQuery": true,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
@@ -71,6 +71,28 @@
                     },
                     "noWhere": false,
                     "opt": "="
+                },
+                {
+                    "field": "CREATE_TIME_B",
+                    "title": "Create Time Begin",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": false,
+                    "opt": ">="
+                },
+                {
+                    "field": "CREATE_TIME_E",
+                    "title": "Create Time End",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": false,
+                    "opt": "<="
                 }
             ]
         },
@@ -643,7 +665,8 @@
         "programmodel": "DM_DOC_MANAGE",
         "programaccno": "_AP_CONN",
         "listeners": {
-            "onDataLoaded": "(args) => { LOGIC.onDataLoaded(args); }"
+            "onDataLoaded": "(args) => { LOGIC.onDataLoaded(args); }",
+            "onCreated": "(args) => { LOGIC.onCreated(args); }"
         },
         "logicPath": "logic/main-doc-manage"
     },
