@@ -71,6 +71,28 @@
                     },
                     "noWhere": false,
                     "opt": "="
+                },
+                {
+                    "field": "CREATE_TIME_B",
+                    "title": "Create Time Begin",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": false,
+                    "opt": ">="
+                },
+                {
+                    "field": "CREATE_TIME_E",
+                    "title": "Create Time End",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": false,
+                    "opt": "<="
                 }
             ]
         },
@@ -320,7 +342,10 @@
     "programsetting": {
         "programmodel": "DM_DOC_MANAGE",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {
+            "onCreated": "(args) => { LOGIC.onCreated(args); }"
+        },
+        "logicPath": "logic/main-doc-query"
     },
     "requires": [
         "DataProvider",
