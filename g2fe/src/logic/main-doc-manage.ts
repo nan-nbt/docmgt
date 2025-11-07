@@ -1,5 +1,6 @@
 import { $$, DataModel, DataUnit } from "g2fw";
 import { ExportModalPIC } from "./modal-pic-action";
+import Common from "./common";
 
 /**
  * Declare global variables for service uri and others
@@ -20,17 +21,7 @@ const logic = {
      * set default value for query area
      * @param param0 { args, query }
      */
-    onCreated: function ({ args, query }) {
-      const today = new Date();
-      const som = new Date(today.getFullYear(), today.getMonth(), 1);
-      const eom = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-
-      const ctb = som.getTime();
-      const cte = eom.getTime();
-
-      query.CREATE_TIME_B = ctb;
-      query.CREATE_TIME_E = cte;      
-    },
+    onCreated: Common.onCreatedSetQueryCondition,
     /**
      * Filter combo [groupd, cabinet, column, box] data in form area v2
      * @param param0 { item, values }
@@ -137,7 +128,7 @@ const logic = {
     getIndexRow: function ({ dataUtil }) {
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const row = du.getCurrentRow();        
+        const row = du.getCurrentRow();
 
         if (!row) {
             $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
@@ -156,7 +147,7 @@ const logic = {
             }
         }
 
-        const { DOC_STATUS_DESC} = row.getData();
+        const { DOC_STATUS_DESC } = row.getData();
         const restrictionRules: Record<string, Record<string, string>> = {
             "1. CREATED": {
                 RETURN: "Document is created. Return not allowed."
@@ -228,8 +219,8 @@ const logic = {
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return;
 
-        return { 
-            canOpen: true, 
+        return {
+            canOpen: true,
             canEdit: false
         };
     },
@@ -284,7 +275,7 @@ const logic = {
             buttons: ["Y", "N"],
             textYes: "Yes",
             textNo: "No",
-            onYes: async () => {                
+            onYes: async () => {
                 await this.syncDocStatus({ actionType: "TRANSFER", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_TRANS_TIME });
             },
             onNo: async () => { return true; }

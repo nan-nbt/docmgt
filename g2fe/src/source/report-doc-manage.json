@@ -158,7 +158,19 @@
                         "modelName": "DM_RPT_DOC_MANAGE",
                         "unitName": "V_RPT_DOC_MANAGE_DETAIL"
                     },
-                    "toolbar": false,
+                    "toolbar": {
+                        "needButtons": [],
+                        "others": [
+                            {
+                                "_rowIndex": 0,
+                                "_rowstatus": "",
+                                "onClick": "(args) => { return LOGIC.onClickExport(args); }",
+                                "showBtn": 0,
+                                "text": "Export",
+                                "icon": "file-xls"
+                            }
+                        ]
+                    },
                     "rowNumbers": true,
                     "checkbox": false,
                     "items": [
