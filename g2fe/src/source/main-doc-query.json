@@ -110,7 +110,8 @@
                         "modelName": "DM_DOC_MANAGE",
                         "unitName": "DU_DOC_MANAGE",
                         "pager": true,
-                        "pageSize": 10
+                        "pageSize": 10,
+                        "paginationSupportAll": false
                     },
                     "toolbar": false,
                     "rowNumbers": true,
