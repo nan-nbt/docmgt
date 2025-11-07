@@ -278,6 +278,7 @@ const logic = {
      * @returns Array of processed data objects
      */
     processDataForExport: function (detailRows) {
+        // Define field mappings in the specified order
         const fieldMappings = [
             { key: 'DOC_NO', variants: ['DOC_NO', 'DOC_ID', 'docNo'] },
             { key: 'DOC_NAME', variants: ['DOC_NAME', 'docName'] },
@@ -303,19 +304,33 @@ const logic = {
             { key: 'UPDATE_TIME', variants: ['UPDATE_TIME', 'updateTime'] }
         ];
 
+        // Define the export header order
+        const exportHeaderOrder = [
+            'DOC_NO', 'DOC_NAME', 'DOC_TYPE_DESC', 'DOC_STATUS_DESC',
+            'TRANS_TIME', 'RETURN_TIME', 'DESTROY_TIME',
+            'OWNER_GROUP', 'OWNER_NAME', 'BO_GROUP', 'BO_NAME',
+            'FLOOR_NAME', 'CABINET_NAME', 'CABIN_NAME', 'BOX_NAME',
+            'CREATE_USER_NM', 'CREATE_TIME', 'UPDATE_USER_NM', 'UPDATE_TIME'
+        ];
+
         return detailRows.map(row => {
             const rowData = this.extractRowData(row);
             const processedRow = {};
 
-            // Map regular fields with fallbacks
-            fieldMappings.forEach(({ key, variants }) => {
-                processedRow[key] = variants.reduce((value, variant) => value || rowData[variant], '') || '';
-            });
-
-            // Map timestamp fields with formatting
-            timestampFieldMappings.forEach(({ key, variants }) => {
-                const timestamp = variants.reduce((value, variant) => value || rowData[variant], null);
-                processedRow[key] = this.formatTimestamp(timestamp);
+            // Map all fields in the specified export order
+            exportHeaderOrder.forEach(fieldKey => {
+                // Check if it's a regular field
+                const fieldMapping = fieldMappings.find(mapping => mapping.key === fieldKey);
+                if (fieldMapping) {
+                    processedRow[fieldKey] = fieldMapping.variants.reduce((value, variant) => value || rowData[variant], '') || '';
+                } else {
+                    // Check if it's a timestamp field
+                    const timestampMapping = timestampFieldMappings.find(mapping => mapping.key === fieldKey);
+                    if (timestampMapping) {
+                        const timestamp = timestampMapping.variants.reduce((value, variant) => value || rowData[variant], null);
+                        processedRow[fieldKey] = this.formatTimestamp(timestamp);
+                    }
+                }
             });
 
             return processedRow;
@@ -330,10 +345,34 @@ const logic = {
             throw new Error("No data to export");
         }
 
+        // Define dynamic header mapping
+        const headerMapping = {
+            'DOC_NO': 'Document No.',
+            'DOC_NAME': 'Document Name',
+            'DOC_TYPE_DESC': 'Type',
+            'DOC_STATUS_DESC': 'Status',
+            'TRANS_TIME': 'Transfer Time',
+            'RETURN_TIME': 'Return Time',
+            'DESTROY_TIME': 'Destroy Time',
+            'OWNER_GROUP': 'Owner Group',
+            'OWNER_NAME': 'Owner',
+            'BO_GROUP': 'PIC Group',
+            'BO_NAME': 'PIC',
+            'FLOOR_NAME': 'Floor',
+            'CABINET_NAME': 'Cabinet',
+            'CABIN_NAME': 'Cabin',
+            'BOX_NAME': 'Box',
+            'CREATE_USER_NM': 'Create User',
+            'CREATE_TIME': 'Create Time',
+            'UPDATE_USER_NM': 'Update User',
+            'UPDATE_TIME': 'Update Time'
+        };
+
         // Generate CSV content
         const headers = Object.keys(csvData[0]);
+        const displayHeaders = headers.map(header => headerMapping[header] || header);
         const csvContent = [
-            headers.join(','), // Header row
+            displayHeaders.join(','), // Header row
             ...csvData.map(row =>
                 headers.map(header => {
                     const value = row[header];
