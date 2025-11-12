@@ -416,7 +416,7 @@
                     "checkbox": false,
                     "items": [
                         {
-                            "field": "KIND",
+                            "field": "KIND_DESC",
                             "title": "Kind",
                             "editor": {
                                 "xtype": "Label"
