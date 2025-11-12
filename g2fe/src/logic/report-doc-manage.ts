@@ -76,8 +76,8 @@ const logic = {
                 return;
             }
 
-            const docStatusFilter = this.getDocStatusFilter(dataUtil);
-            const filteredRows = this.applyFilters(detailRows, dataUtil, docStatusFilter);
+            const kindStatusFilter = this.getDocStatusFilter(dataUtil);
+            const filteredRows = this.applyFilters(detailRows, dataUtil, kindStatusFilter);
             const csvData = this.processDataForExport(filteredRows);
 
             this.generateCsvFile(csvData);
@@ -138,9 +138,9 @@ const logic = {
         return null;
     },
     /**
-     * Get DOC_STATUS filter value from master table current row
+     * Get KIND_STATUS filter value from master table current row
      * @param dataUtil
-     * @returns DOC_STATUS value or null
+     * @returns KIND_STATUS value or null
      */
     getDocStatusFilter: function (dataUtil) {
         try {
@@ -148,28 +148,28 @@ const logic = {
                 ?.getUnit("V_RPT_DOC_MANAGE_MAIN")
                 ?.getCurrentRow?.();
 
-            return currentRow ? this.extractRowData(currentRow)?.DOC_STATUS || null : null;
+            return currentRow ? this.extractRowData(currentRow)?.KIND_STATUS || null : null;
         } catch (error) {
-            console.error("Error getting DOC_STATUS filter:", error);
+            console.error("Error getting KIND_STATUS filter:", error);
             return null;
         }
     },
     /**
-     * Apply filters to detail rows based on master selection and DOC_STATUS
+     * Apply filters to detail rows based on master selection and KIND_STATUS
      * @param detailRows
      * @param dataUtil
-     * @param docStatusFilter
+     * @param kindStatusFilter
      * @returns Filtered array of detail rows
      */
-    applyFilters: function (detailRows, dataUtil, docStatusFilter) {
+    applyFilters: function (detailRows, dataUtil, kindStatusFilter) {
         try {
             const selectedMasterRows = this.getSelectedMasterRows(dataUtil);
             if (!selectedMasterRows?.length) return detailRows;
 
-            if (docStatusFilter) {
-                // Filter by DOC_STATUS from master table
+            if (kindStatusFilter) {
+                // Filter by KIND_STATUS from master table
                 return detailRows.filter(row =>
-                    this.extractRowData(row)?.DOC_STATUS === docStatusFilter
+                    this.extractRowData(row)?.KIND_STATUS === kindStatusFilter
                 );
             }
 
