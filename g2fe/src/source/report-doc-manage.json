@@ -140,7 +140,7 @@
                     },
                     "items": [
                         {
-                            "field": "KIND",
+                            "field": "KIND_DESC",
                             "title": "Kind",
                             "colspan": 6
                         },
