@@ -223,7 +223,8 @@
                             "title": "Transfer Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -235,7 +236,8 @@
                             "title": "Return Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -247,7 +249,8 @@
                             "title": "Destroy Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -358,7 +361,8 @@
                             "title": "Create Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -381,7 +385,8 @@
                             "title": "Update Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
