@@ -502,9 +502,7 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": [
-                                        "GROUPM_ID"
-                                    ]
+                                    "dependencies": "[\"GROUPM_ID\"]"
                                 },
                                 {
                                     "field": "BO_GROUP",
@@ -560,9 +558,7 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": [
-                                        "FLOOR_ID"
-                                    ]
+                                    "dependencies": "[\"FLOOR_ID\"]"
                                 },
                                 {
                                     "field": "CABIN_ID",
@@ -582,9 +578,7 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": [
-                                        "CABINET_ID"
-                                    ]
+                                    "dependencies": "[\"CABINET_ID\"]"
                                 },
                                 {
                                     "field": "BOX_ID",
@@ -604,9 +598,7 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": [
-                                        "CABIN_ID"
-                                    ]
+                                    "dependencies": "[\"CABIN_ID\"]"
                                 }
                             ]
                         },
@@ -627,7 +619,8 @@
                                     "title": "Create Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "colspan": 3
@@ -646,7 +639,8 @@
                                     "title": "Modify Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "colspan": 3
