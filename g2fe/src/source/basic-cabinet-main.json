@@ -30,10 +30,11 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "FLOOR_NAME",
+                    "field": "FLOOR_NAME_UPPER",
                     "title": "Floor Name",
                     "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"
