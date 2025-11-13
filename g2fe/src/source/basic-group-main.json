@@ -30,19 +30,21 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "GROUPM_NAME",
+                    "field": "GROUPM_NAME_UPPER",
                     "title": "Group Name",
                     "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"
                 },
                 {
-                    "field": "GROUP_NAME_EN",
+                    "field": "GROUPM_NAME_EN_UPPER",
                     "title": "Group Name (EN)",
                     "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"

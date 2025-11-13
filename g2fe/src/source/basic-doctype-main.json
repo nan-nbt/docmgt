@@ -30,10 +30,11 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "DOCTYPE_NAME",
+                    "field": "DOCTYPE_NAME_UPPER",
                     "title": "Type Name",
                     "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"
