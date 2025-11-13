@@ -126,7 +126,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": true,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "DOC_NAME",
@@ -137,7 +137,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": true,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "DOC_TYPE_DESC",
@@ -148,7 +148,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": true,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "DOC_STATUS_DESC",
@@ -159,7 +159,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": true,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "TRANS_TIME",
@@ -172,7 +172,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "RETURN_TIME",
@@ -185,7 +186,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "DESTROY_TIME",
@@ -198,7 +200,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "OWNER_GROUP",
@@ -209,7 +212,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "OWNER_NAME",
@@ -220,7 +223,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "BO_GROUP",
@@ -231,7 +234,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "BO_NAME",
@@ -242,7 +245,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "FLOOR_NAME",
@@ -253,7 +256,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "CABINET_NAME",
@@ -264,7 +267,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "CABIN_NAME",
@@ -275,7 +278,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "BOX_NAME",
@@ -286,7 +289,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "CREATE_USER_NM",
@@ -297,7 +300,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "CREATE_TIME",
@@ -310,7 +313,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "UPDATE_USER_NM",
@@ -321,7 +325,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "UPDATE_TIME",
@@ -334,7 +338,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true,
+                            "sortType": "numeric"
                         }
                     ],
                     "expandItems": [],
