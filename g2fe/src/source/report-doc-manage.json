@@ -22,6 +22,17 @@
             },
             "items": [
                 {
+                    "field": "DOC_NO",
+                    "title": "Document No.",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": true,
+                    "opt": "%%",
+                    "parm": "DOC_NO"
+                },
+                {
                     "field": "DOCTYPE_ID",
                     "title": "Type",
                     "editor": {
@@ -76,10 +87,7 @@
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "CABINET_ID",
-                    "dependencies": [
-                        "FLOOR_ID"
-                    ]
+                    "parm": "CABINET_ID"
                 },
                 {
                     "field": "CABIN_ID",
@@ -99,10 +107,7 @@
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "CABIN_ID",
-                    "dependencies": [
-                        "CABINET_ID"
-                    ]
+                    "parm": "CABIN_ID"
                 },
                 {
                     "field": "BOX_ID",
@@ -122,10 +127,7 @@
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "BOX_ID",
-                    "dependencies": [
-                        "CABIN_ID"
-                    ]
+                    "parm": "BOX_ID"
                 }
             ]
         },
