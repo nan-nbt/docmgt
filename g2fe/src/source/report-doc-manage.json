@@ -11,7 +11,7 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
@@ -128,6 +128,30 @@
                     "noWhere": true,
                     "opt": "=",
                     "parm": "BOX_ID"
+                },
+                {
+                    "field": "CREATE_TIME_B",
+                    "title": "Create Time Begin",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": true,
+                    "opt": ">=",
+                    "parm": "CREATE_TIME_B"
+                },
+                {
+                    "field": "CREATE_TIME_E",
+                    "title": "Create Time End",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": true,
+                    "opt": "<=",
+                    "parm": "CREATE_TIME_E"
                 }
             ]
         },
@@ -457,7 +481,9 @@
     "programsetting": {
         "programmodel": "DM_RPT_DOC_MANAGE",
         "programaccno": "_AP_CONN",
-        "listeners": {},
+        "listeners": {
+            "onCreated": "(args) => { LOGIC.onCreated(args); }"
+        },
         "logicPath": "logic/report-doc-manage"
     },
     "requires": [
