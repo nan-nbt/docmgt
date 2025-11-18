@@ -3,7 +3,7 @@ const logic = {
      * set default value for query area onCreated event
      * @param param0 { args, query }
      */
-    onCreatedSetQueryCondition: function ({ args, query }) {
+    onCreatedSetQueryCondition: function ({ dataUtil, args, query }) {
         const today = new Date();
         const som = new Date(today.getFullYear(), today.getMonth(), 1);
         const eom = new Date(today.getFullYear(), today.getMonth() + 1, 0);
