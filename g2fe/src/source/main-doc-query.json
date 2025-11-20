@@ -57,6 +57,23 @@
                     "opt": "="
                 },
                 {
+                    "field": "DOC_CAT_DESC",
+                    "title": "Category",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_DOC_CATEGORY",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
                     "field": "DOC_STATUS_DESC",
                     "title": "Status",
                     "editor": {
@@ -152,6 +169,17 @@
                             "sortable": true
                         },
                         {
+                            "field": "DOC_CAT_DESC",
+                            "title": "Category",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": true
+                        },
+                        {
                             "field": "DOC_STATUS_DESC",
                             "title": "Status",
                             "editor": {
@@ -173,8 +201,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true,
-                            "sortType": "numeric"
+                            "sortable": true
                         },
                         {
                             "field": "RETURN_TIME",
@@ -187,8 +214,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true,
-                            "sortType": "numeric"
+                            "sortable": true
                         },
                         {
                             "field": "DESTROY_TIME",
@@ -201,8 +227,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true,
-                            "sortType": "numeric"
+                            "sortable": true
                         },
                         {
                             "field": "OWNER_GROUP",
@@ -314,8 +339,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true,
-                            "sortType": "numeric"
+                            "sortable": true
                         },
                         {
                             "field": "UPDATE_USER_NM",
@@ -339,8 +363,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true,
-                            "sortType": "numeric"
+                            "sortable": true
                         }
                     ],
                     "expandItems": [],
