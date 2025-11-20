@@ -21,7 +21,7 @@ const logic = {
      * set default value for query area
      * @param param0 { args, query }
      */
-    onCreated: Common.onCreatedSetQueryCondition,
+    onCreated: Common.onCreatedSetQueryParams,
     /**
      * Filter combo [groupd, cabinet, column, box] data in form area v2
      * @param param0 { item, values }

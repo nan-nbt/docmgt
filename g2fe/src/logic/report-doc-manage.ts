@@ -6,7 +6,7 @@ const logic = {
      * set default value for query area
      * @param param0 { args, query }
      */
-    onCreated: Common.onCreatedSetQueryCondition,
+    onCreated: Common.onCreatedSetQueryParams,
     /**
      * Filter combo [cabinet, column, box] data in query area component v2
      * @param param0 { item, values }
