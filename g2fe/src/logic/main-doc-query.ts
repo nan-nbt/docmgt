@@ -6,7 +6,7 @@ const logic = {
      * set default value for query area
      * @param param0 { args, query }
      */
-    onCreated: Common.onCreatedSetQueryCondition,
+    onCreated: Common.onCreatedSetQueryParams,
     /**
      * Handle export functionality for main document query
      * @param param0 { dataUtil }

@@ -78,7 +78,7 @@
                     "title": "Create Time Begin",
                     "editor": {
                         "xtype": "DateBox",
-                        "dataType": "Date",
+                        "dataType": "Date-localtime",
                         "pattern": "yyyy/MM/dd"
                     },
                     "noWhere": false,
@@ -89,7 +89,7 @@
                     "title": "Create Time End",
                     "editor": {
                         "xtype": "DateBox",
-                        "dataType": "Date",
+                        "dataType": "Date-localtime",
                         "pattern": "yyyy/MM/dd"
                     },
                     "noWhere": false,
