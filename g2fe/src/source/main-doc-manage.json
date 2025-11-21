@@ -621,6 +621,67 @@
                             ]
                         },
                         {
+                            "title": "MFPC Info",
+                            "items": [
+                                {
+                                    "field": "MFPC_USERNAME",
+                                    "title": "Username",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_SSO",
+                                    "title": "SSO",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_CARD_ID",
+                                    "title": "ID Card",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_PRINTER_NAME",
+                                    "title": "Printer Name",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_PRINT_DATE",
+                                    "title": "Print Date",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_COUNT_PAGE",
+                                    "title": "Count Page",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                }
+                            ]
+                        },
+                        {
                             "title": "User & Timestamp",
                             "items": [
                                 {
