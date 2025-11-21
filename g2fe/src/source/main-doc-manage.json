@@ -57,6 +57,23 @@
                     "opt": "="
                 },
                 {
+                    "field": "DOC_CAT_DESC",
+                    "title": "Category",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_DOC_CATEGORY",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
                     "field": "DOC_STATUS_DESC",
                     "title": "Status",
                     "editor": {
