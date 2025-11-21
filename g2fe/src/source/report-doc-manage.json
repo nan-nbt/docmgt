@@ -33,13 +33,13 @@
                     "parm": "DOC_NO"
                 },
                 {
-                    "field": "DOCTYPE_ID",
-                    "title": "Type",
+                    "field": "DOC_CATEGORY",
+                    "title": "Category",
                     "editor": {
                         "xtype": "Combo",
                         "condition": {
                             "accNo": "_AP_CONN",
-                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
+                            "sqlNo": "V_COMBO_DOC_CATEGORY",
                             "opType": 2
                         },
                         "textField": "LABEL",
@@ -48,7 +48,7 @@
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "DOCTYPE_ID"
+                    "parm": "DOC_CATEGORY"
                 },
                 {
                     "field": "FLOOR_ID",
@@ -225,6 +225,17 @@
                         {
                             "field": "DOC_TYPE_DESC",
                             "title": "Type",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
+                            "field": "DOC_CAT_DESC",
+                            "title": "Category",
                             "editor": {
                                 "xtype": "Label"
                             },
