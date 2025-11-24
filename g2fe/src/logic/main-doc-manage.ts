@@ -280,6 +280,47 @@ const logic = {
             },
             onNo: async () => { return true; }
         });
+    },
+    /**
+     * 
+     * @param param0 handle MFPC scanner
+     * @returns 
+     */
+    onKeyPressEnter: async function ({ dataUtil, cmp, field, newVal }) {
+        const scanner = cmp("CMP_MFPC_SCAN");
+
+        scanner.setValue({
+            MFPC_UUID: newVal
+        });
+
+        scanner.setInfo(true, "Scan Success: {successCount}", { UUID: newVal }, { successCount: 1 });
+    },
+    onClose: async function ({ dataUtil, cmp }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
+        const scanner = cmp("CMP_MFPC_SCAN");
+        const { MFPC_UUID } = scanner.getValue();
+
+        if (MFPC_UUID) {
+            row.setInitialData({
+                MFPC_USERNAME: MFPC_UUID
+            });
+        }
+    },
+    onOpen: async function ({ dataUtil, cmp }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
+        const scanner = cmp("CMP_MFPC_SCAN");
+
+        if (row.getData().DOC_NO !== null) {
+            await scanner.close();
+            $$.Alert.show({ type: "warning", text: "MFPC scan not allowed for Edit mode.", timeout: 2000 });
+        } else {
+            await scanner.open();
+            scanner.setInfo(null);
+        }
     }
 }
 
