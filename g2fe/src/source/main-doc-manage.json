@@ -424,7 +424,43 @@
                             "save",
                             "cancel"
                         ],
-                        "others": []
+                        "others": [
+                            {
+                                "showBtn": 1,
+                                "hasPopupWin": 4,
+                                "popupWinCfg": {
+                                    "xtype": "ScanPicker",
+                                    "multiple": false,
+                                    "type": "",
+                                    "size": null,
+                                    "url": "",
+                                    "check": "N",
+                                    "items": [
+                                        {
+                                            "field": "MFPC_UUID",
+                                            "title": "MFPC UUID",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "id": "CMP_MFPC_UUID"
+                                            }
+                                        }
+                                    ],
+                                    "sound": true,
+                                    "id": "CMP_MFPC_SCAN",
+                                    "onKeyPressEnter": "(args) => { LOGIC.onKeyPressEnter(args); }",
+                                    "onClose": "(args) => { LOGIC.onClose(args); }",
+                                    "onOpen": "(args) => { LOGIC.onOpen(args); }"
+                                },
+                                "_rowIndex": 0,
+                                "icon": "scan",
+                                "text": "MFPC Scan",
+                                "onClick": "(args) => { return true; }",
+                                "picker": "scan",
+                                "_rowstatus": "",
+                                "limitNo": "MFPC_SCAN",
+                                "type": null
+                            }
+                        ]
                     },
                     "items": [
                         {
@@ -520,7 +556,9 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": "[\"GROUPM_ID\"]"
+                                    "dependencies": [
+                                        "GROUPM_ID"
+                                    ]
                                 },
                                 {
                                     "field": "BO_GROUP",
@@ -576,7 +614,9 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": "[\"FLOOR_ID\"]"
+                                    "dependencies": [
+                                        "FLOOR_ID"
+                                    ]
                                 },
                                 {
                                     "field": "CABIN_ID",
@@ -596,7 +636,9 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": "[\"CABINET_ID\"]"
+                                    "dependencies": [
+                                        "CABINET_ID"
+                                    ]
                                 },
                                 {
                                     "field": "BOX_ID",
@@ -616,12 +658,14 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": "[\"CABIN_ID\"]"
+                                    "dependencies": [
+                                        "CABIN_ID"
+                                    ]
                                 }
                             ]
                         },
                         {
-                            "title": "MFPC Info",
+                            "title": "MFPC Content",
                             "items": [
                                 {
                                     "field": "MFPC_USERNAME",
