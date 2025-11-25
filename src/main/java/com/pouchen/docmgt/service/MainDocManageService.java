@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.pouchen.module.data.RequestInfo;
 import com.pouchen.module.dataaccess.DbUtils;
+import com.pouchen.module.util.HttpUtils;
 
 public class MainDocManageService {
     private MainDocManageService() {
@@ -21,6 +22,8 @@ public class MainDocManageService {
     
     private static String getComboGroupMasterSQL = "SELECT BG.GROUPM_ID AS VALUE, BG.GROUPM_NAME AS LABEL FROM BASIC_GROUPM BG WHERE BG.ENABLED = 'Y' AND BG.GROUPM_ID <> 'MFPC' ORDER BY BG.GROUPM_NAME";
     private static String getComboGroupDetailSQL = "SELECT BG.GROUPD_ID AS VALUE, BG.EMP_NAME AS LABEL, BG.GROUPM_ID AS REF FROM BASIC_GROUPD BG WHERE BG.ENABLED = 'Y' AND BG.GROUPM_ID <> 'MFPC' ORDER BY BG.EMP_NAME";
+
+    private static String getMFPCDataURL = "https://rsc-pcm-id.pouchen.com/RIAService/API/PCaG/ESB/MFPC/Main/GetPC02"; 
 
     public static void updateTransInfo (RequestInfo requestInfo, Map<String, Object> args) {
         Map<String, Object> params = new HashMap<>();
@@ -80,6 +83,7 @@ public class MainDocManageService {
             return null;
         }
     }
+
     public static List<Map<String, Object>> getComboGroupDetail (RequestInfo requestInfo, Map<String, Object> args) {
         try {
             return DbUtils.queryList(DB_ALIAS, getComboGroupDetailSQL);
@@ -89,4 +93,25 @@ public class MainDocManageService {
         }
     }
 
+    public static Map<String, Object> getMFPCData(RequestInfo requestInfo, Map<String, Object> args) {
+        Map<String, Object> result = new HashMap<>();
+        String uuid = args.get("UUID").toString();
+        try {
+            String requestBody = "[\"" + uuid + "\"]";
+            Map<String, String> headers = new HashMap<>();
+            headers.put("Content-Type", "application/json");
+            Map<String, String> response = HttpUtils.post(
+                getMFPCDataURL,
+                requestBody,
+                headers,
+                requestInfo,
+                null
+            );
+            result.put("data", response);
+
+        } catch (Exception e) {
+            result.put("error", e.getMessage());
+        }
+        return result;
+    }
 }
