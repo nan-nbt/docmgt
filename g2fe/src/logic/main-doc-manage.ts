@@ -289,19 +289,22 @@ const logic = {
      */
     onKeyPressEnter: async function ({ dataUtil, cmp, field, newVal }) {
         const scanner = cmp("CMP_MFPC_SCAN");
-        // const data = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, uuid: newVal });
-        const data = {
-            MFPC_ID: 4876279,
-            MFPC_DOC_NO: "5D4388CB-85C7-41C7-A042-53843C703E7D",
-            MFPC_DOC_NAME: "Tempelan Printing 2.xlsx",
-            MFPC_USERNAME: "YULI WAHYUNINGSIH",
-            MFPC_SSO: "LAB.SYSTEM",
-            MFPC_CARD_ID: "1319892556",
-            MFPC_MACHINE_NAME: "P23-3300012431",
-            MFPC_PRINTER_NAME: "HP_Laborat_M404",
-            MFPC_PRINT_TIME: 1763958820000,
-            MFPC_COUNT_PAGE: 5
-        };
+        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, uuid: newVal });
+        console.log(response);
+        
+        const data = JSON.parse(response.result.data.body)
+        // const data = {
+        //     MFPC_ID: 4876279,
+        //     MFPC_DOC_NO: "5D4388CB-85C7-41C7-A042-53843C703E7D",
+        //     MFPC_DOC_NAME: "Tempelan Printing 2.xlsx",
+        //     MFPC_USERNAME: "YULI WAHYUNINGSIH",
+        //     MFPC_SSO: "LAB.SYSTEM",
+        //     MFPC_CARD_ID: "1319892556",
+        //     MFPC_MACHINE_NAME: "P23-3300012431",
+        //     MFPC_PRINTER_NAME: "HP_Laborat_M404",
+        //     MFPC_PRINT_TIME: 1763958820000,
+        //     MFPC_COUNT_PAGE: 5
+        // };
 
         if (data !== null) {
             scanner.setValue({
@@ -318,7 +321,10 @@ const logic = {
             });
 
             scanner.setInfo(true, "Scan Success: {successCount}", { UUID: newVal }, { successCount: 1 });
-            scanner.close();
+            // scanner.close();
+            setTimeout(() => {
+                scanner.close()
+            }, 1000)
         } else {
             scanner.setInfo(false, "Scan Failed: {failedCount}", { UUID: newVal }, { failedCount: 1 });
         }
@@ -370,9 +376,10 @@ const logic = {
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return;
 
+        let response;
         try {
             $$.Loading.show();
-            await $$.Ajax.callService(
+            response = await $$.Ajax.callService(
                 dataUtil, 
                 serviceUri, 
                 {
@@ -387,7 +394,7 @@ const logic = {
             $$.Loading.hide();
         }
 
-        return row.getData().MFPC_USERNAME;
+        return response;
     }
 }
 
