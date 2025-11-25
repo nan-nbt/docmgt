@@ -668,6 +668,15 @@
                             "title": "MFPC Content",
                             "items": [
                                 {
+                                    "field": "MFPC_ID",
+                                    "title": "MFPC ID",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
                                     "field": "MFPC_USERNAME",
                                     "title": "Username",
                                     "editor": {
@@ -695,6 +704,15 @@
                                     "colspan": 3
                                 },
                                 {
+                                    "field": "MFPC_MACHINE_NAME",
+                                    "title": "Machine Name",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
                                     "field": "MFPC_PRINTER_NAME",
                                     "title": "Printer Name",
                                     "editor": {
@@ -704,8 +722,8 @@
                                     "colspan": 3
                                 },
                                 {
-                                    "field": "MFPC_PRINT_DATE",
-                                    "title": "Print Date",
+                                    "field": "MFPC_PRINT_TIME",
+                                    "title": "Print Time",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date",

@@ -8,6 +8,7 @@ import Common from "./common";
 export const _SERVICE_UPDATE_TRANS_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransInfo";
 export const _SERVICE_UPDATE_RETURN_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnInfo";
 export const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyInfo";
+export const _SERVICE_GET_MFPC_DATA = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.getMFPCData";
 
 let _DOC_ID_TO_SET_FOCUS: string | null = null;
 
@@ -288,25 +289,68 @@ const logic = {
      */
     onKeyPressEnter: async function ({ dataUtil, cmp, field, newVal }) {
         const scanner = cmp("CMP_MFPC_SCAN");
+        // const data = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, uuid: newVal });
+        const data = {
+            MFPC_ID: 4876279,
+            MFPC_DOC_NO: "5D4388CB-85C7-41C7-A042-53843C703E7D",
+            MFPC_DOC_NAME: "Tempelan Printing 2.xlsx",
+            MFPC_USERNAME: "YULI WAHYUNINGSIH",
+            MFPC_SSO: "LAB.SYSTEM",
+            MFPC_CARD_ID: "1319892556",
+            MFPC_MACHINE_NAME: "P23-3300012431",
+            MFPC_PRINTER_NAME: "HP_Laborat_M404",
+            MFPC_PRINT_TIME: 1763958820000,
+            MFPC_COUNT_PAGE: 5
+        };
 
-        scanner.setValue({
-            MFPC_UUID: newVal
-        });
+        if (data !== null) {
+            scanner.setValue({
+                MFPC_ID: data.MFPC_ID,
+                MFPC_DOC_NO: data.MFPC_DOC_NO,
+                MFPC_DOC_NAME: data.MFPC_DOC_NAME,
+                MFPC_USERNAME: data.MFPC_USERNAME,
+                MFPC_SSO: data.MFPC_SSO,
+                MFPC_CARD_ID: data.MFPC_CARD_ID,
+                MFPC_MACHINE_NAME: data.MFPC_MACHINE_NAME,
+                MFPC_PRINTER_NAME: data.MFPC_PRINTER_NAME,
+                MFPC_PRINT_TIME: data.MFPC_PRINT_TIME,
+                MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
+            });
 
-        scanner.setInfo(true, "Scan Success: {successCount}", { UUID: newVal }, { successCount: 1 });
+            scanner.setInfo(true, "Scan Success: {successCount}", { UUID: newVal }, { successCount: 1 });
+            scanner.close();
+        } else {
+            scanner.setInfo(false, "Scan Failed: {failedCount}", { UUID: newVal }, { failedCount: 1 });
+        }
     },
     onClose: async function ({ dataUtil, cmp }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return;
 
         const scanner = cmp("CMP_MFPC_SCAN");
-        const { MFPC_UUID } = scanner.getValue();
+        const { MFPC_ID, MFPC_DOC_NO, MFPC_DOC_NAME, MFPC_USERNAME, MFPC_SSO, MFPC_CARD_ID, MFPC_MACHINE_NAME, MFPC_PRINTER_NAME, MFPC_PRINT_TIME, MFPC_COUNT_PAGE } = scanner.getValue();
 
-        if (MFPC_UUID) {
-            row.setInitialData({
-                MFPC_USERNAME: MFPC_UUID
-            });
-        }
+        row.setInitialData({
+            DOCTYPE_ID: "u1HlcQ8mQTSZI4IwytgTmw",
+            DOC_CATEGORY: 1,
+            GROUPM_ID: "MFPC",
+            GROUPD_ID: "MFPC",
+            FLOOR_ID: "MFPC",
+            CABINET_ID: "MFPC",
+            CABIN_ID: "MFPC",
+            BOX_ID: "MFPC",
+
+            MFPC_ID: MFPC_ID,
+            DOC_NO: MFPC_DOC_NO,
+            DOC_NAME: MFPC_DOC_NAME,
+            MFPC_USERNAME: MFPC_USERNAME,
+            MFPC_SSO: MFPC_SSO,
+            MFPC_CARD_ID: MFPC_CARD_ID,
+            MFPC_MACHINE_NAME: MFPC_MACHINE_NAME,
+            MFPC_PRINTER_NAME: MFPC_PRINTER_NAME,
+            MFPC_PRINT_TIME: MFPC_PRINT_TIME,
+            MFPC_COUNT_PAGE: MFPC_COUNT_PAGE
+        });
     },
     onOpen: async function ({ dataUtil, cmp }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
@@ -321,6 +365,29 @@ const logic = {
             await scanner.open();
             scanner.setInfo(null);
         }
+    },
+    getMFPCData: async function ({ dataUtil, serviceUri, uuid }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
+
+        try {
+            $$.Loading.show();
+            await $$.Ajax.callService(
+                dataUtil, 
+                serviceUri, 
+                {
+                    UUID: uuid 
+                }, 
+                "json", 
+                "POST"
+            );
+        } catch (e) {
+            $$.Alert.show(e.message);
+        } finally {
+            $$.Loading.hide();
+        }
+
+        return row.getData().MFPC_USERNAME;
     }
 }
 
