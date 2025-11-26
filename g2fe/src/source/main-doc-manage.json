@@ -424,7 +424,43 @@
                             "save",
                             "cancel"
                         ],
-                        "others": []
+                        "others": [
+                            {
+                                "showBtn": 1,
+                                "hasPopupWin": 4,
+                                "popupWinCfg": {
+                                    "xtype": "ScanPicker",
+                                    "multiple": false,
+                                    "type": "",
+                                    "size": null,
+                                    "url": "",
+                                    "check": "N",
+                                    "items": [
+                                        {
+                                            "field": "MFPC_UUID",
+                                            "title": "MFPC UUID",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "id": "CMP_MFPC_UUID"
+                                            }
+                                        }
+                                    ],
+                                    "sound": true,
+                                    "id": "CMP_MFPC_SCAN",
+                                    "onKeyPressEnter": "(args) => { LOGIC.onKeyPressEnter(args); }",
+                                    "onClose": "(args) => { LOGIC.onClose(args); }",
+                                    "onOpen": "(args) => { LOGIC.onOpen(args); }"
+                                },
+                                "_rowIndex": 0,
+                                "icon": "scan",
+                                "text": "MFPC Scan",
+                                "onClick": "(args) => { return true; }",
+                                "picker": "scan",
+                                "_rowstatus": "",
+                                "limitNo": "MFPC_SCAN",
+                                "type": null
+                            }
+                        ]
                     },
                     "items": [
                         {
@@ -520,7 +556,9 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": "[\"GROUPM_ID\"]"
+                                    "dependencies": [
+                                        "GROUPM_ID"
+                                    ]
                                 },
                                 {
                                     "field": "BO_GROUP",
@@ -576,7 +614,9 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": "[\"FLOOR_ID\"]"
+                                    "dependencies": [
+                                        "FLOOR_ID"
+                                    ]
                                 },
                                 {
                                     "field": "CABIN_ID",
@@ -596,7 +636,9 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": "[\"CABINET_ID\"]"
+                                    "dependencies": [
+                                        "CABINET_ID"
+                                    ]
                                 },
                                 {
                                     "field": "BOX_ID",
@@ -616,7 +658,88 @@
                                     },
                                     "must": true,
                                     "colspan": 3,
-                                    "dependencies": "[\"CABIN_ID\"]"
+                                    "dependencies": [
+                                        "CABIN_ID"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "title": "MFPC Content",
+                            "items": [
+                                {
+                                    "field": "MFPC_ID",
+                                    "title": "MFPC ID",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_USERNAME",
+                                    "title": "Username",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_SSO",
+                                    "title": "SSO",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_CARD_ID",
+                                    "title": "ID Card",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_MACHINE_NAME",
+                                    "title": "Machine Name",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_PRINTER_NAME",
+                                    "title": "Printer Name",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_PRINT_TIME",
+                                    "title": "Print Time",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_COUNT_PAGE",
+                                    "title": "Count Page",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
                                 }
                             ]
                         },
