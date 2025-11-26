@@ -289,9 +289,9 @@ const logic = {
      */
     onKeyPressEnter: async function ({ dataUtil, cmp, field, newVal }) {
         const scanner = cmp("CMP_MFPC_SCAN");
-        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, uuid: newVal });        
+        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, uuid: newVal });
         const data = JSON.parse(response.result.data.body);
-
+        
         if (scanner.getValue().MFPC_UUID === null) return false;
 
         if (data !== null) {
@@ -307,17 +307,14 @@ const logic = {
                 MFPC_PRINT_TIME: data.MFPC_PRINT_TIME,
                 MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
             });
-
-            scanner.setInfo(true, "Scan Success: {successCount}", { UUID: newVal }, { successCount: 1 });
-            setTimeout(() => {
-                scanner.close()
-            }, 2000);
+            scanner.setInfo(true, "Scan Success", { UUID: newVal });
         } else {
-            scanner.setInfo(false, "Scan Failed: {failedCount}", { UUID: newVal }, { failedCount: 1 });
-            scanner.setValue({
-                MFPC_UUID: null
-            });
+            scanner.setInfo(false, "Scan Failed", { UUID: newVal });
         }
+
+        setTimeout(() => {
+            scanner.close()
+        }, 1000)
     },
     onClose: async function ({ dataUtil, cmp }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
@@ -346,7 +343,6 @@ const logic = {
             CABINET_ID: "MFPC",
             CABIN_ID: "MFPC",
             BOX_ID: "MFPC",
-
             MFPC_ID: MFPC_ID,
             DOC_NO: MFPC_DOC_NO,
             DOC_NAME: MFPC_DOC_NAME,
@@ -357,7 +353,7 @@ const logic = {
             MFPC_PRINTER_NAME: MFPC_PRINTER_NAME,
             MFPC_PRINT_TIME: MFPC_PRINT_TIME,
             MFPC_COUNT_PAGE: MFPC_COUNT_PAGE
-        });
+        });    
     },
     onOpen: async function ({ dataUtil, cmp }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
