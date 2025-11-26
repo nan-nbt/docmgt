@@ -287,65 +287,52 @@ const logic = {
      * @param param0 handle MFPC scanner
      * @returns 
      */
-    onKeyPressEnter: async function ({ dataUtil, cmp, field, newVal }) {
-        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
-        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const rows = du.findRows({DOC_NO: newVal})
-        const scanner = cmp("CMP_MFPC_SCAN");
-        if(rows.length < 1) {
-            const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, uuid: newVal });
-            const data = JSON.parse(response.result.data.body);
-            
-            if (scanner.getValue().MFPC_UUID === null) return false;
+    onOpen: async function ({ dataUtil, cmp }) {
+        const row = this.getIndexRow({ dataUtil: dataUtil });
+        if (!row) return;
 
-            if (data !== null) {
-                scanner.setValue({
-                    MFPC_ID: data.MFPC_ID,
-                    MFPC_DOC_NO: data.MFPC_DOC_NO,
-                    MFPC_DOC_NAME: data.MFPC_DOC_NAME,
-                    MFPC_USERNAME: data.MFPC_USERNAME,
-                    MFPC_SSO: data.MFPC_SSO,
-                    MFPC_CARD_ID: data.MFPC_CARD_ID,
-                    MFPC_MACHINE_NAME: data.MFPC_MACHINE_NAME,
-                    MFPC_PRINTER_NAME: data.MFPC_PRINTER_NAME,
-                    MFPC_PRINT_TIME: data.MFPC_PRINT_TIME,
-                    MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
-                });
-                scanner.setInfo(true, "Scan Success", { UUID: newVal });
-                setTimeout(() => {
-                    scanner.close()
-                }, 2000);
-            } else {
-                scanner.setInfo(false, "Scan Failed", { UUID: newVal });
-                scanner.setValue({
-                    MFPC_UUID: null
-                });
-            }
-        } else {
-            scanner.setInfo(false, "Scan Failed: duplicate data", { UUID: newVal });
-            scanner.setValue({
-                MFPC_UUID: null
-            });
+        const scanner = cmp("CMP_MFPC_SCAN");
+        const scannerField = cmp("CMP_MFPC_UUID");
+
+        scanner.setValue({
+            MFPC_UUID: null,
+            MFPC_ID: null,
+            DOC_NO: null,
+            DOC_NAME: null,
+            MFPC_USERNAME: null,
+            MFPC_SSO: null,
+            MFPC_CARD_ID: null,
+            MFPC_MACHINE_NAME: null,
+            MFPC_PRINTER_NAME: null,
+            MFPC_PRINT_TIME: null,
+            MFPC_COUNT_PAGE: null
+        });
+
+        if (row.getData().DOC_NO) {
+            scanner.close();
+            return $$.Alert.show({ type: "warning", text: "MFPC scan not allowed for Edit mode.", timeout: 2000 });
         }
 
-        
+        scanner.open();
+        scanner.setInfo(null);
+        scannerField.focus();
     },
     onClose: async function ({ dataUtil, cmp }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return;
 
         const scanner = cmp("CMP_MFPC_SCAN");
-        const { 
-            MFPC_ID, 
-            MFPC_DOC_NO, 
-            MFPC_DOC_NAME, 
-            MFPC_USERNAME, 
-            MFPC_SSO, 
-            MFPC_CARD_ID, 
-            MFPC_MACHINE_NAME, 
-            MFPC_PRINTER_NAME, 
-            MFPC_PRINT_TIME, 
-            MFPC_COUNT_PAGE 
+        const {
+            MFPC_ID,
+            MFPC_DOC_NO,
+            MFPC_DOC_NAME,
+            MFPC_USERNAME,
+            MFPC_SSO,
+            MFPC_CARD_ID,
+            MFPC_MACHINE_NAME,
+            MFPC_PRINTER_NAME,
+            MFPC_PRINT_TIME,
+            MFPC_COUNT_PAGE
         } = scanner.getValue();
 
         if (MFPC_ID) {
@@ -368,53 +355,58 @@ const logic = {
                 MFPC_PRINTER_NAME: MFPC_PRINTER_NAME,
                 MFPC_PRINT_TIME: MFPC_PRINT_TIME,
                 MFPC_COUNT_PAGE: MFPC_COUNT_PAGE
-            });                
+            });
         }
     },
-    onOpen: async function ({ dataUtil, cmp }) {
-        const row = this.getIndexRow({ dataUtil: dataUtil });
-        if (!row) return;
+    onKeyPressEnter: async function ({ dataUtil, cmp, field, newVal }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const rows = du.findRows({ DOC_NO: newVal })
 
         const scanner = cmp("CMP_MFPC_SCAN");
-        const scannerField = cmp("CMP_MFPC_UUID");
-        scanner.setValue({
-            MFPC_UUID: null,
-            MFPC_ID: null,
-            DOC_NO: null,
-            DOC_NAME: null,
-            MFPC_USERNAME: null,
-            MFPC_SSO: null,
-            MFPC_CARD_ID: null,
-            MFPC_MACHINE_NAME: null,
-            MFPC_PRINTER_NAME: null,
-            MFPC_PRINT_TIME: null,
-            MFPC_COUNT_PAGE: null
-        });
 
-        if (row.getData().DOC_NO) {
-            await scanner.close();
-            $$.Alert.show({ type: "warning", text: "MFPC scan not allowed for Edit mode.", timeout: 2000 });
-        } else {
-            await scanner.open();
-            scanner.setInfo(null);
+        if (rows.length > 0) {
+            scanner.setInfo(false, "Scan Failed: data already scanned", { UUID: newVal });
+            return scanner.setValue({ MFPC_UUID: null });            
         }
 
-        scannerField.focus();
+        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, uuid: newVal });
+        const data = response?.result?.data?.body ? JSON.parse(response.result.data.body) : null;
+
+        if(!data) {
+            scanner.setInfo(false, "Scan Failed: data not found", { UUID: newVal });
+            return scanner.setValue({ MFPC_UUID: null });
+        }
+
+        scanner.setValue({
+            MFPC_ID: data.MFPC_ID,
+            MFPC_DOC_NO: data.MFPC_DOC_NO,
+            MFPC_DOC_NAME: data.MFPC_DOC_NAME,
+            MFPC_USERNAME: data.MFPC_USERNAME,
+            MFPC_SSO: data.MFPC_SSO,
+            MFPC_CARD_ID: data.MFPC_CARD_ID,
+            MFPC_MACHINE_NAME: data.MFPC_MACHINE_NAME,
+            MFPC_PRINTER_NAME: data.MFPC_PRINTER_NAME,
+            MFPC_PRINT_TIME: data.MFPC_PRINT_TIME,
+            MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
+        });
+
+        scanner.setInfo(true, "Scan Success", { UUID: newVal });
+        setTimeout(() => scanner.close(), 1000);
     },
     getMFPCData: async function ({ dataUtil, serviceUri, uuid }) {
-        const row = this.getIndexRow({ dataUtil: dataUtil });
-        if (!row) return;
-
         let response;
+
         try {
             $$.Loading.show();
+
             response = await $$.Ajax.callService(
-                dataUtil, 
-                serviceUri, 
+                dataUtil,
+                serviceUri,
                 {
-                    UUID: uuid 
-                }, 
-                "json", 
+                    UUID: uuid
+                },
+                "json",
                 "POST"
             );
         } catch (e) {
