@@ -266,7 +266,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": false,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "RETURN_TIME",
@@ -279,7 +280,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": false,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "DESTROY_TIME",
@@ -292,7 +294,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": false,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "OWNER_GROUP",
@@ -383,6 +386,98 @@
                             "sortable": false
                         },
                         {
+                            "field": "MFPC_ID",
+                            "title": "MFPC ID",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_USERNAME",
+                            "title": "Username",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_SSO",
+                            "title": "SSO",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_CARD_ID",
+                            "title": "ID Card",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_MACHINE_NAME",
+                            "title": "Machine Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_PRINTER_NAME",
+                            "title": "Printer Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_PRINT_TIME",
+                            "title": "Print Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false,
+                            "sortType": "numeric"
+                        },
+                        {
+                            "field": "MFPC_COUNT_PAGE",
+                            "title": "Count Page",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false,
+                            "sortType": "numeric"
+                        },
+                        {
                             "field": "CREATE_USER_NM",
                             "title": "Create User",
                             "editor": {
@@ -404,7 +499,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": false,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "UPDATE_USER_NM",
@@ -428,7 +524,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": false,
+                            "sortType": "numeric"
                         }
                     ],
                     "expandItems": [],
