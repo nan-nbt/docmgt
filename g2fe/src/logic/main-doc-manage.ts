@@ -334,26 +334,28 @@ const logic = {
             MFPC_COUNT_PAGE 
         } = scanner.getValue();
 
-        row.setInitialData({
-            DOCTYPE_ID: "MFPC",
-            DOC_CATEGORY: 1,
-            GROUPM_ID: "MFPC",
-            GROUPD_ID: "MFPC",
-            FLOOR_ID: "MFPC",
-            CABINET_ID: "MFPC",
-            CABIN_ID: "MFPC",
-            BOX_ID: "MFPC",
-            MFPC_ID: MFPC_ID,
-            DOC_NO: MFPC_DOC_NO,
-            DOC_NAME: MFPC_DOC_NAME,
-            MFPC_USERNAME: MFPC_USERNAME,
-            MFPC_SSO: MFPC_SSO,
-            MFPC_CARD_ID: MFPC_CARD_ID,
-            MFPC_MACHINE_NAME: MFPC_MACHINE_NAME,
-            MFPC_PRINTER_NAME: MFPC_PRINTER_NAME,
-            MFPC_PRINT_TIME: MFPC_PRINT_TIME,
-            MFPC_COUNT_PAGE: MFPC_COUNT_PAGE
-        });    
+        if (MFPC_ID) {
+            row.setInitialData({
+                DOCTYPE_ID: "MFPC",
+                DOC_CATEGORY: 1,
+                GROUPM_ID: "MFPC",
+                GROUPD_ID: "MFPC",
+                FLOOR_ID: "MFPC",
+                CABINET_ID: "MFPC",
+                CABIN_ID: "MFPC",
+                BOX_ID: "MFPC",
+                MFPC_ID: MFPC_ID,
+                DOC_NO: MFPC_DOC_NO,
+                DOC_NAME: MFPC_DOC_NAME,
+                MFPC_USERNAME: MFPC_USERNAME,
+                MFPC_SSO: MFPC_SSO,
+                MFPC_CARD_ID: MFPC_CARD_ID,
+                MFPC_MACHINE_NAME: MFPC_MACHINE_NAME,
+                MFPC_PRINTER_NAME: MFPC_PRINTER_NAME,
+                MFPC_PRINT_TIME: MFPC_PRINT_TIME,
+                MFPC_COUNT_PAGE: MFPC_COUNT_PAGE
+            });                
+        }
     },
     onOpen: async function ({ dataUtil, cmp }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
@@ -362,7 +364,7 @@ const logic = {
         const scanner = cmp("CMP_MFPC_SCAN");
         const scannerField = cmp("CMP_MFPC_UUID");
 
-        if (row.getData().MFPC_ID !== null || row.getData().MFPC_ID !== undefined) {
+        if (row.getData().DOC_NO !== null) {
             await scanner.close();
             $$.Alert.show({ type: "warning", text: "MFPC scan not allowed for Edit mode.", timeout: 2000 });
         } else {
