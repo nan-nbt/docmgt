@@ -1,0 +1,207 @@
+{
+    "isReport": false,
+    "hasQuery": true,
+    "pageCnt": 1,
+    "tplNm": "SingleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_BASIC_SITE",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "queryarea": {
+            "autoQuery": false,
+            "xtype": "QueryBar",
+            "dataConfig": {
+                "accNo": "_AP_CONN",
+                "modelName": "DM_BASIC_SITE"
+            },
+            "listeners": {
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
+            "items": [
+                {
+                    "field": "SITE_ID",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITE",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
+                    "field": "SITE_NAME_UPPER",
+                    "title": "Site Name",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "ENABLED",
+                    "title": "Status Enabled",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "staticData": [
+                            {
+                                "VALUE": "Y",
+                                "LABEL": "Enabled"
+                            },
+                            {
+                                "VALUE": "N",
+                                "LABEL": "Disabled"
+                            }
+                        ],
+                        "fresh": false,
+                        "supportAll": true
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                }
+            ]
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_BASIC_SITE",
+                        "unitName": "DU_BASIC_SITE",
+                        "pager": true,
+                        "pageSize": 10
+                    },
+                    "toolbar": {
+                        "needButtons": [
+                            "add",
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": false,
+                    "items": [
+                        {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "SITE_NAME",
+                            "title": "Site Name",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "ENABLED",
+                            "title": "Status Enabled",
+                            "editor": {
+                                "xtype": "Switch",
+                                "on": "Y",
+                                "off": "N"
+                            },
+                            "must": true,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "Create User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "Create Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "Update User",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "Update Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {},
+                    "title": "Main Information",
+                    "version": 2
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_BASIC_SITE",
+        "programaccno": "_AP_CONN",
+        "listeners": {},
+        "logicPath": "logic/basic-site-main"
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
