@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.pouchen</groupId>
-    <artifactId>bpms</artifactId>
+    <artifactId>docmgt</artifactId>
     <packaging>war</packaging>
     <version>0.0.1</version>
-    <name>docmgt Maven Webapp</name>
+    <name>Document Management System</name>
     <url>https://maven.apache.org</url>
 
     <repositories>
