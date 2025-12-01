@@ -6,7 +6,16 @@ const logic = {
      * set default value for query area
      * @param param0 { args, query }
      */
-    onCreated: Common.onCreatedSetQueryParams,
+    onCreated: function ({ dataUtil, args, query }) { 
+        Common.onCreatedSetQueryParams({ dataUtil: dataUtil, args: args, query: query });
+    },
+    /**
+     * handle onQuerying event
+     * @param param0 { obj, query, cmp }
+     */
+    onQuerying: function ({ obj, query, cmp }) {
+        return Common.onQueryingControl({ obj: obj, query: query, cmp: cmp });
+    },
     /**
      * Handle export functionality for main document query
      * @param param0 { dataUtil }
