@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.pouchen.module.data.RequestInfo;
 import com.pouchen.module.dataaccess.DbUtils;
+import com.pouchen.module.meta.MetaFactory;
 import com.pouchen.module.util.HttpUtils;
 
 public class MainDocManageService {
@@ -19,9 +20,9 @@ public class MainDocManageService {
     private static String updateTransInfoSQL = "UPDATE DOC_MANAGE DM SET TRANS_TIME = :TRANS_TIME, RETURN_TIME = :RETURN_TIME, DOC_STATUS = :DOC_STATUS, GROUPM_BO_ID = :GROUPM_BO_ID, GROUPD_BO_ID = :GROUPD_BO_ID, UPDATE_USER = :UPDATE_USER, UPDATE_TIME = :UPDATE_TIME WHERE DM.DOC_ID = :DOC_ID";
     private static String updateReturnInfoSQL = "UPDATE DOC_MANAGE DM SET RETURN_TIME = :RETURN_TIME, DOC_STATUS = :DOC_STATUS, GROUPM_BO_ID = :GROUPM_BO_ID, GROUPD_BO_ID = :GROUPD_BO_ID, UPDATE_USER = :UPDATE_USER, UPDATE_TIME = :UPDATE_TIME WHERE DM.DOC_ID = :DOC_ID";
     private static String updateDestroyInfoSQL = "UPDATE DOC_MANAGE DM SET DESTROY_TIME = :DESTROY_TIME, DOC_STATUS = :DOC_STATUS, UPDATE_USER = :UPDATE_USER, UPDATE_TIME = :UPDATE_TIME WHERE DM.DOC_ID = :DOC_ID";
-
-    private static String getComboGroupMasterSQL = "SELECT BG.GROUPM_ID AS VALUE, BG.GROUPM_NAME AS LABEL FROM BASIC_GROUPM BG WHERE BG.ENABLED = 'Y' AND BG.GROUPM_ID <> 'MFPC' ORDER BY BG.GROUPM_NAME";
-    private static String getComboGroupDetailSQL = "SELECT BG.GROUPD_ID AS VALUE, BG.EMP_NAME AS LABEL, BG.GROUPM_ID AS REF FROM BASIC_GROUPD BG WHERE BG.ENABLED = 'Y' AND BG.GROUPM_ID <> 'MFPC' ORDER BY BG.EMP_NAME";
+    
+    private static String getComboGroupMasterSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPM", DB_ALIAS);
+    private static String getComboGroupDetailSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPD", DB_ALIAS);
 
     private static String getMFPCDataURL = "https://rsc-pcm-id.pouchen.com/RIAService/API/PCaG/ESB/MFPC/Main/GetPC02";
 
