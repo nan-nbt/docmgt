@@ -22,7 +22,7 @@
             },
             "items": [
                 {
-                    "field": "SITE_ID",
+                    "field": "SITE_NO",
                     "title": "Site",
                     "editor": {
                         "xtype": "Combo",

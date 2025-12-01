@@ -22,7 +22,7 @@ const logic = {
      * @param param0 { obj, query, cmp }
      */
     onQueryingControl: function ({ obj, query, cmp }) {
-        if ($$.Type.isEmpty(query.SITE_ID)) {
+        if ($$.Type.isEmpty(query.SITE_NO)) {
             $$.Loading.hide();
             $$.Alert.show({
                 type: "warning",
