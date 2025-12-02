@@ -11,14 +11,34 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
                 "modelName": "DM_BASIC_DOCTYPE"
             },
-            "listeners": {},
+            "listeners": {
+                "onInputed": "(args) => { LOGIC.onInputed(args); }",
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
             "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
                 {
                     "field": "DOCTYPE_NO",
                     "title": "Type No.",
@@ -93,6 +113,17 @@
                     "checkbox": false,
                     "items": [
                         {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "DOCTYPE_NO",
                             "title": "Type No.",
                             "editor": {
@@ -110,7 +141,7 @@
                                 "xtype": "TextField"
                             },
                             "must": false,
-                            "width": 0.3,
+                            "width": 0.2,
                             "freeze": false,
                             "sortable": false
                         },
@@ -177,7 +208,10 @@
                         }
                     ],
                     "expandItems": [],
-                    "listeners": {},
+                    "listeners": {
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }"
+                    },
                     "title": "Main Information",
                     "version": 2
                 }
@@ -187,7 +221,8 @@
     "programsetting": {
         "programmodel": "DM_BASIC_DOCTYPE",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {},
+        "logicPath": "logic/basic-doctype-main"
     },
     "requires": [
         "DataProvider",
