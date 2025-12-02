@@ -22,7 +22,7 @@
             },
             "items": [
                 {
-                    "field": "SITE_ID",
+                    "field": "SITE_NO",
                     "title": "Site",
                     "editor": {
                         "xtype": "Combo",
@@ -33,7 +33,8 @@
                             "accNo": "_AP_CONN",
                             "sqlNo": "V_COMBO_BASIC_SITE",
                             "opType": 2
-                        }
+                        },
+                        "supportAll": true
                     },
                     "noWhere": false,
                     "opt": "="
