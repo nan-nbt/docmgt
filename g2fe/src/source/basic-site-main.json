@@ -34,7 +34,7 @@
                             "sqlNo": "V_COMBO_BASIC_SITE",
                             "opType": 2
                         },
-                        "supportAll": true
+                        "supportAll": false
                     },
                     "noWhere": false,
                     "opt": "="
