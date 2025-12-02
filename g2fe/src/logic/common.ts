@@ -1,5 +1,7 @@
 import { $$ } from "g2fw";
 
+let _defaultSiteMap = null;
+
 const logic = {
     /**
      * set default value for query area onCreated event
@@ -34,7 +36,25 @@ const logic = {
         }
 
         return true;
-    }    
+    },
+    onInputedSetFormParams: function ({ field, oldVal, newVal, row, cmp, setParam }) {
+        if (field === "SITE_NO") {
+            _defaultSiteMap = newVal;
+        }
+    },
+    onNewRowingControl: function ({ dataUtil, cmp }) {
+        if (_defaultSiteMap === null) {
+            $$.Alert.show({ type: "warning", text: "Please select a Site", timeout: 2000 });
+            return false;
+        }
+
+        return true;
+    },
+    getDefaultParams: function () {
+        return { 
+            SITE_NO: _defaultSiteMap 
+        };
+    }
 }
 
 export default logic;

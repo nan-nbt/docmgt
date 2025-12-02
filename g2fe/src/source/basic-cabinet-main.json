@@ -11,14 +11,35 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
                 "modelName": "DM_BASIC_CABINET"
             },
-            "listeners": {},
+            "listeners": {
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }",
+                "onInputed": "(args) => { LOGIC.onInputed(args); }"
+            },
             "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        },
+                        "id": null
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
                 {
                     "field": "FLOOR_NO",
                     "title": "Floor No",
@@ -94,6 +115,17 @@
                     "checkbox": false,
                     "items": [
                         {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "FLOOR_NO",
                             "title": "Floor No",
                             "editor": {
@@ -112,7 +144,7 @@
                                 "xtype": "TextField"
                             },
                             "must": true,
-                            "width": 0.3,
+                            "width": 0.2,
                             "freeze": false,
                             "sortable": false
                         },
@@ -179,7 +211,10 @@
                         }
                     ],
                     "expandItems": [],
-                    "listeners": {},
+                    "listeners": {
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowedFloor(args); }"
+                    },
                     "title": "Floor Information",
                     "version": 2
                 },
@@ -208,6 +243,17 @@
                             "checkbox": false,
                             "items": [
                                 {
+                                    "field": "SITE_NO",
+                                    "title": "Site",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
                                     "field": "CABINET_NO",
                                     "title": "Cabinet No",
                                     "editor": {
@@ -226,7 +272,7 @@
                                         "xtype": "TextField"
                                     },
                                     "must": true,
-                                    "width": 0.3,
+                                    "width": 0.2,
                                     "freeze": false,
                                     "sortable": false
                                 },
@@ -293,7 +339,10 @@
                                 }
                             ],
                             "expandItems": [],
-                            "listeners": {},
+                            "listeners": {
+                                "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedCabinet(args); }"
+                            },
                             "title": "Cabinet Information",
                             "version": 2
                         },
@@ -319,6 +368,17 @@
                             "checkbox": false,
                             "items": [
                                 {
+                                    "field": "SITE_NO",
+                                    "title": "Site",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
                                     "field": "CABIN_NO",
                                     "title": "Cabin No",
                                     "editor": {
@@ -337,7 +397,7 @@
                                         "xtype": "TextField"
                                     },
                                     "must": true,
-                                    "width": 0.3,
+                                    "width": 0.2,
                                     "freeze": false,
                                     "sortable": false
                                 },
@@ -404,7 +464,10 @@
                                 }
                             ],
                             "expandItems": [],
-                            "listeners": {},
+                            "listeners": {
+                                "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedCabin(args); }"
+                            },
                             "title": "Cabin Information",
                             "version": 2
                         },
@@ -430,6 +493,17 @@
                             "checkbox": false,
                             "items": [
                                 {
+                                    "field": "SITE_NO",
+                                    "title": "Site",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
                                     "field": "BOX_NO",
                                     "title": "Box No",
                                     "editor": {
@@ -448,7 +522,7 @@
                                         "xtype": "TextField"
                                     },
                                     "must": true,
-                                    "width": 0.3,
+                                    "width": 0.2,
                                     "freeze": false,
                                     "sortable": false
                                 },
@@ -515,7 +589,10 @@
                                 }
                             ],
                             "expandItems": [],
-                            "listeners": {},
+                            "listeners": {
+                                "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedBox(args); }"
+                            },
                             "title": "Box Information",
                             "version": 2,
                             "rowNumbers": true
@@ -528,7 +605,8 @@
     "programsetting": {
         "programmodel": "DM_BASIC_CABINET",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {},
+        "logicPath": "logic/basic-cabinet-main"
     },
     "requires": [
         "DataProvider",
