@@ -11,14 +11,34 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
                 "modelName": "DM_BASIC_GROUP"
             },
-            "listeners": {},
+            "listeners": {
+                "onInputed": "(args) => { LOGIC.onInputed(args); }",
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
             "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
                 {
                     "field": "GROUPM_NO",
                     "title": "Group No",
@@ -110,6 +130,17 @@
                     "checkbox": false,
                     "items": [
                         {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "GROUPM_NO",
                             "title": "Group No",
                             "editor": {
@@ -118,7 +149,7 @@
                             },
                             "ident": null,
                             "must": true,
-                            "width": 0.1,
+                            "width": 0.2,
                             "freeze": false,
                             "sortable": false
                         },
@@ -129,17 +160,6 @@
                                 "xtype": "TextField"
                             },
                             "must": true,
-                            "width": 0.2,
-                            "freeze": false,
-                            "sortable": false
-                        },
-                        {
-                            "field": "GROUPM_NAME_EN",
-                            "title": "Group Name (EN)",
-                            "editor": {
-                                "xtype": "TextField"
-                            },
-                            "must": false,
                             "width": 0.2,
                             "freeze": false,
                             "sortable": false
@@ -207,7 +227,10 @@
                         }
                     ],
                     "expandItems": [],
-                    "listeners": {},
+                    "listeners": {
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }"
+                    },
                     "title": "Master Group Information",
                     "singleCheck": false,
                     "version": 2
@@ -235,6 +258,7 @@
                         ],
                         "others": [
                             {
+                                "showBtn": 2,
                                 "onUploading": "(args) => { return true; }",
                                 "onUploaded": "",
                                 "hasPopupWin": 1,
@@ -254,20 +278,45 @@
                                             100
                                         ],
                                         "pager": true,
-                                        "lazyload": false
+                                        "lazyload": false,
+                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }"
                                     },
                                     "columns": [
                                         {
-                                            "field": "FACT_NO",
-                                            "title": "Factory",
+                                            "field": "SSO_ACCT",
+                                            "title": "SSO Account",
+                                            "editor": {
+                                                "xtype": "TextField"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 1,
+                                            "opt": "%%",
+                                            "tableSort": 1
+                                        },
+                                        {
+                                            "field": "LOCAL_PNL_NM",
+                                            "title": "Local Name",
                                             "editor": {
                                                 "xtype": "TextField",
                                                 "textCase": "upper"
                                             },
                                             "noWhere": false,
-                                            "querySort": 1,
-                                            "opt": "=",
-                                            "tableSort": 1
+                                            "querySort": 2,
+                                            "opt": "%%",
+                                            "tableSort": 2,
+                                            "cover": "EMP_NAME"
+                                        },
+                                        {
+                                            "field": "CONTACT_MAIL",
+                                            "title": "Contact Mail",
+                                            "editor": {
+                                                "xtype": "TextField"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 3,
+                                            "opt": "%%",
+                                            "tableSort": 3,
+                                            "cover": "EMP_EMAIL"
                                         },
                                         {
                                             "field": "PCCUID",
@@ -278,65 +327,16 @@
                                             "noWhere": false,
                                             "querySort": null,
                                             "opt": "=",
-                                            "tableSort": 2,
-                                            "cover": "PCCUID"
-                                        },
-                                        {
-                                            "field": "SSO_ACCT",
-                                            "title": "SSO Account",
-                                            "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 2,
-                                            "opt": "%%",
-                                            "tableSort": 3
-                                        },
-                                        {
-                                            "field": "LOCAL_PNL_NM",
-                                            "title": "Local Name",
-                                            "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 3,
-                                            "opt": "%%",
                                             "tableSort": 4,
-                                            "cover": "EMP_NAME"
-                                        },
-                                        {
-                                            "field": "SEX",
-                                            "title": "Sex",
-                                            "editor": {
-                                                "xtype": "Label"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": null,
-                                            "opt": "%%",
-                                            "tableSort": 5
-                                        },
-                                        {
-                                            "field": "CONTACT_MAIL",
-                                            "title": "Contact Mail",
-                                            "editor": {
-                                                "xtype": "TextField"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 4,
-                                            "opt": "%%",
-                                            "tableSort": 6,
-                                            "cover": "EMP_EMAIL"
+                                            "cover": "PCCUID"
                                         }
                                     ]
                                 },
                                 "_rowIndex": 0,
-                                "showBtn": 2,
                                 "icon": "add",
                                 "type": "add",
                                 "text": "Add",
-                                "onClick": "(args) => { return true; }",
+                                "onClick": "(args) => { return LOGIC.onClickPicker(args); }",
                                 "picker": "query",
                                 "_rowstatus": ""
                             }
@@ -345,6 +345,17 @@
                     "rowNumbers": true,
                     "checkbox": false,
                     "items": [
+                        {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
                         {
                             "field": "EMP_NO",
                             "title": "Employee No",
@@ -375,7 +386,7 @@
                                 "xtype": "Label"
                             },
                             "must": true,
-                            "width": 0.15,
+                            "width": 0.1,
                             "freeze": false,
                             "sortable": false
                         },
@@ -386,7 +397,7 @@
                                 "xtype": "Label"
                             },
                             "must": true,
-                            "width": 0.15,
+                            "width": 0.1,
                             "freeze": false,
                             "sortable": false
                         },
@@ -463,7 +474,8 @@
     "programsetting": {
         "programmodel": "DM_BASIC_GROUP",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {},
+        "logicPath": "logic/basic-group-main"
     },
     "requires": [
         "DataProvider",
