@@ -17,8 +17,28 @@
                 "accNo": "_AP_CONN",
                 "modelName": "DM_DOC_MANAGE"
             },
-            "listeners": {},
+            "listeners": {
+                "onInputed": "(args) => { LOGIC.onInputedQuery(args); }",
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
             "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
                 {
                     "field": "DOC_NO",
                     "title": "Document No.",
@@ -294,13 +314,24 @@
                     "checkbox": false,
                     "items": [
                         {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "DOC_NO",
                             "title": "Document No.",
                             "editor": {
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.5,
+                            "width": 0.4,
                             "freeze": false,
                             "sortable": false
                         },
@@ -311,7 +342,7 @@
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.5,
+                            "width": 0.4,
                             "freeze": false,
                             "sortable": false
                         }
@@ -792,7 +823,9 @@
                     "listeners": {
                         "onInputed": "(args) => { LOGIC.onInputed(args); }",
                         "onEndEdit": "(args) => { LOGIC.onEndEdit(args); }",
-                        "onAccepting": "(args) => { return LOGIC.onAccepting(args); }"
+                        "onAccepting": "(args) => { return LOGIC.onAccepting(args); }",
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }"
                     },
                     "title": "Main Information",
                     "nextDetail": "Detail"
