@@ -3,18 +3,32 @@ import { $$, DataModel, DataUnit } from "g2fw";
 
 const logic = {
     /**
+     * handle onInputed event
+     * @param param0 { field, oldVal, newVal, row, cmp, setParam }
+     */
+    onInputed: function ({ field, oldVal, newVal, row, cmp, setParam }) {
+        Common.onInputedSetFormParams({ field: field, oldVal: oldVal, newVal: newVal, row: row, cmp: cmp, setParam: setParam });
+    },
+    /**
      * handle onQuerying event
      * @param param0 { obj, query, cmp }
+     * @returns
      */
     onQuerying: function ({ obj, query, cmp }) {
         return Common.onQueryingControl({ obj: obj, query: query, cmp: cmp });
     },
-    onInputed: function ({ field, oldVal, newVal, row, cmp, setParam }) {
-        Common.onInputedSetFormParams({ field: field, oldVal: oldVal, newVal: newVal, row: row, cmp: cmp, setParam: setParam });
-    },
+    /**
+     * handle onNewRowing event
+     * @param param0 { dataUtil, cmp }
+     * @returns 
+     */
     onNewRowing: function ({ dataUtil, cmp }) {
         return Common.onNewRowingControl({ dataUtil: dataUtil, cmp: cmp });
     },
+    /**
+     * handle onNewRowed event
+     * @param param0 { dataUtil, cmp }
+     */
     onNewRowedFloor: function ({ dataUtil, cmp }) {
         const dm: DataModel = dataUtil.getDataModel("DM_BASIC_CABINET");
         const du: DataUnit = dm.getUnit("DU_BASIC_FLOOR");
