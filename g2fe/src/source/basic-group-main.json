@@ -283,16 +283,40 @@
                                     },
                                     "columns": [
                                         {
-                                            "field": "FACT_NO",
-                                            "title": "Factory",
+                                            "field": "SSO_ACCT",
+                                            "title": "SSO Account",
+                                            "editor": {
+                                                "xtype": "TextField"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 1,
+                                            "opt": "%%",
+                                            "tableSort": 1
+                                        },
+                                        {
+                                            "field": "LOCAL_PNL_NM",
+                                            "title": "Local Name",
                                             "editor": {
                                                 "xtype": "TextField",
                                                 "textCase": "upper"
                                             },
                                             "noWhere": false,
-                                            "querySort": 1,
-                                            "opt": "=",
-                                            "tableSort": 1
+                                            "querySort": 2,
+                                            "opt": "%%",
+                                            "tableSort": 2,
+                                            "cover": "EMP_NAME"
+                                        },
+                                        {
+                                            "field": "CONTACT_MAIL",
+                                            "title": "Contact Mail",
+                                            "editor": {
+                                                "xtype": "TextField"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 3,
+                                            "opt": "%%",
+                                            "tableSort": 3,
+                                            "cover": "EMP_EMAIL"
                                         },
                                         {
                                             "field": "PCCUID",
@@ -303,56 +327,8 @@
                                             "noWhere": false,
                                             "querySort": null,
                                             "opt": "=",
-                                            "tableSort": 2,
-                                            "cover": "PCCUID"
-                                        },
-                                        {
-                                            "field": "SSO_ACCT",
-                                            "title": "SSO Account",
-                                            "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 2,
-                                            "opt": "%%",
-                                            "tableSort": 3
-                                        },
-                                        {
-                                            "field": "LOCAL_PNL_NM",
-                                            "title": "Local Name",
-                                            "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 3,
-                                            "opt": "%%",
                                             "tableSort": 4,
-                                            "cover": "EMP_NAME"
-                                        },
-                                        {
-                                            "field": "SEX",
-                                            "title": "Sex",
-                                            "editor": {
-                                                "xtype": "Label"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": null,
-                                            "opt": "%%",
-                                            "tableSort": 5
-                                        },
-                                        {
-                                            "field": "CONTACT_MAIL",
-                                            "title": "Contact Mail",
-                                            "editor": {
-                                                "xtype": "TextField"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 4,
-                                            "opt": "%%",
-                                            "tableSort": 6,
-                                            "cover": "EMP_EMAIL"
+                                            "cover": "PCCUID"
                                         }
                                     ]
                                 },
