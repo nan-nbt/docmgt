@@ -18,7 +18,8 @@
                 "modelName": "DM_BASIC_SITEMAP"
             },
             "listeners": {
-                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }",
+                "onInputed": "(args) => { LOGIC.onInputed(args); }"
             },
             "items": [
                 {
@@ -99,6 +100,7 @@
                         ],
                         "others": [
                             {
+                                "showBtn": 2,
                                 "onUploading": "(args) => { return true; }",
                                 "onUploaded": "",
                                 "hasPopupWin": 1,
@@ -119,7 +121,8 @@
                                             100
                                         ],
                                         "pager": true,
-                                        "lazyload": false
+                                        "lazyload": false,
+                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }"
                                     },
                                     "columns": [
                                         {
@@ -173,11 +176,10 @@
                                     ]
                                 },
                                 "_rowIndex": 0,
-                                "showBtn": 2,
                                 "icon": "add",
                                 "type": "add",
                                 "text": "Add",
-                                "onClick": "(args) => { return true; }",
+                                "onClick": "(args) => { return LOGIC.onClickPicker(args); }",
                                 "picker": "query",
                                 "_rowstatus": ""
                             }
@@ -190,15 +192,7 @@
                             "field": "SITE_NO",
                             "title": "Site",
                             "editor": {
-                                "xtype": "Combo",
-                                "textField": "LABEL",
-                                "manual": false,
-                                "valueField": "VALUE",
-                                "condition": {
-                                    "accNo": "_AP_CONN",
-                                    "sqlNo": "V_COMBO_BASIC_SITE",
-                                    "opType": 2
-                                }
+                                "xtype": "Label"
                             },
                             "must": true,
                             "width": 0.1,
