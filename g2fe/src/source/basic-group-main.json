@@ -259,7 +259,7 @@
                                     "columns": [
                                         {
                                             "field": "FACT_NO",
-                                            "title": "FACT_NO",
+                                            "title": "Factory",
                                             "editor": {
                                                 "xtype": "TextField",
                                                 "textCase": "upper"
@@ -283,7 +283,7 @@
                                         },
                                         {
                                             "field": "SSO_ACCT",
-                                            "title": "SSO_ACCT",
+                                            "title": "SSO Account",
                                             "editor": {
                                                 "xtype": "TextField",
                                                 "textCase": "upper"
@@ -295,7 +295,7 @@
                                         },
                                         {
                                             "field": "LOCAL_PNL_NM",
-                                            "title": "LOCAL_PNL_NM",
+                                            "title": "Local Name",
                                             "editor": {
                                                 "xtype": "TextField",
                                                 "textCase": "upper"
@@ -308,7 +308,7 @@
                                         },
                                         {
                                             "field": "SEX",
-                                            "title": "SEX",
+                                            "title": "Sex",
                                             "editor": {
                                                 "xtype": "Label"
                                             },
@@ -319,7 +319,7 @@
                                         },
                                         {
                                             "field": "CONTACT_MAIL",
-                                            "title": "CONTACT_MAIL",
+                                            "title": "Contact Mail",
                                             "editor": {
                                                 "xtype": "TextField"
                                             },
