@@ -8,6 +8,13 @@ const logic = {
      */
     onCreated: Common.onCreatedSetQueryParams,
     /**
+     * handle onQuerying event
+     * @param param0 { obj, query, cmp }
+     */
+    onQuerying: function ({ obj, query, cmp }) {
+        return Common.onQueryingControl({ obj: obj, query: query, cmp: cmp });
+    },
+    /**
      * Filter combo [cabinet, column, box] data in query area component v2
      * @param param0 { item, values }
      */
