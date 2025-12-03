@@ -3,13 +3,6 @@ import { $$, DataModel, DataUnit } from "g2fw";
 
 const logic = {
     /**
-     * handle onInputed event
-     * @param param0 { field, oldVal, newVal, row, cmp, setParam }
-     */
-    onInputed: function ({ field, oldVal, newVal, row, cmp, setParam }) {
-        Common.onInputedSetFormParams({ field: field, oldVal: oldVal, newVal: newVal, row: row, cmp: cmp, setParam: setParam });
-    },
-    /**
      * handle onQuerying event
      * @param param0 { obj, query, cmp }
      */
@@ -22,7 +15,10 @@ const logic = {
      * @returns 
      */
     onClickPicker: function ({ dataUtil, row }) {
-        return Common.onNewRowingControl({ dataUtil: dataUtil, cmp: row });
+        const dm: DataModel = dataUtil.getDataModel("DM_BASIC_SITEMAP");
+        const query = dm.getQuery();
+
+        return Common.onNewRowingControl({ dataUtil: dataUtil, cmp: row, query: query });
     },
     /**
      * handle onConfirmPicker event
@@ -31,12 +27,39 @@ const logic = {
     onConfirmPicker: function ({ dataUtil, checkedRows }) {
         const dm: DataModel = dataUtil.getDataModel("DM_BASIC_SITEMAP");
         const du: DataUnit = dm.getUnit("DU_BASIC_SITEMAP");
+        const query = dm.getQuery();
 
         if (!checkedRows) {
             return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
         }
 
-        du.newRow({ SITE_NO: Common.getDefaultParams().SITE_NO, ...checkedRows[0] });
+        for (let i = 0; i < checkedRows.length; i++) {
+            du.newRow({ SITE_NO: query["SITE_NO"], ...checkedRows[i] });            
+        }
+    },
+    /**
+     * handle onBeginEditing event
+     * @param param0 { dataUtil }
+     * @returns 
+     */
+    onBeginEditing: function ({ dataUtil }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_BASIC_SITEMAP");
+        const du: DataUnit = dm.getUnit("DU_BASIC_SITEMAP");
+        const row = du.getCurrentRow();
+
+        return Common.onBeginEditingPage({ dataUtil: dataUtil, row: row });
+    },
+    /**
+     * handle onDeleteRowing event
+     * @param param0 
+     * @returns 
+     */
+    onDeleteRowing: function ({ dataUtil, rows, index }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_BASIC_SITEMAP");
+        const du: DataUnit = dm.getUnit("DU_BASIC_SITEMAP");
+        const row = du.getCurrentRow();
+
+        return Common.onDeleteRowingTable({ dataUtil: dataUtil, row: row });
     }
 }
 

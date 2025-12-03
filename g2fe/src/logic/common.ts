@@ -1,7 +1,5 @@
 import { $$ } from "g2fw";
 
-let _defaultSiteMap = null;
-
 const logic = {
     /**
      * set default value for query area onCreated event
@@ -37,23 +35,39 @@ const logic = {
 
         return true;
     },
-    onInputedSetFormParams: function ({ field, oldVal, newVal, row, cmp, setParam }) {
-        if (field === "SITE_NO") {
-            _defaultSiteMap = newVal;
-        }
-    },
-    onNewRowingControl: function ({ dataUtil, cmp }) {
-        if (_defaultSiteMap === null) {
+    /**
+     * handle onNewRowing event
+     * @param param0 { dataUtil, cmp, query }
+     */
+    onNewRowingControl: function ({ dataUtil, cmp, query }) {
+        if ($$.Type.isEmpty(query["SITE_NO"])) {
             $$.Alert.show({ type: "warning", text: "Please select a Site", timeout: 2000 });
             return false;
         }
 
         return true;
     },
-    getDefaultParams: function () {
-        return { 
-            SITE_NO: _defaultSiteMap 
-        };
+    /**
+     * handle onBeginEditingPage event
+     * @param param0 { dataUtil, row }
+     */
+    onBeginEditingPage: function ({ dataUtil, row }) {
+        if (!row) {
+            return false
+        }
+
+        return true;
+    },
+    /**
+     * handle onDeleteRowingTable event
+     * @param param0 { dataUtil, row }
+     */
+    onDeleteRowingTable: function ({ dataUtil, row }) {
+        if (!row) {
+            return false
+        }
+
+        return true;
     }
 }
 

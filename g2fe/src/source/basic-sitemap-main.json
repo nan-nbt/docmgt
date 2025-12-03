@@ -18,8 +18,7 @@
                 "modelName": "DM_BASIC_SITEMAP"
             },
             "listeners": {
-                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }",
-                "onInputed": "(args) => { LOGIC.onInputed(args); }"
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [
                 {
@@ -306,7 +305,9 @@
                         }
                     ],
                     "expandItems": [],
-                    "listeners": {},
+                    "listeners": {
+                        "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                    },
                     "title": "Main Information",
                     "version": 2
                 }
@@ -316,7 +317,9 @@
     "programsetting": {
         "programmodel": "DM_BASIC_SITEMAP",
         "programaccno": "_AP_CONN",
-        "listeners": {},
+        "listeners": {
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
+        },
         "logicPath": "logic/basic-sitemap-main"
     },
     "requires": [
