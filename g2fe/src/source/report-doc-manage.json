@@ -18,9 +18,28 @@
                 "modelName": "DM_RPT_DOC_MANAGE"
             },
             "listeners": {
-                "onInputed": "(args) => { LOGIC.onInputed(args); }"
+                "onInputed": "(args) => { LOGIC.onInputed(args); }",
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": true,
+                    "opt": "=",
+                    "parm": "SITE_NO"
+                },
                 {
                     "field": "DOC_NO",
                     "title": "Document No.",
@@ -266,8 +285,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false,
-                            "sortType": "numeric"
+                            "sortable": false
                         },
                         {
                             "field": "RETURN_TIME",
@@ -280,8 +298,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false,
-                            "sortType": "numeric"
+                            "sortable": false
                         },
                         {
                             "field": "DESTROY_TIME",
@@ -294,8 +311,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false,
-                            "sortType": "numeric"
+                            "sortable": false
                         },
                         {
                             "field": "OWNER_GROUP",
@@ -462,8 +478,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false,
-                            "sortType": "numeric"
+                            "sortable": false
                         },
                         {
                             "field": "MFPC_COUNT_PAGE",
@@ -474,8 +489,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false,
-                            "sortType": "numeric"
+                            "sortable": false
                         },
                         {
                             "field": "CREATE_USER_NM",
@@ -499,8 +513,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false,
-                            "sortType": "numeric"
+                            "sortable": false
                         },
                         {
                             "field": "UPDATE_USER_NM",
@@ -524,8 +537,18 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false,
-                            "sortType": "numeric"
+                            "sortable": false
+                        },
+                        {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
                         }
                     ],
                     "expandItems": [],
