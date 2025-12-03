@@ -3,13 +3,6 @@ import { $$, DataModel, DataUnit } from "g2fw";
 
 const logic = {
     /**
-     * handle onInputed event
-     * @param param0 { field, oldVal, newVal, row, cmp, setParam }
-     */
-    onInputed: function ({ field, oldVal, newVal, row, cmp, setParam }) {
-        Common.onInputedSetFormParams({ field: field, oldVal: oldVal, newVal: newVal, row: row, cmp: cmp, setParam: setParam });
-    },
-    /**
      * handle onQuerying event
      * @param param0 { obj, query, cmp }
      * @returns
@@ -23,7 +16,10 @@ const logic = {
      * @returns 
      */
     onNewRowing: function ({ dataUtil, cmp }) {
-        return Common.onNewRowingControl({ dataUtil: dataUtil, cmp: cmp });
+        const dm: DataModel = dataUtil.getDataModel("DM_BASIC_DOCTYPE");
+        const query = dm.getQuery();
+
+        return Common.onNewRowingControl({ dataUtil: dataUtil, cmp: cmp, query: query });
     },
     /**
      * handle onNewRowed event
@@ -33,13 +29,14 @@ const logic = {
         const dm: DataModel = dataUtil.getDataModel("DM_BASIC_DOCTYPE");
         const du: DataUnit = dm.getUnit("DU_BASIC_DOCTYPE");
         const row = du.getCurrentRow();
+        const query = dm.getQuery();
 
         if (!row) {
             return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
         }
 
         row.input({
-            SITE_NO: Common.getDefaultParams().SITE_NO
+            SITE_NO: query["SITE_NO"]
         });
     }
 }

@@ -18,8 +18,7 @@
                 "modelName": "DM_BASIC_CABINET"
             },
             "listeners": {
-                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }",
-                "onInputed": "(args) => { LOGIC.onInputed(args); }"
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [
                 {

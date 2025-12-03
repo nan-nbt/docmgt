@@ -18,8 +18,7 @@
                 "modelName": "DM_BASIC_SITEMAP"
             },
             "listeners": {
-                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }",
-                "onInputed": "(args) => { LOGIC.onInputed(args); }"
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [
                 {
