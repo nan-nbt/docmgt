@@ -295,6 +295,7 @@ const logic = {
             { key: 'DOC_NO', variants: ['DOC_NO', 'DOC_ID', 'docNo'] },
             { key: 'DOC_NAME', variants: ['DOC_NAME', 'docName'] },
             { key: 'DOC_TYPE_DESC', variants: ['DOC_TYPE_DESC', 'docTypeDesc'] },
+            { key: 'DOC_CAT_DESC', variants: ['DOC_CAT_DESC', 'docCatDesc'] },
             { key: 'DOC_STATUS_DESC', variants: ['DOC_STATUS_DESC', 'docStatusDesc'] },
             { key: 'OWNER_GROUP', variants: ['OWNER_GROUP', 'ownerGroup'] },
             { key: 'OWNER_NAME', variants: ['OWNER_NAME', 'ownerName'] },
@@ -304,8 +305,17 @@ const logic = {
             { key: 'CABINET_NAME', variants: ['CABINET_NAME', 'cabinetName'] },
             { key: 'CABIN_NAME', variants: ['CABIN_NAME', 'cabinName'] },
             { key: 'BOX_NAME', variants: ['BOX_NAME', 'boxName'] },
+            { key: 'MFPC_ID', variants: ['MFPC_ID', 'mfpcId'] },
+            { key: 'MFPC_USERNAME', variants: ['MFPC_USERNAME', 'mfpcUsername'] },
+            { key: 'MFPC_SSO', variants: ['MFPC_SSO', 'mfpcSso'] },
+            { key: 'MFPC_CARD_ID', variants: ['MFPC_CARD_ID', 'mfpcCardId'] },
+            { key: 'MFPC_MACHINE_NAME', variants: ['MFPC_MACHINE_NAME', 'mfpcMachineName'] },
+            { key: 'MFPC_PRINTER_NAME', variants: ['MFPC_PRINTER_NAME', 'mfpcPrinterName'] },
+            { key: 'MFPC_PRINT_TIME', variants: ['MFPC_PRINT_TIME', 'mfpcPrintTime'] },
+            { key: 'MFPC_COUNT_PAGE', variants: ['MFPC_COUNT_PAGE', 'mfpcCountPage'] },
             { key: 'CREATE_USER_NM', variants: ['CREATE_USER_NM', 'createUserNm'] },
-            { key: 'UPDATE_USER_NM', variants: ['UPDATE_USER_NM', 'updateUserNm'] }
+            { key: 'UPDATE_USER_NM', variants: ['UPDATE_USER_NM', 'updateUserNm'] },
+            { key: 'SITE_NO', variants: ['SITE_NO', 'siteNo'] }
         ];
 
         const timestampFieldMappings = [
@@ -318,11 +328,13 @@ const logic = {
 
         // Define the export header order
         const exportHeaderOrder = [
-            'DOC_NO', 'DOC_NAME', 'DOC_TYPE_DESC', 'DOC_STATUS_DESC',
+            'DOC_NO', 'DOC_NAME', 'DOC_TYPE_DESC', 'DOC_CAT_DESC', 'DOC_STATUS_DESC',
             'TRANS_TIME', 'RETURN_TIME', 'DESTROY_TIME',
             'OWNER_GROUP', 'OWNER_NAME', 'BO_GROUP', 'BO_NAME',
             'FLOOR_NAME', 'CABINET_NAME', 'CABIN_NAME', 'BOX_NAME',
-            'CREATE_USER_NM', 'CREATE_TIME', 'UPDATE_USER_NM', 'UPDATE_TIME'
+            'MFPC_ID', 'MFPC_USERNAME', 'MFPC_SSO', 'MFPC_CARD_ID', 'MFPC_MACHINE_NAME', 'MFPC_PRINTER_NAME', 'MFPC_PRINT_TIME', 'MFPC_COUNT_PAGE',
+            'CREATE_USER_NM', 'CREATE_TIME', 'UPDATE_USER_NM', 'UPDATE_TIME',
+            'SITE_NO'
         ];
 
         return detailRows.map(row => {
@@ -362,6 +374,7 @@ const logic = {
             'DOC_NO': 'Document No.',
             'DOC_NAME': 'Document Name',
             'DOC_TYPE_DESC': 'Type',
+            'DOC_CAT_DESC': 'Category',
             'DOC_STATUS_DESC': 'Status',
             'TRANS_TIME': 'Transfer Time',
             'RETURN_TIME': 'Return Time',
@@ -374,10 +387,19 @@ const logic = {
             'CABINET_NAME': 'Cabinet',
             'CABIN_NAME': 'Cabin',
             'BOX_NAME': 'Box',
+            'MFPC_ID': 'MFPC ID',
+            'MFPC_USERNAME': 'Username',
+            'MFPC_SSO': 'SSO',
+            'MFPC_CARD_ID': 'ID Card',
+            'MFPC_MACHINE_NAME': 'Machine Name',
+            'MFPC_PRINTER_NAME': 'Printer Name',
+            'MFPC_PRINT_TIME': 'Print Time',
+            'MFPC_COUNT_PAGE': 'Page Count',
             'CREATE_USER_NM': 'Create User',
             'CREATE_TIME': 'Create Time',
             'UPDATE_USER_NM': 'Update User',
-            'UPDATE_TIME': 'Update Time'
+            'UPDATE_TIME': 'Update Time',
+            'SITE_NO': 'Site'
         };
 
         // Generate CSV content
