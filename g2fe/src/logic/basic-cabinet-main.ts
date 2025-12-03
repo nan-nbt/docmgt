@@ -80,6 +80,30 @@ const logic = {
         row.input({
             SITE_NO: query["SITE_NO"]
         });
+    },
+    /**
+     * handle onBeginEditing event
+     * @param param0 { dataUtil }
+     * @returns 
+     */
+    onBeginEditing: function ({ dataUtil }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_BASIC_CABINET");
+        const du: DataUnit = dm.getUnit("DU_BASIC_FLOOR");
+        const row = du.getCurrentRow();
+
+        return Common.onBeginEditingPage({ dataUtil: dataUtil, row: row });
+    },
+    /**
+     * handle onDeleteRowing event
+     * @param param0 
+     * @returns 
+     */
+    onDeleteRowing: function ({ dataUtil, rows, index }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_BASIC_CABINET");
+        const du: DataUnit = dm.getUnit("DU_BASIC_FLOOR");
+        const row = du.getCurrentRow();
+
+        return Common.onDeleteRowingTable({ dataUtil: dataUtil, row: row });
     }
 }
 

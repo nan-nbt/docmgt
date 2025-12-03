@@ -35,10 +35,36 @@ const logic = {
 
         return true;
     },
+    /**
+     * handle onNewRowing event
+     * @param param0 { dataUtil, cmp, query }
+     */
     onNewRowingControl: function ({ dataUtil, cmp, query }) {
         if ($$.Type.isEmpty(query["SITE_NO"])) {
             $$.Alert.show({ type: "warning", text: "Please select a Site", timeout: 2000 });
             return false;
+        }
+
+        return true;
+    },
+    /**
+     * handle onBeginEditingPage event
+     * @param param0 { dataUtil, row }
+     */
+    onBeginEditingPage: function ({ dataUtil, row }) {
+        if (!row) {
+            return false
+        }
+
+        return true;
+    },
+    /**
+     * handle onDeleteRowingTable event
+     * @param param0 { dataUtil, row }
+     */
+    onDeleteRowingTable: function ({ dataUtil, row }) {
+        if (!row) {
+            return false
         }
 
         return true;

@@ -114,6 +114,30 @@ const logic = {
         });
     },
     /**
+     * handle onBeginEditing event
+     * @param param0 { dataUtil }
+     * @returns 
+     */
+    onBeginEditing: function ({ dataUtil }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const row = du.getCurrentRow();
+
+        return Common.onBeginEditingPage({ dataUtil: dataUtil, row: row });
+    },
+    /**
+     * handle onDeleteRowing event
+     * @param param0 
+     * @returns 
+     */
+    onDeleteRowing: function ({ dataUtil, rows, index }) {
+        const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
+        const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
+        const row = du.getCurrentRow();
+
+        return Common.onDeleteRowingTable({ dataUtil: dataUtil, row: row });
+    },
+    /**
      * Handle onAccepting event from form
      * @param param0 { dataUtil }
      */
