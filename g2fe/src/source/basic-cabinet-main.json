@@ -212,7 +212,8 @@
                     "expandItems": [],
                     "listeners": {
                         "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
-                        "onNewRowed": "(args) => { LOGIC.onNewRowedFloor(args); }"
+                        "onNewRowed": "(args) => { LOGIC.onNewRowedFloor(args); }",
+                        "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
                     },
                     "title": "Floor Information",
                     "version": 2
@@ -340,7 +341,8 @@
                             "expandItems": [],
                             "listeners": {
                                 "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
-                                "onNewRowed": "(args) => { LOGIC.onNewRowedCabinet(args); }"
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedCabinet(args); }",
+                                "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
                             },
                             "title": "Cabinet Information",
                             "version": 2
@@ -465,7 +467,8 @@
                             "expandItems": [],
                             "listeners": {
                                 "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
-                                "onNewRowed": "(args) => { LOGIC.onNewRowedCabin(args); }"
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedCabin(args); }",
+                                "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
                             },
                             "title": "Cabin Information",
                             "version": 2
@@ -590,7 +593,8 @@
                             "expandItems": [],
                             "listeners": {
                                 "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
-                                "onNewRowed": "(args) => { LOGIC.onNewRowedBox(args); }"
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedBox(args); }",
+                                "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
                             },
                             "title": "Box Information",
                             "version": 2,
@@ -604,7 +608,9 @@
     "programsetting": {
         "programmodel": "DM_BASIC_CABINET",
         "programaccno": "_AP_CONN",
-        "listeners": {},
+        "listeners": {
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
+        },
         "logicPath": "logic/basic-cabinet-main"
     },
     "requires": [

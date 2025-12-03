@@ -209,7 +209,8 @@
                     "expandItems": [],
                     "listeners": {
                         "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
-                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }"
+                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }",
+                        "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
                     },
                     "title": "Main Information",
                     "version": 2
@@ -220,7 +221,9 @@
     "programsetting": {
         "programmodel": "DM_BASIC_DOCTYPE",
         "programaccno": "_AP_CONN",
-        "listeners": {},
+        "listeners": {
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
+        },
         "logicPath": "logic/basic-doctype-main"
     },
     "requires": [

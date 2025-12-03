@@ -837,7 +837,8 @@
         "programaccno": "_AP_CONN",
         "listeners": {
             "onDataLoaded": "(args) => { LOGIC.onDataLoaded(args); }",
-            "onCreated": "(args) => { LOGIC.onCreated(args); }"
+            "onCreated": "(args) => { LOGIC.onCreated(args); }",
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
         },
         "logicPath": "logic/main-doc-manage"
     },
