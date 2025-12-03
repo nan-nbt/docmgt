@@ -62,7 +62,9 @@ const logic = {
             return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
         }
 
-        du.newRow({ SITE_NO: Common.getDefaultParams().SITE_NO, ...checkedRows[0] });
+        for (let i = 0; i < checkedRows.length; i++) {
+            du.newRow({ SITE_NO: Common.getDefaultParams().SITE_NO, ...checkedRows[i] });
+        }
     }
 }
 
