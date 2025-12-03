@@ -18,7 +18,6 @@
                 "modelName": "DM_DOC_MANAGE"
             },
             "listeners": {
-                "onInputed": "(args) => { LOGIC.onInputedQuery(args); }",
                 "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [

@@ -18,7 +18,6 @@
                 "modelName": "DM_BASIC_GROUP"
             },
             "listeners": {
-                "onInputed": "(args) => { LOGIC.onInputed(args); }",
                 "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [
