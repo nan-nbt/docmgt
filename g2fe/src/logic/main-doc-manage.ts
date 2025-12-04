@@ -10,7 +10,7 @@ export const _SERVICE_UPDATE_RETURN_TIME = "/p/restws/com.pouchen.docmgt.service
 export const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyInfo";
 export const _SERVICE_GET_MFPC_DATA = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.getMFPCData";
 
-let _DOC_ID_TO_SET_FOCUS: string | null = null;
+let _SELECTED_DOC_ID_ROW: string | null = null;
 
 const logic = {
     /**
@@ -152,36 +152,20 @@ const logic = {
         return true;
     },
     /**
-     * Handle onEndEdit event from form retrieve data
-     * @param param0 { dataUtil }
-     */
-    onEndEdit: function ({ dataUtil }) {
-        const row = this.getIndexRow({ dataUtil: dataUtil });
-        if (!row) return;
-
-        _DOC_ID_TO_SET_FOCUS = row ? row.getData().DOC_ID : null;
-
-        try {
-            dataUtil.retrieve();
-        } catch (e) {
-            $$.Alert.show(e.message);
-        }
-    },
-    /**
      * Handle onDataLoaded event from DataProvider
      * @param param0 { dataUtil }
      * @returns 
      */
     onDataLoaded: function ({ dataUtil }) {
-        if (!_DOC_ID_TO_SET_FOCUS) return;
+        if (_SELECTED_DOC_ID_ROW === null) return;
 
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const target = du.findRows({ DOC_ID: _DOC_ID_TO_SET_FOCUS })[0];
+        const targetRow = du.findRows({ DOC_ID: _SELECTED_DOC_ID_ROW })[0];
 
-        if (target) du.setCurrentRow(target);
+        if (targetRow) du.setCurrentRow(targetRow);
 
-        _DOC_ID_TO_SET_FOCUS = null;
+        _SELECTED_DOC_ID_ROW = null;
     },
     /**
      * Handle custom action from toolbar to update doc status and sync data
@@ -250,8 +234,7 @@ const logic = {
                 "POST"
             );
 
-            _DOC_ID_TO_SET_FOCUS = row ? row.getData().DOC_ID : null;
-
+            _SELECTED_DOC_ID_ROW = row ? row.getData().DOC_ID : null;
             await dataUtil.retrieve();
 
             alertConfig = {

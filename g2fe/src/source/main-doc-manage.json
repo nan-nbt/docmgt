@@ -821,7 +821,6 @@
                     ],
                     "listeners": {
                         "onInputed": "(args) => { LOGIC.onInputed(args); }",
-                        "onEndEdit": "(args) => { LOGIC.onEndEdit(args); }",
                         "onAccepting": "(args) => { return LOGIC.onAccepting(args); }",
                         "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
                         "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }"
