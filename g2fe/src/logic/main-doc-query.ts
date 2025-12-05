@@ -10,6 +10,38 @@ const logic = {
         Common.onCreatedSetQueryParams({ dataUtil: dataUtil, args: args, query: query });
     },
     /**
+     * handle onInputed for query area
+     * @param param0 { cmp, newVal, field, setParam }
+     */
+    onInputed: function ({ cmp, newVal, field, setParam }) {
+        try {
+            switch (field) {
+                case "SITE_NO": {
+                    const doctype = cmp("CMP_COMBO_DOCTYPE");
+                    doctype.filter((value, key) => value["REF"] === newVal);
+
+                    const category = cmp("CMP_COMBO_CATEGORY");
+                    category.filter((value, key) => value["REF"] === newVal);
+
+                    const status = cmp("CMP_COMBO_STATUS");
+                    status.filter((value, key) => value["REF"] === newVal);
+
+                    setParam({
+                        DOC_TYPE_DESC: null,
+                        DOC_CAT_DESC: null,
+                        DOC_STATUS_DESC: null
+                    })
+                    break;
+                }                   
+            
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.error("onInputed error:", error);
+        }        
+    },
+    /**
      * handle onQuerying event
      * @param param0 { obj, query, cmp }
      */
