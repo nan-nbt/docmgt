@@ -18,6 +18,7 @@
                 "modelName": "DM_DOC_MANAGE"
             },
             "listeners": {
+                "onInputed": "(args) => { LOGIC.onInputed(args); }",
                 "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [
@@ -64,6 +65,7 @@
                     "title": "Type",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_DOCTYPE",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -81,6 +83,7 @@
                     "title": "Category",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_CATEGORY",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -98,6 +101,7 @@
                     "title": "Status",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_STATUS",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",

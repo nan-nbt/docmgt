@@ -22,16 +22,30 @@ const logic = {
      * set default value for query area
      * @param param0 { args, query }
      */
-    onCreated: Common.onCreatedSetQueryParams,
+    onCreated: function ({  dataUtil, args, query }) {
+        Common.onCreatedSetQueryParams({ dataUtil: dataUtil, args: args, query: query });
+    },
     /**
      * Filter combo [groupd, cabinet, column, box] data in form area v2
      * @param param0 { item, values }
      */
+    onFilterDoctype: function ({ item, values }) {
+        return item?.REF === values?.SITE_NO;
+    },
+    onFilterGroupm: function ({ item, values }) {
+        return item?.REF === values?.SITE_NO;
+    },
     onFilterGroupd: function ({ item, values }) {
         return item?.REF === values?.GROUPM_ID;
     },
+    onFilterGroupmBO: function ({ item, values }) {
+        return item?.REF === values?.SITE_NO;
+    },
     onFilterGroupdBO: function ({ item, values }) {
         return item?.REF === values?.GROUPM_BO_ID;
+    },
+    onFilterFloor: function ({ item, values }) {
+        return item?.REF === values.SITE_NO;
     },
     onFilterCabinet: function ({ item, values }) {
         return item?.REF === values?.FLOOR_ID;
@@ -46,34 +60,75 @@ const logic = {
      * onInputed event handler for filter combo [cabinet, column, box]
      * @param param0 { field, dataUtil }
      */
-    onInputed: function ({ field, dataUtil }) {
+    onInputedQuery: function ({ cmp, newVal, field, setParam }) {
+        try {
+            switch (field) {
+                case "SITE_NO": {
+                    const doctype = cmp("CMP_COMBO_DOCTYPE");
+                    doctype.filter((value, key) => value["REF"] === newVal);
+
+                    const category = cmp("CMP_COMBO_CATEGORY");
+                    category.filter((value, key) => value["REF"] === newVal);
+
+                    const status = cmp("CMP_COMBO_STATUS");
+                    status.filter((value, key) => value["REF"] === newVal);
+
+                    setParam({
+                        DOC_TYPE_DESC: null,
+                        DOC_CAT_DESC: null,
+                        DOC_STATUS_DESC: null
+                    })
+                    break;
+                }                   
+            
+                default:
+                    break;
+            }
+        } catch (error) {
+            console.error("onInputed error:", error);
+        }
+    },
+    onInputedForm: function ({ field, dataUtil }) {
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
         const row = du.getCurrentRow();
 
-        if (field === "GROUPM_ID") {
-            row.input({
-                GROUPD_ID: null
-            });
-        } else if (field === "GROUPM_BO_ID") {
-            row.input({
-                GROUPD_BO_ID: null
-            });
-        } else if (field === "FLOOR_ID") {
-            row.input({
-                CABINET_ID: null,
-                CABIN_ID: null,
-                BOX_ID: null
-            });
-        } else if (field === "CABINET_ID") {
-            row.input({
-                CABIN_ID: null,
-                BOX_ID: null
-            });
-        } else if (field === "CABIN_ID") {
-            row.input({
-                BOX_ID: null
-            });
+        switch (field) {
+            case "GROUPM_ID": {
+                row.input({
+                    GROUPD_ID: null
+                });                
+                break;
+            }
+            case "GROUPM_BO_ID": {
+                row.input({
+                    GROUPD_BO_ID: null
+                });
+                break;
+            }
+            case "FLOOR_ID": {
+                row.input({
+                    CABINET_ID: null,
+                    CABIN_ID: null,
+                    BOX_ID: null
+                });
+                break;
+            }
+            case "CABINET_ID": {
+                row.input({
+                    CABIN_ID: null,
+                    BOX_ID: null
+                });
+                break;
+            }
+            case "CABIN_ID": {
+                row.input({
+                    BOX_ID: null
+                });
+                break;
+            }
+            default:
+                break;
         }
     },
     /**
@@ -262,7 +317,7 @@ const logic = {
      */
     onClickTrans: async function ({ dataUtil }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
-        if (!row) return;
+        if (!row) return false;
 
         return {
             canOpen: true,

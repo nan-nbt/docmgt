@@ -63,7 +63,8 @@
                         },
                         "textField": "LABEL",
                         "manual": false,
-                        "valueField": "VALUE"
+                        "valueField": "VALUE",
+                        "id": "CMP_COMBO_CATEGORY"
                     },
                     "noWhere": true,
                     "opt": "=",
