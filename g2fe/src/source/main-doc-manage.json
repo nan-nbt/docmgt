@@ -368,24 +368,37 @@
                                         "title": "Query Picker PIC",
                                         "width": 50,
                                         "single": true,
-                                        "autoQuery": true,
+                                        "autoQuery": false,
                                         "accNo": "_AP_CONN",
                                         "source": "[SQL] V_QP_PIC",
                                         "sqlNo": "V_QP_PIC",
                                         "pager": true,
                                         "pageSize": 20,
                                         "lazyload": false,
-                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }"
+                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }",
+                                        "onQuerying": "(args) => { return LOGIC.onQueryingPicker(args); }"
                                     },
                                     "columns": [
                                         {
-                                            "field": "GROUPM_NAME_EN",
+                                            "field": "SITE_NO",
+                                            "title": "Index Site (Auto)",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "placeholder": null
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 1,
+                                            "opt": "=",
+                                            "tableSort": null
+                                        },
+                                        {
+                                            "field": "GROUPM_NAME",
                                             "title": "PIC Group",
                                             "editor": {
                                                 "xtype": "TextField"
                                             },
                                             "noWhere": false,
-                                            "querySort": 1,
+                                            "querySort": 2,
                                             "opt": "%%",
                                             "tableSort": 1
                                         },
@@ -393,11 +406,10 @@
                                             "field": "EMP_NAME",
                                             "title": "PIC User",
                                             "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
+                                                "xtype": "TextField"
                                             },
                                             "noWhere": false,
-                                            "querySort": 2,
+                                            "querySort": 3,
                                             "opt": "%%",
                                             "tableSort": 2
                                         },
