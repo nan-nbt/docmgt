@@ -32,7 +32,7 @@ const logic = {
         const query = dm.getQuery();
 
         if (!row) {
-            return $$.Alert.show({ type: "warning", text: "No index row selected.", timeout: 2000 });
+            return $$.Alert.show({ type: "warning", text: "No index row selected", timeout: 2000 });
         }
 
         row.input({
@@ -46,7 +46,7 @@ const logic = {
         const query = dm.getQuery();
 
         if (!row) {
-            return $$.Alert.show({ type: "warning", text: "No index row selected.", timeout: 2000 });
+            return $$.Alert.show({ type: "warning", text: "No index row selected", timeout: 2000 });
         }
 
         row.input({
@@ -60,7 +60,7 @@ const logic = {
         const query = dm.getQuery();
 
         if (!row) {
-            return $$.Alert.show({ type: "warning", text: "No index row selected.", timeout: 2000 });
+            return $$.Alert.show({ type: "warning", text: "No index row selected", timeout: 2000 });
         }
 
         row.input({
@@ -74,7 +74,7 @@ const logic = {
         const query = dm.getQuery();
 
         if (!row) {
-            return $$.Alert.show({ type: "warning", text: "No index row selected.", timeout: 2000 });
+            return $$.Alert.show({ type: "warning", text: "No index row selected", timeout: 2000 });
         }
 
         row.input({
