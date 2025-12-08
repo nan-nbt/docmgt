@@ -18,6 +18,7 @@
                 "modelName": "DM_DOC_MANAGE"
             },
             "listeners": {
+                "onInputed": "(args) => { LOGIC.onInputedQuery(args); }",
                 "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [
@@ -63,6 +64,7 @@
                     "title": "Type",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_DOCTYPE",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -80,6 +82,7 @@
                     "title": "Category",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_CATEGORY",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -97,6 +100,7 @@
                     "title": "Status",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_STATUS",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -364,24 +368,37 @@
                                         "title": "Query Picker PIC",
                                         "width": 50,
                                         "single": true,
-                                        "autoQuery": true,
+                                        "autoQuery": false,
                                         "accNo": "_AP_CONN",
                                         "source": "[SQL] V_QP_PIC",
                                         "sqlNo": "V_QP_PIC",
                                         "pager": true,
                                         "pageSize": 20,
                                         "lazyload": false,
-                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }"
+                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }",
+                                        "onQuerying": "(args) => { return LOGIC.onQueryingPicker(args); }"
                                     },
                                     "columns": [
                                         {
-                                            "field": "GROUPM_NAME_EN",
+                                            "field": "SITE_NO",
+                                            "title": "Index Site (Auto)",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "placeholder": null
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 1,
+                                            "opt": "=",
+                                            "tableSort": null
+                                        },
+                                        {
+                                            "field": "GROUPM_NAME",
                                             "title": "PIC Group",
                                             "editor": {
                                                 "xtype": "TextField"
                                             },
                                             "noWhere": false,
-                                            "querySort": 1,
+                                            "querySort": 2,
                                             "opt": "%%",
                                             "tableSort": 1
                                         },
@@ -389,11 +406,10 @@
                                             "field": "EMP_NAME",
                                             "title": "PIC User",
                                             "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
+                                                "xtype": "TextField"
                                             },
                                             "noWhere": false,
-                                            "querySort": 2,
+                                            "querySort": 3,
                                             "opt": "%%",
                                             "tableSort": 2
                                         },
@@ -527,10 +543,14 @@
                                             "accNo": "_AP_CONN",
                                             "sqlNo": "V_COMBO_BASIC_DOCTYPE",
                                             "opType": 2
-                                        }
+                                        },
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterGroupm(args); }"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "colspan": 3,
+                                    "dependencies": [
+                                        "SITE_NO"
+                                    ]
                                 },
                                 {
                                     "field": "DOC_CAT_DESC",
@@ -555,6 +575,7 @@
                                     "title": "Owner Group",
                                     "editor": {
                                         "xtype": "Combo",
+                                        "id": "CMP_COMBO_GROUPM",
                                         "textField": "LABEL",
                                         "manual": false,
                                         "valueField": "VALUE",
@@ -563,10 +584,13 @@
                                             "sqlNo": "V_COMBO_BASIC_GROUPM",
                                             "opType": 2
                                         },
-                                        "id": "CMP_COMBO_GROUPM"
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterGroupm(args); }"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "colspan": 3,
+                                    "dependencies": [
+                                        "SITE_NO"
+                                    ]
                                 },
                                 {
                                     "field": "GROUPD_ID",
@@ -621,10 +645,14 @@
                                             "sqlNo": "V_COMBO_BASIC_FLOOR",
                                             "opType": 2
                                         },
-                                        "id": "CMP_COMBO_FLOOR"
+                                        "id": "CMP_COMBO_FLOOR",
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterFloor(args); }"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "colspan": 3,
+                                    "dependencies": [
+                                        "SITE_NO"
+                                    ]
                                 },
                                 {
                                     "field": "CABINET_ID",
@@ -820,7 +848,7 @@
                         }
                     ],
                     "listeners": {
-                        "onInputed": "(args) => { LOGIC.onInputed(args); }",
+                        "onInputed": "(args) => { LOGIC.onInputedForm(args); }",
                         "onAccepting": "(args) => { return LOGIC.onAccepting(args); }",
                         "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
                         "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }"

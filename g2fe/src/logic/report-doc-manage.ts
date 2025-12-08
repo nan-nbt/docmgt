@@ -6,7 +6,9 @@ const logic = {
      * set default value for query area
      * @param param0 { args, query }
      */
-    onCreated: Common.onCreatedSetQueryParams,
+    onCreated: function ({  dataUtil, args, query }) {
+        Common.onCreatedSetQueryParams({ dataUtil: dataUtil, args: args, query: query });
+    },
     /**
      * handle onQuerying event
      * @param param0 { obj, query, cmp }
@@ -18,6 +20,12 @@ const logic = {
      * Filter combo [cabinet, column, box] data in query area component v2
      * @param param0 { item, values }
      */
+    onFilterCategory: function ({ item, values }) {
+        return item?.REF === values?.SITE_NO;
+    },
+    onFilterFloor: function ({ item, values }) {
+        return item?.REF === values?.SITE_NO;
+    },
     onFilterCabinet: function ({ item, values }) {
         return item?.REF === values?.FLOOR_ID;
     },
@@ -33,38 +41,67 @@ const logic = {
      */
     onInputed: function ({ cmp, newVal, field, setParam }) {
         try {
-            if (field === "FLOOR_ID") {
-                // if you use filter combo component v2, you can remove this part
-                let cabinet = cmp("CMP_COMBO_CABINET");
-                cabinet.filter((value, key) => value["REF"] === newVal);
-                // end
+            switch (field) {
+                case "SITE_NO": {
+                    // if you use filter combo component v2, you can remove this part
+                    const category = cmp("CMP_COMBO_CATEGORY");
+                    category.filter((value, key) => value["REF"] === newVal);
 
-                setParam({
-                    CABINET_ID: null,
-                    CABIN_ID: null,
-                    BOX_ID: null
-                });
-            }
-            else if (field === "CABINET_ID") {
-                // if you use filter combo component v2, you can remove this part
-                let column = cmp("CMP_COMBO_CABIN");
-                column.filter((value, key) => value["REF"] === newVal);
-                // end
+                    const floor = cmp("CMP_COMBO_FLOOR");
+                    floor.filter((value, key) => value["REF"] === newVal);
+                    // end
 
-                setParam({
-                    CABIN_ID: null,
-                    BOX_ID: null
-                });
-            }
-            else if (field === "CABIN_ID") {
-                // if you use filter combo component v2, you can remove this part
-                let box = cmp("CMP_COMBO_BOX");
-                box.filter((value, key) => value["REF"] === newVal);
-                // end
+                    setParam({
+                        DOC_CATEGORY: null,
+                        FLOOR_ID: null,
+                        CABINET_ID: null,
+                        CABIN_ID: null,
+                        BOX_ID: null
+                    });
+                    
+                    break;
+                }
+                case "FLOOR_ID": {
+                    // if you use filter combo component v2, you can remove this part
+                    const cabinet = cmp("CMP_COMBO_CABINET");
+                    cabinet.filter((value, key) => value["REF"] === newVal);
+                    // end
 
-                setParam({
-                    BOX_ID: null
-                });
+                    setParam({
+                        CABINET_ID: null,
+                        CABIN_ID: null,
+                        BOX_ID: null
+                    });
+                    
+                    break;
+                }
+                case "CABINET_ID": {
+                    // if you use filter combo component v2, you can remove this part
+                    const column = cmp("CMP_COMBO_CABIN");
+                    column.filter((value, key) => value["REF"] === newVal);
+                    // end
+
+                    setParam({
+                        CABIN_ID: null,
+                        BOX_ID: null
+                    });
+                    
+                    break;
+                }
+                case "CABIN_ID": {
+                    // if you use filter combo component v2, you can remove this part
+                    const box = cmp("CMP_COMBO_BOX");
+                    box.filter((value, key) => value["REF"] === newVal);
+                    // end
+
+                    setParam({
+                        BOX_ID: null
+                    });
+                    
+                    break;
+                }
+                default:
+                    break;
             }
         } catch (error) {
             console.error("onInputed error:", error);

@@ -45,7 +45,10 @@ const logic = {
      * @returns 
      */
     onClickPicker: function ({ dataUtil, row }) {
-        return Common.onNewRowingControl({ dataUtil: dataUtil, cmp: row, query: {} });
+        const dm: DataModel = dataUtil.getDataModel("DM_BASIC_GROUP");
+        const query = dm.getQuery();
+
+        return Common.onNewRowingControl({ dataUtil: dataUtil, cmp: row, query: query });
     },
     /**
      * handle onConfirmPicker event

@@ -14,6 +14,8 @@ const logic = {
         const ctb = som.getTime();
         const cte = eom.getTime();
 
+        query.SITE_NO = null;
+        
         query.CREATE_TIME_B = ctb;
         query.CREATE_TIME_E = cte;
     },
