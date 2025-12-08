@@ -126,7 +126,8 @@
                             "field": "DOCTYPE_NO",
                             "title": "Type No.",
                             "editor": {
-                                "xtype": "TextField"
+                                "xtype": "TextField",
+                                "textCase": "upper"
                             },
                             "must": false,
                             "width": 0.2,

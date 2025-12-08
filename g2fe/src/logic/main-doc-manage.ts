@@ -11,6 +11,7 @@ export const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.servic
 export const _SERVICE_GET_MFPC_DATA = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.getMFPCData";
 
 let _SELECTED_DOC_ID_ROW: string | null = null;
+let _SELECTED_SITE_NO_ROW: string | null = null;
 
 const logic = {
     /**
@@ -319,6 +320,8 @@ const logic = {
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return false;
 
+        _SELECTED_SITE_NO_ROW = row.getData().SITE_NO;
+
         return {
             canOpen: true,
             canEdit: false
@@ -355,6 +358,13 @@ const logic = {
             },
             onNo: async () => { return true; }
         });
+    },
+    onQueryingPicker: async function ({ obj, query }) {
+        if (_SELECTED_SITE_NO_ROW) {
+            obj["SITE_NO"] = _SELECTED_SITE_NO_ROW;
+        }
+
+        return true;
     },
     onConfirmPicker: async function ({ dataUtil, checkedRows }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
