@@ -30,7 +30,7 @@ const logic = {
         const query = dm.getQuery();
 
         if (!checkedRows) {
-            return $$.Alert.show({ type: "warning", text: "No row selected or missing ID.", timeout: 2000 });
+            return $$.Alert.show({ type: "warning", text: "No index row selected", timeout: 2000 });
         }
 
         for (let i = 0; i < checkedRows.length; i++) {
