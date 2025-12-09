@@ -276,7 +276,8 @@
                                             "field": "SSO_ACCT",
                                             "title": "SSO Account",
                                             "editor": {
-                                                "xtype": "TextField"
+                                                "xtype": "TextField",
+                                                "textCase": "upper"
                                             },
                                             "noWhere": false,
                                             "querySort": 1,
