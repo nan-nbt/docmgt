@@ -24,7 +24,7 @@ public class MainDocManageService {
     private static String getComboGroupMasterSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPM", DB_ALIAS);
     private static String getComboGroupDetailSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPD", DB_ALIAS);
 
-    private static String getMFPCDataURL = "https://rsc-pcm-id.pouchen.com/RIAService/API/PCaG/ESB/MFPC/Main/GetPC02";
+    private static String getMFPCServiceSQL = "SELECT BS1.SERVICE_NO, BS1.SERVICE_NAME, BS1.SERVICE_URL FROM BASIC_SERVICE BS1 JOIN BASIC_SITE BS2 ON BS1.SITE_NO = BS2.SITE_NO WHERE BS1.SITE_NO = :SITE_NO AND BS1.ENABLED = :ENABLED AND BS2.ENABLED = :ENABLED";
 
     public static void updateTransInfo(RequestInfo requestInfo, Map<String, Object> args) {
         Map<String, Object> params = new HashMap<>();
@@ -95,13 +95,15 @@ public class MainDocManageService {
     }
 
     public static Map<String, Object> getMFPCData(RequestInfo requestInfo, Map<String, Object> args) {
+        Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "ENABLED", "Y" };
+        Map<String, Object> service = DbUtils.queryFirst(DB_ALIAS, getMFPCServiceSQL, params);
         Map<String, Object> result = new HashMap<>();
         try {
             String uuid = args.get("UUID").toString();
             String requestBody = "[\"" + uuid + "\"]";
             Map<String, String> headers = new HashMap<>();
             headers.put("Content-Type", "application/json");
-            Map<String, String> response = HttpUtils.post(getMFPCDataURL, requestBody, headers, requestInfo, null);
+            Map<String, String> response = HttpUtils.post(service.get("SERVICE_URL").toString(), requestBody, headers, requestInfo, null);
             result.put("data", response);
         } catch (Exception e) {
             result.put("error", e.getMessage());
