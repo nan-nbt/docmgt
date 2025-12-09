@@ -61,16 +61,16 @@
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Status Enabled",
+                    "title": "Enabled",
                     "editor": {
                         "xtype": "Combo",
                         "staticData": [
                             {
-                                "LABEL": "Enabled",
+                                "LABEL": "Y",
                                 "VALUE": "Y"
                             },
                             {
-                                "LABEL": "Disabled",
+                                "LABEL": "N",
                                 "VALUE": "N"
                             }
                         ],
@@ -149,7 +149,7 @@
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Status Enabled",
+                            "title": "Enabled",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -278,7 +278,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -404,7 +404,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -530,7 +530,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
