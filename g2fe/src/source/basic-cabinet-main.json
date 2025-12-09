@@ -41,7 +41,7 @@
                 },
                 {
                     "field": "FLOOR_NO",
-                    "title": "Floor No",
+                    "title": "Floor No.",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -61,16 +61,16 @@
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Status Enabled",
+                    "title": "Enabled",
                     "editor": {
                         "xtype": "Combo",
                         "staticData": [
                             {
-                                "LABEL": "Enabled",
+                                "LABEL": "Y",
                                 "VALUE": "Y"
                             },
                             {
-                                "LABEL": "Disabled",
+                                "LABEL": "N",
                                 "VALUE": "N"
                             }
                         ],
@@ -126,7 +126,7 @@
                         },
                         {
                             "field": "FLOOR_NO",
-                            "title": "Floor No",
+                            "title": "Floor No.",
                             "editor": {
                                 "xtype": "TextField",
                                 "textCase": "upper"
@@ -149,7 +149,7 @@
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Status Enabled",
+                            "title": "Enabled",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -255,7 +255,7 @@
                                 },
                                 {
                                     "field": "CABINET_NO",
-                                    "title": "Cabinet No",
+                                    "title": "Cabinet No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -278,7 +278,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -381,7 +381,7 @@
                                 },
                                 {
                                     "field": "CABIN_NO",
-                                    "title": "Cabin No",
+                                    "title": "Cabin No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -404,7 +404,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -491,7 +491,6 @@
                                     "cancel"
                                 ]
                             },
-                            "rowIndex": true,
                             "checkbox": false,
                             "items": [
                                 {
@@ -507,7 +506,7 @@
                                 },
                                 {
                                     "field": "BOX_NO",
-                                    "title": "Box No",
+                                    "title": "Box No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -530,7 +529,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
