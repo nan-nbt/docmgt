@@ -251,7 +251,7 @@ const logic = {
 
         const { DOC_STATUS_DESC } = row.getData();
         const restrictionRules: Record<string, Record<string, string>> = {
-            "1. CREATED": {
+            "1. CREATE": {
                 RETURN: "Document is created. Return not allowed."
             },
             "2. TRANSFER": {
