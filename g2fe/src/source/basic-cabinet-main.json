@@ -41,7 +41,7 @@
                 },
                 {
                     "field": "FLOOR_NO",
-                    "title": "Floor No",
+                    "title": "Floor No.",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -126,7 +126,7 @@
                         },
                         {
                             "field": "FLOOR_NO",
-                            "title": "Floor No",
+                            "title": "Floor No.",
                             "editor": {
                                 "xtype": "TextField",
                                 "textCase": "upper"
@@ -255,7 +255,7 @@
                                 },
                                 {
                                     "field": "CABINET_NO",
-                                    "title": "Cabinet No",
+                                    "title": "Cabinet No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -381,7 +381,7 @@
                                 },
                                 {
                                     "field": "CABIN_NO",
-                                    "title": "Cabin No",
+                                    "title": "Cabin No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -491,7 +491,6 @@
                                     "cancel"
                                 ]
                             },
-                            "rowIndex": true,
                             "checkbox": false,
                             "items": [
                                 {
@@ -507,7 +506,7 @@
                                 },
                                 {
                                     "field": "BOX_NO",
-                                    "title": "Box No",
+                                    "title": "Box No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"

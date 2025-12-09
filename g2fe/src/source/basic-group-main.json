@@ -40,7 +40,7 @@
                 },
                 {
                     "field": "GROUPM_NO",
-                    "title": "Group No",
+                    "title": "Group No.",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -131,7 +131,7 @@
                         },
                         {
                             "field": "GROUPM_NO",
-                            "title": "Group No",
+                            "title": "Group No.",
                             "editor": {
                                 "xtype": "TextField",
                                 "textCase": "upper"
