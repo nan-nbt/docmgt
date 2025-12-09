@@ -396,7 +396,7 @@ const logic = {
      * @param param0 handle MFPC scanner
      * @returns 
      */
-    onOpen: async function ({ dataUtil, cmp }) {
+    onOpenScanner: async function ({ dataUtil, cmp }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return;
 
@@ -426,7 +426,7 @@ const logic = {
         scanner.setInfo(null);
         scannerField.focus();
     },
-    onClose: async function ({ dataUtil, cmp }) {
+    onCloseScanner: async function ({ dataUtil, cmp }) {
         const row = this.getIndexRow({ dataUtil: dataUtil });
         if (!row) return;
 
@@ -471,15 +471,29 @@ const logic = {
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
         const rows = du.findRows({ DOC_NO: newVal })
+        const site = du.getCurrentRow().getData().SITE_NO;
 
         const scanner = cmp("CMP_MFPC_SCAN");
 
-        if (rows.length > 0) {
-            scanner.setInfo(false, "Scan Failed: data already scanned", { UUID: newVal });
-            return scanner.setValue({ MFPC_UUID: null });            
+        let { response } = { response: null };
+
+        switch (site) {
+            case "5310": {
+                response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, site: site, uuid: newVal });
+
+                break;
+            }
+            default: {
+                scanner.setInfo(false, "MFPC Scanner not support for Site: " + site);
+                return scanner.setValue({ MFPC_UUID: null });
+            }
         }
 
-        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, uuid: newVal });
+        if (rows.length > 0) {
+            scanner.setInfo(false, "Scan Failed: data already scanned", { UUID: newVal });
+            return scanner.setValue({ MFPC_UUID: null });
+        }
+
         const data = response?.result?.data?.body ? JSON.parse(response.result.data.body) : null;
 
         if(!data) {
@@ -501,9 +515,9 @@ const logic = {
         });
 
         scanner.setInfo(true, "Scan Success", { UUID: newVal });
-        setTimeout(() => scanner.close(), 1000);
+        setTimeout(() => scanner.close(), 1000);        
     },
-    getMFPCData: async function ({ dataUtil, serviceUri, uuid }) {
+    getMFPCData: async function ({ dataUtil, serviceUri, uuid, site }) {
         let response;
 
         try {
@@ -513,6 +527,7 @@ const logic = {
                 dataUtil,
                 serviceUri,
                 {
+                    SITE_NO: site,
                     UUID: uuid
                 },
                 "json",
