@@ -347,11 +347,21 @@
                             "sortable": false
                         },
                         {
-                            "field": "EMP_NO",
-                            "title": "Employee No",
+                            "field": "EMP_NAME",
+                            "title": "Local Name",
                             "editor": {
-                                "xtype": "TextField",
-                                "textCase": "upper"
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "EMP_EMAIL",
+                            "title": "Email",
+                            "editor": {
+                                "xtype": "Label"
                             },
                             "must": true,
                             "width": 0.1,
@@ -370,21 +380,10 @@
                             "sortable": false
                         },
                         {
-                            "field": "EMP_NAME",
-                            "title": "Employee Name",
+                            "field": "EMP_NO",
+                            "title": "ID Card",
                             "editor": {
-                                "xtype": "Label"
-                            },
-                            "must": true,
-                            "width": 0.1,
-                            "freeze": false,
-                            "sortable": false
-                        },
-                        {
-                            "field": "EMP_EMAIL",
-                            "title": "Employee Email",
-                            "editor": {
-                                "xtype": "Label"
+                                "xtype": "TextField"
                             },
                             "must": true,
                             "width": 0.1,
