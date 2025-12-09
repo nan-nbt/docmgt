@@ -60,7 +60,7 @@
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Status Enabled",
+                    "title": "Enabled",
                     "editor": {
                         "xtype": "Combo",
                         "textField": "LABEL",
@@ -68,12 +68,12 @@
                         "valueField": "VALUE",
                         "staticData": [
                             {
-                                "VALUE": "Y",
-                                "LABEL": "Enabled"
+                                "LABEL": "Y",
+                                "VALUE": "Y"
                             },
                             {
-                                "VALUE": "N",
-                                "LABEL": "Disabled"
+                                "LABEL": "N",
+                                "VALUE": "N"
                             }
                         ],
                         "supportAll": true
@@ -147,7 +147,7 @@
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Status Enabled",
+                            "title": "Enabled",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
