@@ -494,12 +494,12 @@
                                     "sound": true,
                                     "id": "CMP_MFPC_SCAN",
                                     "onKeyPressEnter": "(args) => { LOGIC.onKeyPressEnter(args); }",
-                                    "onClose": "(args) => { LOGIC.onClose(args); }",
-                                    "onOpen": "(args) => { LOGIC.onOpen(args); }"
+                                    "onClose": "(args) => { LOGIC.onCloseScanner(args); }",
+                                    "onOpen": "(args) => { LOGIC.onOpenScanner(args); }"
                                 },
                                 "_rowIndex": 0,
                                 "icon": "scan",
-                                "text": "MFPC Scan",
+                                "text": "MFPC Scanner",
                                 "onClick": "(args) => { return true; }",
                                 "picker": "scan",
                                 "_rowstatus": "",
