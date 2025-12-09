@@ -475,26 +475,13 @@ const logic = {
 
         const scanner = cmp("CMP_MFPC_SCAN");
 
-        let { response } = { response: null };
-
-        switch (site) {
-            case "5310": {
-                response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, site: site, uuid: newVal });
-
-                break;
-            }
-            default: {
-                scanner.setInfo(false, "MFPC Scanner not support for Site: " + site);
-                return scanner.setValue({ MFPC_UUID: null });
-            }
-        }
+        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, site: site, uuid: newVal });
+        const data = response?.result?.data?.body ? JSON.parse(response.result.data.body) : null;
 
         if (rows.length > 0) {
             scanner.setInfo(false, "Scan Failed: data already scanned", { UUID: newVal });
             return scanner.setValue({ MFPC_UUID: null });
         }
-
-        const data = response?.result?.data?.body ? JSON.parse(response.result.data.body) : null;
 
         if(!data) {
             scanner.setInfo(false, "Scan Failed: data not found", { UUID: newVal });
