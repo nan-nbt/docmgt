@@ -426,7 +426,7 @@
                         },
                         {
                             "field": "MFPC_SSO",
-                            "title": "SSO",
+                            "title": "SSO Account",
                             "editor": {
                                 "xtype": "Label"
                             },
