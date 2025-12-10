@@ -470,39 +470,46 @@ const logic = {
     onKeyPressEnter: async function ({ dataUtil, cmp, field, newVal }) {
         const dm: DataModel = dataUtil.getDataModel("DM_DOC_MANAGE");
         const du: DataUnit = dm.getUnit("DU_DOC_MANAGE");
-        const rows = du.findRows({ DOC_NO: newVal })
         const site = du.getCurrentRow().getData().SITE_NO;
+        const rows = du.findRows({ SITE_NO: site, DOC_NO: newVal })
 
         const scanner = cmp("CMP_MFPC_SCAN");
 
         const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, site: site, uuid: newVal });
-        const data = response?.result?.data?.body ? JSON.parse(response.result.data.body) : null;
+        const result = response?.result ? response.result : null;
+        const data = result?.data ? result.data : null;
 
         if (rows.length > 0) {
-            scanner.setInfo(false, "Scan Failed: data already scanned", { UUID: newVal });
-            return scanner.setValue({ MFPC_UUID: null });
+            scanner.setInfo(false, "FAIL", { UUID: newVal, MESSAGE: "Data already scanned" });
+            scanner.setValue({ MFPC_UUID: null });
+            return;
         }
 
-        if(!data) {
-            scanner.setInfo(false, "Scan Failed: data not found", { UUID: newVal });
-            return scanner.setValue({ MFPC_UUID: null });
+        switch (result.code) {
+            case 200:
+                scanner.setValue({
+                    MFPC_ID: data.MFPC_ID,
+                    MFPC_DOC_NO: data.MFPC_DOC_NO,
+                    MFPC_DOC_NAME: data.MFPC_DOC_NAME,
+                    MFPC_USERNAME: data.MFPC_USERNAME,
+                    MFPC_SSO: data.MFPC_SSO,
+                    MFPC_CARD_ID: data.MFPC_CARD_ID,
+                    MFPC_MACHINE_NAME: data.MFPC_MACHINE_NAME,
+                    MFPC_PRINTER_NAME: data.MFPC_PRINTER_NAME,
+                    MFPC_PRINT_TIME: data.MFPC_PRINT_TIME,
+                    MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
+                });
+
+                scanner.setInfo(true, "SUCCESS", { UUID: newVal, CODE: result.code, STATUS: result.status });
+                scanner.setValue({ MFPC_UUID: null });
+                setTimeout(() => scanner.close(), 1000);
+                break;
+        
+            default:
+                scanner.setInfo(false, "FAIL", { UUID: newVal, CODE: result.code, STATUS: result.status, MESSAGE: result.message });
+                scanner.setValue({ MFPC_UUID: null });
+                break;
         }
-
-        scanner.setValue({
-            MFPC_ID: data.MFPC_ID,
-            MFPC_DOC_NO: data.MFPC_DOC_NO,
-            MFPC_DOC_NAME: data.MFPC_DOC_NAME,
-            MFPC_USERNAME: data.MFPC_USERNAME,
-            MFPC_SSO: data.MFPC_SSO,
-            MFPC_CARD_ID: data.MFPC_CARD_ID,
-            MFPC_MACHINE_NAME: data.MFPC_MACHINE_NAME,
-            MFPC_PRINTER_NAME: data.MFPC_PRINTER_NAME,
-            MFPC_PRINT_TIME: data.MFPC_PRINT_TIME,
-            MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
-        });
-
-        scanner.setInfo(true, "Scan Success", { UUID: newVal });
-        setTimeout(() => scanner.close(), 1000);        
     },
     getMFPCData: async function ({ dataUtil, serviceUri, uuid, site }) {
         let response;
