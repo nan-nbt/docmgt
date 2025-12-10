@@ -9,6 +9,7 @@ import com.pouchen.module.data.RequestInfo;
 import com.pouchen.module.dataaccess.DbUtils;
 import com.pouchen.module.meta.MetaFactory;
 import com.pouchen.module.util.HttpUtils;
+import com.pouchen.module.util.JsonUtils;
 
 public class MainDocManageService {
     private MainDocManageService() {
@@ -24,7 +25,7 @@ public class MainDocManageService {
     private static String getComboGroupMasterSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPM", DB_ALIAS);
     private static String getComboGroupDetailSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPD", DB_ALIAS);
 
-    private static String getMFPCDataURL = "https://rsc-pcm-id.pouchen.com/RIAService/API/PCaG/ESB/MFPC/Main/GetPC02";
+    private static String getMFPCServiceSQL = "SELECT BS1.SERVICE_NO, BS1.SERVICE_NAME, BS1.BASE_URL, BS1.ENDPOINT, BS1.METHOD FROM BASIC_SERVICE BS1 JOIN BASIC_SITE BS2 ON BS1.SITE_NO = BS2.SITE_NO WHERE BS1.SITE_NO = :SITE_NO AND BS1.ENABLED = :ENABLED AND BS2.ENABLED = :ENABLED";
 
     public static void updateTransInfo(RequestInfo requestInfo, Map<String, Object> args) {
         Map<String, Object> params = new HashMap<>();
@@ -95,17 +96,55 @@ public class MainDocManageService {
     }
 
     public static Map<String, Object> getMFPCData(RequestInfo requestInfo, Map<String, Object> args) {
-        Map<String, Object> result = new HashMap<>();
+        Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "ENABLED", "Y" };
+        Map<String, Object> service = DbUtils.queryFirst(DB_ALIAS, getMFPCServiceSQL, params);
+
+        if (service == null || service.isEmpty()) {
+            return resultError(400, "BAD_REQUEST", "MFPC Service not found.");
+        }
+
         try {
             String uuid = args.get("UUID").toString();
             String requestBody = "[\"" + uuid + "\"]";
+
             Map<String, String> headers = new HashMap<>();
             headers.put("Content-Type", "application/json");
-            Map<String, String> response = HttpUtils.post(getMFPCDataURL, requestBody, headers, requestInfo, null);
-            result.put("data", response);
+
+            String serviceUrl = service.get("BASE_URL").toString() + service.get("ENDPOINT").toString();
+
+            Map<String, String> response = HttpUtils.post(serviceUrl, requestBody, headers, requestInfo, null);
+
+            String body = response.get("body");
+            if (body == null || body.trim().isEmpty()) {
+                return resultError(404, "NOT_FOUND", "Empty response body.");
+            }
+
+            @SuppressWarnings("unchecked")
+            Map<String, Object> data = JsonUtils.deserialize(body, Map.class);
+
+            if (data == null || data.isEmpty()) {
+                return resultError(404, "NOT_FOUND", "Data not found.");
+            }
+
+            return resutlSuccess(200, "OK", data);
         } catch (Exception e) {
-            result.put("error", e.getMessage());
+            return resultError(500, "INTERNAL_SERVER_ERROR", e.getMessage());
         }
+    }
+
+    private static Map<String, Object> resutlSuccess (int code, String status, Object data) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", code);
+        result.put("status", status);
+        result.put("data", data);
+        return result;
+    }
+
+    private static Map<String, Object> resultError (int code, String status, String message) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("code", code);
+        result.put("status", status);
+        result.put("message", message);
         return result;
     }
 }
