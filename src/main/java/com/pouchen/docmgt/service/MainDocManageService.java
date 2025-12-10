@@ -126,16 +126,17 @@ public class MainDocManageService {
                 return resultError(404, "NOT_FOUND", "Data not found.");
             }
 
-            return resutlSuccess(200, "OK", data);
+            return resutlSuccess(200, "OK", "Data found.", data);
         } catch (Exception e) {
             return resultError(500, "INTERNAL_SERVER_ERROR", e.getMessage());
         }
     }
 
-    private static Map<String, Object> resutlSuccess (int code, String status, Object data) {
+    private static Map<String, Object> resutlSuccess (int code, String status, String message, Object data) {
         Map<String, Object> result = new HashMap<>();
         result.put("code", code);
         result.put("status", status);
+        result.put("message", message);
         result.put("data", data);
         return result;
     }
