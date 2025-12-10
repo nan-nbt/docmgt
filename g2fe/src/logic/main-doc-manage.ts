@@ -480,7 +480,7 @@ const logic = {
         const data = result?.data ? result.data : null;
 
         if (rows.length > 0) {
-            scanner.setInfo(false, "FAIL", { UUID: newVal, MESSAGE: "Data already scanned" });
+            scanner.setInfo(false, "FAIL", { SITE: site, UUID: newVal, MESSAGE: "Data already scanned." });
             scanner.setValue({ MFPC_UUID: null });
             return;
         }
@@ -500,13 +500,13 @@ const logic = {
                     MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
                 });
 
-                scanner.setInfo(true, "SUCCESS", { UUID: newVal, CODE: result.code, STATUS: result.status });
+                scanner.setInfo(true, "SUCCESS", { SITE: site, UUID: newVal, MESSAGE: result.message });
                 scanner.setValue({ MFPC_UUID: null });
                 setTimeout(() => scanner.close(), 1000);
                 break;
         
             default:
-                scanner.setInfo(false, "FAIL", { UUID: newVal, CODE: result.code, STATUS: result.status, MESSAGE: result.message });
+                scanner.setInfo(false, "FAIL", { SITE: site, UUID: newVal, MESSAGE: result.message });
                 scanner.setValue({ MFPC_UUID: null });
                 break;
         }
