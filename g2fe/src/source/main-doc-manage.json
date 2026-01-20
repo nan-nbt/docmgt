@@ -17,8 +17,28 @@
                 "accNo": "_AP_CONN",
                 "modelName": "DM_DOC_MANAGE"
             },
-            "listeners": {},
+            "listeners": {
+                "onInputed": "(args) => { LOGIC.onInputedQuery(args); }",
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
             "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
                 {
                     "field": "DOC_NO",
                     "title": "Document No.",
@@ -30,10 +50,11 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "DOC_NAME",
+                    "field": "DOC_NAME_UPPER",
                     "title": "Document Name",
                     "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"
@@ -43,6 +64,7 @@
                     "title": "Type",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_DOCTYPE",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -56,10 +78,29 @@
                     "opt": "="
                 },
                 {
+                    "field": "DOC_CAT_DESC",
+                    "title": "Category",
+                    "editor": {
+                        "xtype": "Combo",
+                        "id": "CMP_COMBO_CATEGORY",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_DOC_CATEGORY",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
                     "field": "DOC_STATUS_DESC",
                     "title": "Status",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_STATUS",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -71,9 +112,30 @@
                     },
                     "noWhere": false,
                     "opt": "="
+                },
+                {
+                    "field": "CREATE_TIME_B",
+                    "title": "Create Time Begin",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date-localtime",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": false,
+                    "opt": ">="
+                },
+                {
+                    "field": "CREATE_TIME_E",
+                    "title": "Create Time End",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date-localtime",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": false,
+                    "opt": "<="
                 }
-            ],
-            "version": 2
+            ]
         },
         "detail": {
             "Detail": [
@@ -114,7 +176,8 @@
                             "title": "History Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -192,7 +255,8 @@
                             "title": "Transfer Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -204,7 +268,8 @@
                             "title": "Return Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -216,7 +281,8 @@
                             "title": "Destroy Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -251,13 +317,24 @@
                     "checkbox": false,
                     "items": [
                         {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.2,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "DOC_NO",
                             "title": "Document No.",
                             "editor": {
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.5,
+                            "width": 0.4,
                             "freeze": false,
                             "sortable": false
                         },
@@ -268,7 +345,7 @@
                                 "xtype": "Label"
                             },
                             "must": false,
-                            "width": 0.5,
+                            "width": 0.4,
                             "freeze": false,
                             "sortable": false
                         }
@@ -291,24 +368,37 @@
                                         "title": "Query Picker PIC",
                                         "width": 50,
                                         "single": true,
-                                        "autoQuery": true,
+                                        "autoQuery": false,
                                         "accNo": "_AP_CONN",
                                         "source": "[SQL] V_QP_PIC",
                                         "sqlNo": "V_QP_PIC",
                                         "pager": true,
                                         "pageSize": 20,
                                         "lazyload": false,
-                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }"
+                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }",
+                                        "onQuerying": "(args) => { return LOGIC.onQueryingPicker(args); }"
                                     },
                                     "columns": [
                                         {
-                                            "field": "GROUPM_NAME_EN",
+                                            "field": "SITE_NO",
+                                            "title": "Index Site (Auto)",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "placeholder": null
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 1,
+                                            "opt": "=",
+                                            "tableSort": null
+                                        },
+                                        {
+                                            "field": "GROUPM_NAME",
                                             "title": "PIC Group",
                                             "editor": {
                                                 "xtype": "TextField"
                                             },
                                             "noWhere": false,
-                                            "querySort": 1,
+                                            "querySort": 2,
                                             "opt": "%%",
                                             "tableSort": 1
                                         },
@@ -316,11 +406,10 @@
                                             "field": "EMP_NAME",
                                             "title": "PIC User",
                                             "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
+                                                "xtype": "TextField"
                                             },
                                             "noWhere": false,
-                                            "querySort": 2,
+                                            "querySort": 3,
                                             "opt": "%%",
                                             "tableSort": 2
                                         },
@@ -381,7 +470,43 @@
                             "save",
                             "cancel"
                         ],
-                        "others": []
+                        "others": [
+                            {
+                                "showBtn": 1,
+                                "hasPopupWin": 4,
+                                "popupWinCfg": {
+                                    "xtype": "ScanPicker",
+                                    "multiple": false,
+                                    "type": "",
+                                    "size": null,
+                                    "url": "",
+                                    "check": "N",
+                                    "items": [
+                                        {
+                                            "field": "MFPC_UUID",
+                                            "title": "MFPC UUID",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "id": "CMP_MFPC_UUID"
+                                            }
+                                        }
+                                    ],
+                                    "sound": true,
+                                    "id": "CMP_MFPC_SCAN",
+                                    "onKeyPressEnter": "(args) => { LOGIC.onKeyPressEnter(args); }",
+                                    "onClose": "(args) => { LOGIC.onCloseScanner(args); }",
+                                    "onOpen": "(args) => { LOGIC.onOpenScanner(args); }"
+                                },
+                                "_rowIndex": 0,
+                                "icon": "scan",
+                                "text": "MFPC Scanner",
+                                "onClick": "(args) => { return true; }",
+                                "picker": "scan",
+                                "_rowstatus": "",
+                                "limitNo": "MFPC_SCAN",
+                                "type": null
+                            }
+                        ]
                     },
                     "items": [
                         {
@@ -395,7 +520,7 @@
                                         "textCase": "upper"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "colspan": 12
                                 },
                                 {
                                     "field": "DOC_NAME",
@@ -418,9 +543,22 @@
                                             "accNo": "_AP_CONN",
                                             "sqlNo": "V_COMBO_BASIC_DOCTYPE",
                                             "opType": 2
-                                        }
+                                        },
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterGroupm(args); }"
                                     },
                                     "must": true,
+                                    "colspan": 3,
+                                    "dependencies": [
+                                        "SITE_NO"
+                                    ]
+                                },
+                                {
+                                    "field": "DOC_CAT_DESC",
+                                    "title": "Category",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
                                     "colspan": 3
                                 },
                                 {
@@ -437,6 +575,7 @@
                                     "title": "Owner Group",
                                     "editor": {
                                         "xtype": "Combo",
+                                        "id": "CMP_COMBO_GROUPM",
                                         "textField": "LABEL",
                                         "manual": false,
                                         "valueField": "VALUE",
@@ -445,10 +584,13 @@
                                             "sqlNo": "V_COMBO_BASIC_GROUPM",
                                             "opType": 2
                                         },
-                                        "id": "CMP_COMBO_GROUPM"
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterGroupm(args); }"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "colspan": 3,
+                                    "dependencies": [
+                                        "SITE_NO"
+                                    ]
                                 },
                                 {
                                     "field": "GROUPD_ID",
@@ -503,10 +645,14 @@
                                             "sqlNo": "V_COMBO_BASIC_FLOOR",
                                             "opType": 2
                                         },
-                                        "id": "CMP_COMBO_FLOOR"
+                                        "id": "CMP_COMBO_FLOOR",
+                                        "onFilter": "(noAsyncArgs) => { return LOGIC.onFilterFloor(args); }"
                                     },
                                     "must": true,
-                                    "colspan": 3
+                                    "colspan": 3,
+                                    "dependencies": [
+                                        "SITE_NO"
+                                    ]
                                 },
                                 {
                                     "field": "CABINET_ID",
@@ -577,6 +723,85 @@
                             ]
                         },
                         {
+                            "title": "MFPC Content",
+                            "items": [
+                                {
+                                    "field": "MFPC_ID",
+                                    "title": "MFPC ID",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_USERNAME",
+                                    "title": "Username",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_SSO",
+                                    "title": "SSO Account",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_CARD_ID",
+                                    "title": "ID Card",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_MACHINE_NAME",
+                                    "title": "Machine Name",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_PRINTER_NAME",
+                                    "title": "Printer Name",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_PRINT_TIME",
+                                    "title": "Print Time",
+                                    "editor": {
+                                        "xtype": "Label",
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                },
+                                {
+                                    "field": "MFPC_COUNT_PAGE",
+                                    "title": "Count Page",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": false,
+                                    "colspan": 3
+                                }
+                            ]
+                        },
+                        {
                             "title": "User & Timestamp",
                             "items": [
                                 {
@@ -593,7 +818,8 @@
                                     "title": "Create Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "colspan": 3
@@ -612,7 +838,8 @@
                                     "title": "Modify Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "colspan": 3
@@ -621,9 +848,10 @@
                         }
                     ],
                     "listeners": {
-                        "onInputed": "(args) => { LOGIC.onInputed(args); }",
-                        "onEndEdit": "(args) => { LOGIC.onEndEdit(args); }",
-                        "onAccepting": "(args) => { return LOGIC.onAccepting(args); }"
+                        "onInputed": "(args) => { LOGIC.onInputedForm(args); }",
+                        "onAccepting": "(args) => { return LOGIC.onAccepting(args); }",
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }"
                     },
                     "title": "Main Information",
                     "nextDetail": "Detail"
@@ -635,7 +863,9 @@
         "programmodel": "DM_DOC_MANAGE",
         "programaccno": "_AP_CONN",
         "listeners": {
-            "onDataLoaded": "(args) => { LOGIC.onDataLoaded(args); }"
+            "onDataLoaded": "(args) => { LOGIC.onDataLoaded(args); }",
+            "onCreated": "(args) => { LOGIC.onCreated(args); }",
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
         },
         "logicPath": "logic/main-doc-manage"
     },
