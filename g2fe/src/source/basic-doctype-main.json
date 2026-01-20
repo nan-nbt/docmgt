@@ -11,14 +11,33 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
                 "modelName": "DM_BASIC_DOCTYPE"
             },
-            "listeners": {},
+            "listeners": {
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
             "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
                 {
                     "field": "DOCTYPE_NO",
                     "title": "Type No.",
@@ -30,17 +49,18 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "DOCTYPE_NAME",
+                    "field": "DOCTYPE_NAME_UPPER",
                     "title": "Type Name",
                     "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Status Enabled",
+                    "title": "Enabled",
                     "editor": {
                         "xtype": "Combo",
                         "textField": "LABEL",
@@ -48,12 +68,12 @@
                         "valueField": "VALUE",
                         "staticData": [
                             {
-                                "VALUE": "Y",
-                                "LABEL": "Enabled"
+                                "LABEL": "Y",
+                                "VALUE": "Y"
                             },
                             {
-                                "VALUE": "N",
-                                "LABEL": "Disabled"
+                                "LABEL": "N",
+                                "VALUE": "N"
                             }
                         ],
                         "supportAll": true
@@ -61,8 +81,7 @@
                     "noWhere": false,
                     "opt": "="
                 }
-            ],
-            "version": 2
+            ]
         },
         "detail": {},
         "main": {
@@ -93,10 +112,22 @@
                     "checkbox": false,
                     "items": [
                         {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "DOCTYPE_NO",
                             "title": "Type No.",
                             "editor": {
-                                "xtype": "TextField"
+                                "xtype": "TextField",
+                                "textCase": "upper"
                             },
                             "must": false,
                             "width": 0.2,
@@ -110,13 +141,13 @@
                                 "xtype": "TextField"
                             },
                             "must": false,
-                            "width": 0.3,
+                            "width": 0.2,
                             "freeze": false,
                             "sortable": false
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Status Enabled",
+                            "title": "Enabled",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -143,7 +174,8 @@
                             "title": "Create Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -166,7 +198,8 @@
                             "title": "Update Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -175,7 +208,11 @@
                         }
                     ],
                     "expandItems": [],
-                    "listeners": {},
+                    "listeners": {
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }",
+                        "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                    },
                     "title": "Main Information",
                     "version": 2
                 }
@@ -185,7 +222,10 @@
     "programsetting": {
         "programmodel": "DM_BASIC_DOCTYPE",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
+        },
+        "logicPath": "logic/basic-doctype-main"
     },
     "requires": [
         "DataProvider",

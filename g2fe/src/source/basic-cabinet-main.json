@@ -11,17 +11,37 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
                 "modelName": "DM_BASIC_CABINET"
             },
-            "listeners": {},
+            "listeners": {
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
             "items": [
                 {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        },
+                        "id": null
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
                     "field": "FLOOR_NO",
-                    "title": "Floor No",
+                    "title": "Floor No.",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -30,26 +50,27 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "FLOOR_NAME",
+                    "field": "FLOOR_NAME_UPPER",
                     "title": "Floor Name",
                     "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Status Enabled",
+                    "title": "Enabled",
                     "editor": {
                         "xtype": "Combo",
                         "staticData": [
                             {
-                                "LABEL": "Enabled",
+                                "LABEL": "Y",
                                 "VALUE": "Y"
                             },
                             {
-                                "LABEL": "Disabled",
+                                "LABEL": "N",
                                 "VALUE": "N"
                             }
                         ],
@@ -61,8 +82,7 @@
                     "noWhere": false,
                     "opt": "="
                 }
-            ],
-            "version": 2
+            ]
         },
         "detail": {},
         "main": {
@@ -94,8 +114,19 @@
                     "checkbox": false,
                     "items": [
                         {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "FLOOR_NO",
-                            "title": "Floor No",
+                            "title": "Floor No.",
                             "editor": {
                                 "xtype": "TextField",
                                 "textCase": "upper"
@@ -112,13 +143,13 @@
                                 "xtype": "TextField"
                             },
                             "must": true,
-                            "width": 0.3,
+                            "width": 0.2,
                             "freeze": false,
                             "sortable": false
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Status Enabled",
+                            "title": "Enabled",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -145,7 +176,8 @@
                             "title": "Create Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -168,7 +200,8 @@
                             "title": "Update Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -177,7 +210,11 @@
                         }
                     ],
                     "expandItems": [],
-                    "listeners": {},
+                    "listeners": {
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowedFloor(args); }",
+                        "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                    },
                     "title": "Floor Information",
                     "version": 2
                 },
@@ -206,8 +243,19 @@
                             "checkbox": false,
                             "items": [
                                 {
+                                    "field": "SITE_NO",
+                                    "title": "Site",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
                                     "field": "CABINET_NO",
-                                    "title": "Cabinet No",
+                                    "title": "Cabinet No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -224,13 +272,13 @@
                                         "xtype": "TextField"
                                     },
                                     "must": true,
-                                    "width": 0.3,
+                                    "width": 0.2,
                                     "freeze": false,
                                     "sortable": false
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -257,7 +305,8 @@
                                     "title": "Create Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -280,7 +329,8 @@
                                     "title": "Update Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -289,7 +339,11 @@
                                 }
                             ],
                             "expandItems": [],
-                            "listeners": {},
+                            "listeners": {
+                                "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedCabinet(args); }",
+                                "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                            },
                             "title": "Cabinet Information",
                             "version": 2
                         },
@@ -315,8 +369,19 @@
                             "checkbox": false,
                             "items": [
                                 {
+                                    "field": "SITE_NO",
+                                    "title": "Site",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
                                     "field": "CABIN_NO",
-                                    "title": "Cabin No",
+                                    "title": "Cabin No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -333,13 +398,13 @@
                                         "xtype": "TextField"
                                     },
                                     "must": true,
-                                    "width": 0.3,
+                                    "width": 0.2,
                                     "freeze": false,
                                     "sortable": false
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -366,7 +431,8 @@
                                     "title": "Create Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -389,7 +455,8 @@
                                     "title": "Update Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -398,7 +465,11 @@
                                 }
                             ],
                             "expandItems": [],
-                            "listeners": {},
+                            "listeners": {
+                                "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedCabin(args); }",
+                                "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                            },
                             "title": "Cabin Information",
                             "version": 2
                         },
@@ -420,12 +491,22 @@
                                     "cancel"
                                 ]
                             },
-                            "rowIndex": true,
                             "checkbox": false,
                             "items": [
                                 {
+                                    "field": "SITE_NO",
+                                    "title": "Site",
+                                    "editor": {
+                                        "xtype": "Label"
+                                    },
+                                    "must": true,
+                                    "width": 0.1,
+                                    "freeze": false,
+                                    "sortable": false
+                                },
+                                {
                                     "field": "BOX_NO",
-                                    "title": "Box No",
+                                    "title": "Box No.",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -442,13 +523,13 @@
                                         "xtype": "TextField"
                                     },
                                     "must": true,
-                                    "width": 0.3,
+                                    "width": 0.2,
                                     "freeze": false,
                                     "sortable": false
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Status Enabled",
+                                    "title": "Enabled",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -475,7 +556,8 @@
                                     "title": "Create Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -498,7 +580,8 @@
                                     "title": "Update Time",
                                     "editor": {
                                         "xtype": "Label",
-                                        "dataType": "Date"
+                                        "dataType": "Date",
+                                        "pattern": "yyyy/MM/dd HH:mm:ss"
                                     },
                                     "must": false,
                                     "width": 0.1,
@@ -507,7 +590,11 @@
                                 }
                             ],
                             "expandItems": [],
-                            "listeners": {},
+                            "listeners": {
+                                "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                                "onNewRowed": "(args) => { LOGIC.onNewRowedBox(args); }",
+                                "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                            },
                             "title": "Box Information",
                             "version": 2,
                             "rowNumbers": true
@@ -520,7 +607,10 @@
     "programsetting": {
         "programmodel": "DM_BASIC_CABINET",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
+        },
+        "logicPath": "logic/basic-cabinet-main"
     },
     "requires": [
         "DataProvider",

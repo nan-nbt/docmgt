@@ -11,14 +11,35 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
                 "modelName": "DM_DOC_MANAGE"
             },
-            "listeners": {},
+            "listeners": {
+                "onInputed": "(args) => { LOGIC.onInputed(args); }",
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
             "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        },
+                        "id": "CMP_COMBO_SITEMAP"
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
                 {
                     "field": "DOC_NO",
                     "title": "Document No.",
@@ -30,10 +51,11 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "DOC_NAME",
+                    "field": "DOC_NAME_UPPER",
                     "title": "Document Name",
                     "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"
@@ -43,6 +65,7 @@
                     "title": "Type",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_DOCTYPE",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -56,10 +79,29 @@
                     "opt": "="
                 },
                 {
+                    "field": "DOC_CAT_DESC",
+                    "title": "Category",
+                    "editor": {
+                        "xtype": "Combo",
+                        "id": "CMP_COMBO_CATEGORY",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "LABEL",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_DOC_CATEGORY",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
                     "field": "DOC_STATUS_DESC",
                     "title": "Status",
                     "editor": {
                         "xtype": "Combo",
+                        "id": "CMP_COMBO_STATUS",
                         "textField": "LABEL",
                         "manual": false,
                         "valueField": "LABEL",
@@ -71,9 +113,30 @@
                     },
                     "noWhere": false,
                     "opt": "="
+                },
+                {
+                    "field": "CREATE_TIME_B",
+                    "title": "Create Time Begin",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date-localtime",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": false,
+                    "opt": ">="
+                },
+                {
+                    "field": "CREATE_TIME_E",
+                    "title": "Create Time End",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date-localtime",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": false,
+                    "opt": "<="
                 }
-            ],
-            "version": 2
+            ]
         },
         "detail": {},
         "main": {
@@ -89,7 +152,8 @@
                         "modelName": "DM_DOC_MANAGE",
                         "unitName": "DU_DOC_MANAGE",
                         "pager": true,
-                        "pageSize": 10
+                        "pageSize": 10,
+                        "paginationSupportAll": false
                     },
                     "toolbar": false,
                     "rowNumbers": true,
@@ -104,7 +168,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": true,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "DOC_NAME",
@@ -115,7 +179,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": true,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "DOC_TYPE_DESC",
@@ -126,7 +190,18 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": true,
-                            "sortable": false
+                            "sortable": true
+                        },
+                        {
+                            "field": "DOC_CAT_DESC",
+                            "title": "Category",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": true
                         },
                         {
                             "field": "DOC_STATUS_DESC",
@@ -137,43 +212,46 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": true,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "TRANS_TIME",
                             "title": "Transfer Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "RETURN_TIME",
                             "title": "Return Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "DESTROY_TIME",
                             "title": "Destroy Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "OWNER_GROUP",
@@ -184,7 +262,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "OWNER_NAME",
@@ -195,7 +273,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "BO_GROUP",
@@ -206,7 +284,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "BO_NAME",
@@ -217,7 +295,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "FLOOR_NAME",
@@ -228,7 +306,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "CABINET_NAME",
@@ -239,7 +317,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "CABIN_NAME",
@@ -250,7 +328,7 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "BOX_NAME",
@@ -261,7 +339,97 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
+                        },
+                        {
+                            "field": "MFPC_ID",
+                            "title": "MFPC ID",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
+                        },
+                        {
+                            "field": "MFPC_USERNAME",
+                            "title": "Username",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
+                        },
+                        {
+                            "field": "MFPC_SSO",
+                            "title": "SSO Account",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
+                        },
+                        {
+                            "field": "MFPC_CARD_ID",
+                            "title": "ID Card",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
+                        },
+                        {
+                            "field": "MFPC_MACHINE_NAME",
+                            "title": "Machine Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
+                        },
+                        {
+                            "field": "MFPC_PRINTER_NAME",
+                            "title": "Printer Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
+                        },
+                        {
+                            "field": "MFPC_PRINT_TIME",
+                            "title": "Print Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
+                        },
+                        {
+                            "field": "MFPC_COUNT_PAGE",
+                            "title": "Count Page",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
                         },
                         {
                             "field": "CREATE_USER_NM",
@@ -272,19 +440,20 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "CREATE_TIME",
                             "title": "Create Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "UPDATE_USER_NM",
@@ -295,19 +464,31 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
                         },
                         {
                             "field": "UPDATE_TIME",
                             "title": "Update Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": false
+                            "sortable": true
+                        },
+                        {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": true
                         }
                     ],
                     "expandItems": [],
@@ -321,7 +502,10 @@
     "programsetting": {
         "programmodel": "DM_DOC_MANAGE",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {
+            "onCreated": "(args) => { LOGIC.onCreated(args); }"
+        },
+        "logicPath": "logic/main-doc-query"
     },
     "requires": [
         "DataProvider",

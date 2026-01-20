@@ -11,17 +11,36 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
                 "modelName": "DM_BASIC_GROUP"
             },
-            "listeners": {},
+            "listeners": {
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
             "items": [
                 {
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
                     "field": "GROUPM_NO",
-                    "title": "Group No",
+                    "title": "Group No.",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -30,36 +49,28 @@
                     "opt": "%%"
                 },
                 {
-                    "field": "GROUPM_NAME",
+                    "field": "GROUPM_NAME_UPPER",
                     "title": "Group Name",
                     "editor": {
-                        "xtype": "TextField"
-                    },
-                    "noWhere": false,
-                    "opt": "%%"
-                },
-                {
-                    "field": "GROUP_NAME_EN",
-                    "title": "Group Name (EN)",
-                    "editor": {
-                        "xtype": "TextField"
+                        "xtype": "TextField",
+                        "textCase": "upper"
                     },
                     "noWhere": false,
                     "opt": "%%"
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Status Enabled",
+                    "title": "Enabled",
                     "editor": {
                         "xtype": "Combo",
                         "staticData": [
                             {
-                                "VALUE": "Y",
-                                "LABEL": "Enabled"
+                                "LABEL": "Y",
+                                "VALUE": "Y"
                             },
                             {
-                                "VALUE": "N",
-                                "LABEL": "Disabled"
+                                "LABEL": "N",
+                                "VALUE": "N"
                             }
                         ],
                         "textField": "LABEL",
@@ -70,8 +81,7 @@
                     "noWhere": false,
                     "opt": "="
                 }
-            ],
-            "version": 2
+            ]
         },
         "detail": {},
         "main": {
@@ -109,15 +119,26 @@
                     "checkbox": false,
                     "items": [
                         {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "GROUPM_NO",
-                            "title": "Group No",
+                            "title": "Group No.",
                             "editor": {
                                 "xtype": "TextField",
                                 "textCase": "upper"
                             },
                             "ident": null,
                             "must": true,
-                            "width": 0.1,
+                            "width": 0.2,
                             "freeze": false,
                             "sortable": false
                         },
@@ -133,19 +154,8 @@
                             "sortable": false
                         },
                         {
-                            "field": "GROUPM_NAME_EN",
-                            "title": "Group Name (EN)",
-                            "editor": {
-                                "xtype": "TextField"
-                            },
-                            "must": false,
-                            "width": 0.2,
-                            "freeze": false,
-                            "sortable": false
-                        },
-                        {
                             "field": "ENABLED",
-                            "title": "Status Enabled",
+                            "title": "Enabled",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -172,7 +182,8 @@
                             "title": "Create Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -195,7 +206,8 @@
                             "title": "Update Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -204,7 +216,11 @@
                         }
                     ],
                     "expandItems": [],
-                    "listeners": {},
+                    "listeners": {
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }",
+                        "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                    },
                     "title": "Master Group Information",
                     "singleCheck": false,
                     "version": 2
@@ -232,6 +248,7 @@
                         ],
                         "others": [
                             {
+                                "showBtn": 2,
                                 "onUploading": "(args) => { return true; }",
                                 "onUploaded": "",
                                 "hasPopupWin": 1,
@@ -251,20 +268,46 @@
                                             100
                                         ],
                                         "pager": true,
-                                        "lazyload": false
+                                        "lazyload": false,
+                                        "onConfirm": "(args) => { LOGIC.onConfirmPicker(args); }"
                                     },
                                     "columns": [
                                         {
-                                            "field": "FACT_NO",
-                                            "title": "FACT_NO",
+                                            "field": "SSO_ACCT",
+                                            "title": "SSO Account",
                                             "editor": {
                                                 "xtype": "TextField",
                                                 "textCase": "upper"
                                             },
                                             "noWhere": false,
                                             "querySort": 1,
-                                            "opt": "=",
+                                            "opt": "%%",
                                             "tableSort": 1
+                                        },
+                                        {
+                                            "field": "LOCAL_PNL_NM",
+                                            "title": "Local Name",
+                                            "editor": {
+                                                "xtype": "TextField",
+                                                "textCase": "upper"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 2,
+                                            "opt": "%%",
+                                            "tableSort": 2,
+                                            "cover": "EMP_NAME"
+                                        },
+                                        {
+                                            "field": "CONTACT_MAIL",
+                                            "title": "Contact Mail",
+                                            "editor": {
+                                                "xtype": "TextField"
+                                            },
+                                            "noWhere": false,
+                                            "querySort": 3,
+                                            "opt": "%%",
+                                            "tableSort": 3,
+                                            "cover": "EMP_EMAIL"
                                         },
                                         {
                                             "field": "PCCUID",
@@ -275,65 +318,16 @@
                                             "noWhere": false,
                                             "querySort": null,
                                             "opt": "=",
-                                            "tableSort": 2,
-                                            "cover": "PCCUID"
-                                        },
-                                        {
-                                            "field": "SSO_ACCT",
-                                            "title": "SSO_ACCT",
-                                            "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 2,
-                                            "opt": "%%",
-                                            "tableSort": 3
-                                        },
-                                        {
-                                            "field": "LOCAL_PNL_NM",
-                                            "title": "LOCAL_PNL_NM",
-                                            "editor": {
-                                                "xtype": "TextField",
-                                                "textCase": "upper"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 3,
-                                            "opt": "%%",
                                             "tableSort": 4,
-                                            "cover": "EMP_NAME"
-                                        },
-                                        {
-                                            "field": "SEX",
-                                            "title": "SEX",
-                                            "editor": {
-                                                "xtype": "Label"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": null,
-                                            "opt": "%%",
-                                            "tableSort": 5
-                                        },
-                                        {
-                                            "field": "CONTACT_MAIL",
-                                            "title": "CONTACT_MAIL",
-                                            "editor": {
-                                                "xtype": "TextField"
-                                            },
-                                            "noWhere": false,
-                                            "querySort": 4,
-                                            "opt": "%%",
-                                            "tableSort": 6,
-                                            "cover": "EMP_EMAIL"
+                                            "cover": "PCCUID"
                                         }
                                     ]
                                 },
                                 "_rowIndex": 0,
-                                "showBtn": 2,
                                 "icon": "add",
                                 "type": "add",
                                 "text": "Add",
-                                "onClick": "(args) => { return true; }",
+                                "onClick": "(args) => { return LOGIC.onClickPicker(args); }",
                                 "picker": "query",
                                 "_rowstatus": ""
                             }
@@ -343,11 +337,32 @@
                     "checkbox": false,
                     "items": [
                         {
-                            "field": "EMP_NO",
-                            "title": "Employee No",
+                            "field": "SITE_NO",
+                            "title": "Site",
                             "editor": {
-                                "xtype": "TextField",
-                                "textCase": "upper"
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "EMP_NAME",
+                            "title": "Local Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "EMP_EMAIL",
+                            "title": "Email",
+                            "editor": {
+                                "xtype": "Label"
                             },
                             "must": true,
                             "width": 0.1,
@@ -366,30 +381,19 @@
                             "sortable": false
                         },
                         {
-                            "field": "EMP_NAME",
-                            "title": "Employee Name",
+                            "field": "EMP_NO",
+                            "title": "ID Card",
                             "editor": {
-                                "xtype": "Label"
+                                "xtype": "TextField"
                             },
                             "must": true,
-                            "width": 0.15,
-                            "freeze": false,
-                            "sortable": false
-                        },
-                        {
-                            "field": "EMP_EMAIL",
-                            "title": "Employee Email",
-                            "editor": {
-                                "xtype": "Label"
-                            },
-                            "must": true,
-                            "width": 0.15,
+                            "width": 0.1,
                             "freeze": false,
                             "sortable": false
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Status Enabled",
+                            "title": "Enabled",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -416,7 +420,8 @@
                             "title": "Create Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -439,7 +444,8 @@
                             "title": "Update Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -448,7 +454,9 @@
                         }
                     ],
                     "expandItems": [],
-                    "listeners": {},
+                    "listeners": {
+                        "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                    },
                     "title": "Detail Group Information",
                     "version": 2
                 }
@@ -458,7 +466,10 @@
     "programsetting": {
         "programmodel": "DM_BASIC_GROUP",
         "programaccno": "_AP_CONN",
-        "listeners": {}
+        "listeners": {
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
+        },
+        "logicPath": "logic/basic-group-main"
     },
     "requires": [
         "DataProvider",

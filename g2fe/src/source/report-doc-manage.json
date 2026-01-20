@@ -11,33 +11,64 @@
             "useData": "useData"
         },
         "queryarea": {
-            "autoQuery": true,
+            "autoQuery": false,
             "xtype": "QueryBar",
             "dataConfig": {
                 "accNo": "_AP_CONN",
                 "modelName": "DM_RPT_DOC_MANAGE"
             },
             "listeners": {
-                "onInputed": "(args) => { LOGIC.onInputed(args); }"
+                "onInputed": "(args) => { LOGIC.onInputed(args); }",
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
             },
             "items": [
                 {
-                    "field": "DOCTYPE_ID",
-                    "title": "Type",
+                    "field": "SITE_NO",
+                    "title": "Site",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": true,
+                    "opt": "=",
+                    "parm": "SITE_NO"
+                },
+                {
+                    "field": "DOC_NO",
+                    "title": "Document No.",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": true,
+                    "opt": "%%",
+                    "parm": "DOC_NO"
+                },
+                {
+                    "field": "DOC_CATEGORY",
+                    "title": "Category",
                     "editor": {
                         "xtype": "Combo",
                         "condition": {
                             "accNo": "_AP_CONN",
-                            "sqlNo": "V_COMBO_BASIC_DOCTYPE",
+                            "sqlNo": "V_COMBO_DOC_CATEGORY",
                             "opType": 2
                         },
                         "textField": "LABEL",
                         "manual": false,
-                        "valueField": "VALUE"
+                        "valueField": "VALUE",
+                        "id": "CMP_COMBO_CATEGORY"
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "DOCTYPE_ID"
+                    "parm": "DOC_CATEGORY"
                 },
                 {
                     "field": "FLOOR_ID",
@@ -76,10 +107,7 @@
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "CABINET_ID",
-                    "dependencies": [
-                        "FLOOR_ID"
-                    ]
+                    "parm": "CABINET_ID"
                 },
                 {
                     "field": "CABIN_ID",
@@ -99,10 +127,7 @@
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "CABIN_ID",
-                    "dependencies": [
-                        "CABINET_ID"
-                    ]
+                    "parm": "CABIN_ID"
                 },
                 {
                     "field": "BOX_ID",
@@ -122,13 +147,33 @@
                     },
                     "noWhere": true,
                     "opt": "=",
-                    "parm": "BOX_ID",
-                    "dependencies": [
-                        "CABIN_ID"
-                    ]
+                    "parm": "BOX_ID"
+                },
+                {
+                    "field": "CREATE_TIME_B",
+                    "title": "Create Time Begin",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date-localtime",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": true,
+                    "opt": ">=",
+                    "parm": "CREATE_TIME_B"
+                },
+                {
+                    "field": "CREATE_TIME_E",
+                    "title": "Create Time End",
+                    "editor": {
+                        "xtype": "DateBox",
+                        "dataType": "Date-localtime",
+                        "pattern": "yyyy/MM/dd"
+                    },
+                    "noWhere": true,
+                    "opt": "<=",
+                    "parm": "CREATE_TIME_E"
                 }
-            ],
-            "version": 2
+            ]
         },
         "detail": {
             "Detail": [
@@ -141,7 +186,7 @@
                     },
                     "items": [
                         {
-                            "field": "KIND",
+                            "field": "KIND_DESC",
                             "title": "Kind",
                             "colspan": 6
                         },
@@ -159,7 +204,19 @@
                         "modelName": "DM_RPT_DOC_MANAGE",
                         "unitName": "V_RPT_DOC_MANAGE_DETAIL"
                     },
-                    "toolbar": false,
+                    "toolbar": {
+                        "needButtons": [],
+                        "others": [
+                            {
+                                "_rowIndex": 0,
+                                "_rowstatus": "",
+                                "onClick": "(args) => { return LOGIC.onClickExport(args); }",
+                                "showBtn": 0,
+                                "text": "Export",
+                                "icon": "file-xls"
+                            }
+                        ]
+                    },
                     "rowNumbers": true,
                     "checkbox": false,
                     "items": [
@@ -197,6 +254,17 @@
                             "sortable": false
                         },
                         {
+                            "field": "DOC_CAT_DESC",
+                            "title": "Category",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": true,
+                            "sortable": false
+                        },
+                        {
                             "field": "DOC_STATUS_DESC",
                             "title": "Status",
                             "editor": {
@@ -212,7 +280,8 @@
                             "title": "Transfer Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -224,7 +293,8 @@
                             "title": "Return Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -236,7 +306,8 @@
                             "title": "Destroy Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -332,6 +403,96 @@
                             "sortable": false
                         },
                         {
+                            "field": "MFPC_ID",
+                            "title": "MFPC ID",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_USERNAME",
+                            "title": "Username",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_SSO",
+                            "title": "SSO Account",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_CARD_ID",
+                            "title": "ID Card",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_MACHINE_NAME",
+                            "title": "Machine Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_PRINTER_NAME",
+                            "title": "Printer Name",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_PRINT_TIME",
+                            "title": "Print Time",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "MFPC_COUNT_PAGE",
+                            "title": "Count Page",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "CREATE_USER_NM",
                             "title": "Create User",
                             "editor": {
@@ -347,7 +508,8 @@
                             "title": "Create Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
                             },
                             "must": false,
                             "width": 0.1,
@@ -370,7 +532,19 @@
                             "title": "Update Time",
                             "editor": {
                                 "xtype": "Label",
-                                "dataType": "Date"
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "SITE_NO",
+                            "title": "Site",
+                            "editor": {
+                                "xtype": "Label"
                             },
                             "must": false,
                             "width": 0.1,
@@ -405,7 +579,7 @@
                     "checkbox": false,
                     "items": [
                         {
-                            "field": "KIND",
+                            "field": "KIND_DESC",
                             "title": "Kind",
                             "editor": {
                                 "xtype": "Label"
@@ -439,7 +613,9 @@
     "programsetting": {
         "programmodel": "DM_RPT_DOC_MANAGE",
         "programaccno": "_AP_CONN",
-        "listeners": {},
+        "listeners": {
+            "onCreated": "(args) => { LOGIC.onCreated(args); }"
+        },
         "logicPath": "logic/report-doc-manage"
     },
     "requires": [
