@@ -24,6 +24,7 @@
     "start": "g2fw start --mode dev",
     "build": "g2fw build",
     "build:qas": "g2fw build --mode qas",
+    "build:prod": "g2fw build --mode prod",
     "upgrade": "npm install g2fw@latest"
   },
   "browserslist": {
