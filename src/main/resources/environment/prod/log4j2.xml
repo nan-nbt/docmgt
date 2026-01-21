@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
 	<Properties>
-	<!-- baseDir's value is a sample. Please set a real path on your server. -->
-		<Property name="baseDir">D:/u01/pcgfw/docmgt/logs</Property>
-	</Properties>	
+		<!-- baseDir's value is a sample. Please set a real path on your server. -->
+		<Property name="baseDir">/u01/pcgfw/docmgt/logs</Property>
+	</Properties>
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
