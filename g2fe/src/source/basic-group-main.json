@@ -237,7 +237,8 @@
                             30,
                             50,
                             100
-                        ]
+                        ],
+                        "clientPager": true
                     },
                     "toolbar": {
                         "needButtons": [
