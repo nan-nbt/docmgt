@@ -225,7 +225,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "RETURN_TIME",
@@ -238,7 +239,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "DESTROY_TIME",
@@ -251,7 +253,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "OWNER_GROUP",
@@ -418,7 +421,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "MFPC_COUNT_PAGE",
@@ -429,7 +433,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "CREATE_USER_NM",
@@ -453,7 +458,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "UPDATE_USER_NM",
@@ -477,7 +483,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true
+                            "sortable": true,
+                            "sortType": "numeric"
                         },
                         {
                             "field": "SITE_NO",
@@ -488,7 +495,8 @@
                             "must": false,
                             "width": 0.1,
                             "freeze": false,
-                            "sortable": true
+                            "sortable": true,
+                            "sortType": "numeric"
                         }
                     ],
                     "expandItems": [],
