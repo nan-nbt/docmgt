@@ -23,7 +23,7 @@
             "items": [
                 {
                     "field": "SITE_NO",
-                    "title": "Site",
+                    "title": "SITE_NO",
                     "editor": {
                         "xtype": "Combo",
                         "textField": "LABEL",
@@ -41,7 +41,7 @@
                 },
                 {
                     "field": "FLOOR_NO",
-                    "title": "Floor No.",
+                    "title": "FLOOR_NO",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -51,7 +51,7 @@
                 },
                 {
                     "field": "FLOOR_NAME_UPPER",
-                    "title": "Floor Name",
+                    "title": "FLOOR_NAME_UPPER",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -61,7 +61,7 @@
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Enabled",
+                    "title": "ENABLED",
                     "editor": {
                         "xtype": "Combo",
                         "staticData": [
@@ -115,7 +115,7 @@
                     "items": [
                         {
                             "field": "SITE_NO",
-                            "title": "Site",
+                            "title": "SITE_NO",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -126,7 +126,7 @@
                         },
                         {
                             "field": "FLOOR_NO",
-                            "title": "Floor No.",
+                            "title": "FLOOR_NO",
                             "editor": {
                                 "xtype": "TextField",
                                 "textCase": "upper"
@@ -138,7 +138,7 @@
                         },
                         {
                             "field": "FLOOR_NAME",
-                            "title": "Floor Name",
+                            "title": "FLOOR_NAME",
                             "editor": {
                                 "xtype": "TextField"
                             },
@@ -149,7 +149,7 @@
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Enabled",
+                            "title": "ENABLED",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -162,7 +162,7 @@
                         },
                         {
                             "field": "CREATE_USER_NM",
-                            "title": "Create User",
+                            "title": "CREATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -173,7 +173,7 @@
                         },
                         {
                             "field": "CREATE_TIME",
-                            "title": "Create Time",
+                            "title": "CREATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -186,7 +186,7 @@
                         },
                         {
                             "field": "UPDATE_USER_NM",
-                            "title": "Update User",
+                            "title": "UPDATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -197,7 +197,7 @@
                         },
                         {
                             "field": "UPDATE_TIME",
-                            "title": "Update Time",
+                            "title": "UPDATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -244,7 +244,7 @@
                             "items": [
                                 {
                                     "field": "SITE_NO",
-                                    "title": "Site",
+                                    "title": "SITE_NO",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -255,7 +255,7 @@
                                 },
                                 {
                                     "field": "CABINET_NO",
-                                    "title": "Cabinet No.",
+                                    "title": "CABINET_NO",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -267,7 +267,7 @@
                                 },
                                 {
                                     "field": "CABINET_NAME",
-                                    "title": "Cabinet Name",
+                                    "title": "CABINET_NAME",
                                     "editor": {
                                         "xtype": "TextField"
                                     },
@@ -278,7 +278,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Enabled",
+                                    "title": "ENABLED",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -291,7 +291,7 @@
                                 },
                                 {
                                     "field": "CREATE_USER_NM",
-                                    "title": "Create User",
+                                    "title": "CREATE_USER_NM",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -302,7 +302,7 @@
                                 },
                                 {
                                     "field": "CREATE_TIME",
-                                    "title": "Create Time",
+                                    "title": "CREATE_TIME",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date",
@@ -315,7 +315,7 @@
                                 },
                                 {
                                     "field": "UPDATE_USER_NM",
-                                    "title": "Update User",
+                                    "title": "UPDATE_USER_NM",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -326,7 +326,7 @@
                                 },
                                 {
                                     "field": "UPDATE_TIME",
-                                    "title": "Update Time",
+                                    "title": "UPDATE_TIME",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date",
@@ -370,7 +370,7 @@
                             "items": [
                                 {
                                     "field": "SITE_NO",
-                                    "title": "Site",
+                                    "title": "SITE_NO",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -381,7 +381,7 @@
                                 },
                                 {
                                     "field": "CABIN_NO",
-                                    "title": "Cabin No.",
+                                    "title": "CABIN_NO",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -393,7 +393,7 @@
                                 },
                                 {
                                     "field": "CABIN_NAME",
-                                    "title": "Cabin Name",
+                                    "title": "CABIN_NAME",
                                     "editor": {
                                         "xtype": "TextField"
                                     },
@@ -404,7 +404,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Enabled",
+                                    "title": "ENABLED",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -417,7 +417,7 @@
                                 },
                                 {
                                     "field": "CREATE_USER_NM",
-                                    "title": "Create User",
+                                    "title": "CREATE_USER_NM",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -428,7 +428,7 @@
                                 },
                                 {
                                     "field": "CREATE_TIME",
-                                    "title": "Create Time",
+                                    "title": "CREATE_TIME",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date",
@@ -441,7 +441,7 @@
                                 },
                                 {
                                     "field": "UPDATE_USER_NM",
-                                    "title": "Update User",
+                                    "title": "UPDATE_USER_NM",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -452,7 +452,7 @@
                                 },
                                 {
                                     "field": "UPDATE_TIME",
-                                    "title": "Update Time",
+                                    "title": "UPDATE_TIME",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date",
@@ -495,7 +495,7 @@
                             "items": [
                                 {
                                     "field": "SITE_NO",
-                                    "title": "Site",
+                                    "title": "SITE_NO",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -506,7 +506,7 @@
                                 },
                                 {
                                     "field": "BOX_NO",
-                                    "title": "Box No.",
+                                    "title": "BOX_NO",
                                     "editor": {
                                         "xtype": "TextField",
                                         "textCase": "upper"
@@ -518,7 +518,7 @@
                                 },
                                 {
                                     "field": "BOX_NAME",
-                                    "title": "Box Name",
+                                    "title": "BOX_NAME",
                                     "editor": {
                                         "xtype": "TextField"
                                     },
@@ -529,7 +529,7 @@
                                 },
                                 {
                                     "field": "ENABLED",
-                                    "title": "Enabled",
+                                    "title": "ENABLED",
                                     "editor": {
                                         "xtype": "Switch",
                                         "on": "Y",
@@ -542,7 +542,7 @@
                                 },
                                 {
                                     "field": "CREATE_USER_NM",
-                                    "title": "Create User",
+                                    "title": "CREATE_USER_NM",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -553,7 +553,7 @@
                                 },
                                 {
                                     "field": "CREATE_TIME",
-                                    "title": "Create Time",
+                                    "title": "CREATE_TIME",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date",
@@ -566,7 +566,7 @@
                                 },
                                 {
                                     "field": "UPDATE_USER_NM",
-                                    "title": "Update User",
+                                    "title": "UPDATE_USER_NM",
                                     "editor": {
                                         "xtype": "Label"
                                     },
@@ -577,7 +577,7 @@
                                 },
                                 {
                                     "field": "UPDATE_TIME",
-                                    "title": "Update Time",
+                                    "title": "UPDATE_TIME",
                                     "editor": {
                                         "xtype": "Label",
                                         "dataType": "Date",
