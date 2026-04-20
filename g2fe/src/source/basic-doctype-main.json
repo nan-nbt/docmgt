@@ -23,7 +23,7 @@
             "items": [
                 {
                     "field": "SITE_NO",
-                    "title": "Site",
+                    "title": "SITE_NO",
                     "editor": {
                         "xtype": "Combo",
                         "textField": "LABEL",
@@ -40,7 +40,7 @@
                 },
                 {
                     "field": "DOCTYPE_NO",
-                    "title": "Type No.",
+                    "title": "DOCTYPE_NO",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -50,7 +50,7 @@
                 },
                 {
                     "field": "DOCTYPE_NAME_UPPER",
-                    "title": "Type Name",
+                    "title": "DOCTYPE_NAME_UPPER",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -60,7 +60,7 @@
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Enabled",
+                    "title": "ENABLED",
                     "editor": {
                         "xtype": "Combo",
                         "textField": "LABEL",
@@ -113,7 +113,7 @@
                     "items": [
                         {
                             "field": "SITE_NO",
-                            "title": "Site",
+                            "title": "SITE_NO",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -124,7 +124,7 @@
                         },
                         {
                             "field": "DOCTYPE_NO",
-                            "title": "Type No.",
+                            "title": "DOCTYPE_NO",
                             "editor": {
                                 "xtype": "TextField",
                                 "textCase": "upper"
@@ -136,7 +136,7 @@
                         },
                         {
                             "field": "DOCTYPE_NAME",
-                            "title": "Type Name",
+                            "title": "DOCTYPE_NAME",
                             "editor": {
                                 "xtype": "TextField"
                             },
@@ -147,7 +147,7 @@
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Enabled",
+                            "title": "ENABLED",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -160,7 +160,7 @@
                         },
                         {
                             "field": "CREATE_USER_NM",
-                            "title": "Create User",
+                            "title": "CREATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -171,7 +171,7 @@
                         },
                         {
                             "field": "CREATE_TIME",
-                            "title": "Create Time",
+                            "title": "CREATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -184,7 +184,7 @@
                         },
                         {
                             "field": "UPDATE_USER_NM",
-                            "title": "Update User",
+                            "title": "UPDATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -195,7 +195,7 @@
                         },
                         {
                             "field": "UPDATE_TIME",
-                            "title": "Update Time",
+                            "title": "UPDATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",

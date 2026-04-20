@@ -24,7 +24,7 @@
             "items": [
                 {
                     "field": "SITE_NO",
-                    "title": "Site",
+                    "title": "SITE_NO",
                     "editor": {
                         "xtype": "Combo",
                         "textField": "LABEL",
@@ -42,7 +42,7 @@
                 },
                 {
                     "field": "DOC_NO",
-                    "title": "Document No.",
+                    "title": "DOC_NO",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -52,7 +52,7 @@
                 },
                 {
                     "field": "DOC_NAME_UPPER",
-                    "title": "Document Name",
+                    "title": "DOC_NAME_UPPER",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -62,7 +62,7 @@
                 },
                 {
                     "field": "DOC_TYPE_DESC",
-                    "title": "Type",
+                    "title": "DOC_TYPE_DESC",
                     "editor": {
                         "xtype": "Combo",
                         "id": "CMP_COMBO_DOCTYPE",
@@ -80,7 +80,7 @@
                 },
                 {
                     "field": "DOC_CAT_DESC",
-                    "title": "Category",
+                    "title": "DOC_CAT_DESC",
                     "editor": {
                         "xtype": "Combo",
                         "id": "CMP_COMBO_CATEGORY",
@@ -98,7 +98,7 @@
                 },
                 {
                     "field": "DOC_STATUS_DESC",
-                    "title": "Status",
+                    "title": "DOC_STATUS_DESC",
                     "editor": {
                         "xtype": "Combo",
                         "id": "CMP_COMBO_STATUS",
@@ -116,7 +116,7 @@
                 },
                 {
                     "field": "CREATE_TIME_B",
-                    "title": "Create Time Begin",
+                    "title": "CREATE_TIME_B",
                     "editor": {
                         "xtype": "DateBox",
                         "dataType": "Date-localtime",
@@ -127,7 +127,7 @@
                 },
                 {
                     "field": "CREATE_TIME_E",
-                    "title": "Create Time End",
+                    "title": "CREATE_TIME_E",
                     "editor": {
                         "xtype": "DateBox",
                         "dataType": "Date-localtime",
@@ -161,7 +161,7 @@
                     "items": [
                         {
                             "field": "DOC_NO",
-                            "title": "Document No.",
+                            "title": "DOC_NO",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -172,7 +172,7 @@
                         },
                         {
                             "field": "DOC_NAME",
-                            "title": "Document Name",
+                            "title": "DOC_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -183,7 +183,7 @@
                         },
                         {
                             "field": "DOC_TYPE_DESC",
-                            "title": "Type",
+                            "title": "DOC_TYPE_DESC",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -194,7 +194,7 @@
                         },
                         {
                             "field": "DOC_CAT_DESC",
-                            "title": "Category",
+                            "title": "DOC_CAT_DESC",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -205,7 +205,7 @@
                         },
                         {
                             "field": "DOC_STATUS_DESC",
-                            "title": "Status",
+                            "title": "DOC_STATUS_DESC",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -216,7 +216,7 @@
                         },
                         {
                             "field": "TRANS_TIME",
-                            "title": "Transfer Time",
+                            "title": "TRANS_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -230,7 +230,7 @@
                         },
                         {
                             "field": "RETURN_TIME",
-                            "title": "Return Time",
+                            "title": "RETURN_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -244,7 +244,7 @@
                         },
                         {
                             "field": "DESTROY_TIME",
-                            "title": "Destroy Time",
+                            "title": "DESTROY_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -258,7 +258,7 @@
                         },
                         {
                             "field": "OWNER_GROUP",
-                            "title": "Owner Group",
+                            "title": "OWNER_GROUP",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -269,7 +269,7 @@
                         },
                         {
                             "field": "OWNER_NAME",
-                            "title": "Owner",
+                            "title": "OWNER_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -280,7 +280,7 @@
                         },
                         {
                             "field": "BO_GROUP",
-                            "title": "PIC Group",
+                            "title": "BO_GROUP",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -291,7 +291,7 @@
                         },
                         {
                             "field": "BO_NAME",
-                            "title": "PIC",
+                            "title": "BO_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -302,7 +302,7 @@
                         },
                         {
                             "field": "FLOOR_NAME",
-                            "title": "Floor",
+                            "title": "FLOOR_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -313,7 +313,7 @@
                         },
                         {
                             "field": "CABINET_NAME",
-                            "title": "Cabinet",
+                            "title": "CABINET_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -324,7 +324,7 @@
                         },
                         {
                             "field": "CABIN_NAME",
-                            "title": "Cabin",
+                            "title": "CABIN_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -335,7 +335,7 @@
                         },
                         {
                             "field": "BOX_NAME",
-                            "title": "Box",
+                            "title": "BOX_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -346,7 +346,7 @@
                         },
                         {
                             "field": "MFPC_ID",
-                            "title": "MFPC ID",
+                            "title": "MFPC_ID",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -357,7 +357,7 @@
                         },
                         {
                             "field": "MFPC_USERNAME",
-                            "title": "Username",
+                            "title": "MFPC_USERNAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -368,7 +368,7 @@
                         },
                         {
                             "field": "MFPC_SSO",
-                            "title": "SSO Account",
+                            "title": "MFPC_SSO",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -379,7 +379,7 @@
                         },
                         {
                             "field": "MFPC_CARD_ID",
-                            "title": "ID Card",
+                            "title": "MFPC_CARD_ID",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -390,7 +390,7 @@
                         },
                         {
                             "field": "MFPC_MACHINE_NAME",
-                            "title": "Machine Name",
+                            "title": "MFPC_MACHINE_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -401,7 +401,7 @@
                         },
                         {
                             "field": "MFPC_PRINTER_NAME",
-                            "title": "Printer Name",
+                            "title": "MFPC_PRINTER_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -412,7 +412,7 @@
                         },
                         {
                             "field": "MFPC_PRINT_TIME",
-                            "title": "Print Time",
+                            "title": "MFPC_PRINT_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -426,7 +426,7 @@
                         },
                         {
                             "field": "MFPC_COUNT_PAGE",
-                            "title": "Count Page",
+                            "title": "MFPC_COUNT_PAGE",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -438,7 +438,7 @@
                         },
                         {
                             "field": "CREATE_USER_NM",
-                            "title": "Create User",
+                            "title": "CREATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -449,7 +449,7 @@
                         },
                         {
                             "field": "CREATE_TIME",
-                            "title": "Create Time",
+                            "title": "CREATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -463,7 +463,7 @@
                         },
                         {
                             "field": "UPDATE_USER_NM",
-                            "title": "Update User",
+                            "title": "UPDATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -474,7 +474,7 @@
                         },
                         {
                             "field": "UPDATE_TIME",
-                            "title": "Update Time",
+                            "title": "UPDATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -488,7 +488,7 @@
                         },
                         {
                             "field": "SITE_NO",
-                            "title": "Site",
+                            "title": "SITE_NO",
                             "editor": {
                                 "xtype": "Label"
                             },
