@@ -23,7 +23,7 @@
             "items": [
                 {
                     "field": "SITE_NO",
-                    "title": "Site",
+                    "title": "SITE_NO",
                     "editor": {
                         "xtype": "Combo",
                         "textField": "LABEL",
@@ -51,7 +51,7 @@
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Enabled",
+                    "title": "ENABLED",
                     "editor": {
                         "xtype": "Combo",
                         "staticData": [
@@ -189,7 +189,7 @@
                     "items": [
                         {
                             "field": "SITE_NO",
-                            "title": "Site",
+                            "title": "SITE_NO",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -200,7 +200,7 @@
                         },
                         {
                             "field": "SSO_ACCT",
-                            "title": "SSO Account",
+                            "title": "SSO_ACCT",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -211,7 +211,7 @@
                         },
                         {
                             "field": "LOCAL_PNL_NM",
-                            "title": "Local Name",
+                            "title": "LOCAL_PNL_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -222,7 +222,7 @@
                         },
                         {
                             "field": "CONTACT_MAIL",
-                            "title": "Contact Mail",
+                            "title": "CONTACT_MAIL",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -244,7 +244,7 @@
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Enabled",
+                            "title": "ENABLED",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -257,7 +257,7 @@
                         },
                         {
                             "field": "CREATE_USER_NM",
-                            "title": "Create User",
+                            "title": "CREATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -268,7 +268,7 @@
                         },
                         {
                             "field": "CREATE_TIME",
-                            "title": "Create Time",
+                            "title": "CREATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -281,7 +281,7 @@
                         },
                         {
                             "field": "UPDATE_USER_NM",
-                            "title": "Update User",
+                            "title": "UPDATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -292,7 +292,7 @@
                         },
                         {
                             "field": "UPDATE_TIME",
-                            "title": "Update Time",
+                            "title": "UPDATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",

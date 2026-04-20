@@ -23,7 +23,7 @@
             "items": [
                 {
                     "field": "SITE_NO",
-                    "title": "Site",
+                    "title": "SITE_NO",
                     "editor": {
                         "xtype": "Combo",
                         "textField": "LABEL",
@@ -40,7 +40,7 @@
                 },
                 {
                     "field": "GROUPM_NO",
-                    "title": "Group No.",
+                    "title": "GROUPM_NO",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -50,7 +50,7 @@
                 },
                 {
                     "field": "GROUPM_NAME_UPPER",
-                    "title": "Group Name",
+                    "title": "GROUPM_NAME_UPPER",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
@@ -60,7 +60,7 @@
                 },
                 {
                     "field": "ENABLED",
-                    "title": "Enabled",
+                    "title": "ENABLED",
                     "editor": {
                         "xtype": "Combo",
                         "staticData": [
@@ -120,7 +120,7 @@
                     "items": [
                         {
                             "field": "SITE_NO",
-                            "title": "Site",
+                            "title": "SITE_NO",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -131,7 +131,7 @@
                         },
                         {
                             "field": "GROUPM_NO",
-                            "title": "Group No.",
+                            "title": "GROUPM_NO",
                             "editor": {
                                 "xtype": "TextField",
                                 "textCase": "upper"
@@ -144,7 +144,7 @@
                         },
                         {
                             "field": "GROUPM_NAME",
-                            "title": "Group Name",
+                            "title": "GROUPM_NAME",
                             "editor": {
                                 "xtype": "TextField"
                             },
@@ -155,7 +155,7 @@
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Enabled",
+                            "title": "ENABLED",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -168,7 +168,7 @@
                         },
                         {
                             "field": "CREATE_USER_NM",
-                            "title": "Create User",
+                            "title": "CREATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -179,7 +179,7 @@
                         },
                         {
                             "field": "CREATE_TIME",
-                            "title": "Create Time",
+                            "title": "CREATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -192,7 +192,7 @@
                         },
                         {
                             "field": "UPDATE_USER_NM",
-                            "title": "Update User",
+                            "title": "UPDATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -203,7 +203,7 @@
                         },
                         {
                             "field": "UPDATE_TIME",
-                            "title": "Update Time",
+                            "title": "UPDATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -275,7 +275,7 @@
                                     "columns": [
                                         {
                                             "field": "SSO_ACCT",
-                                            "title": "SSO Account",
+                                            "title": "SSO_ACCT",
                                             "editor": {
                                                 "xtype": "TextField",
                                                 "textCase": "upper"
@@ -287,7 +287,7 @@
                                         },
                                         {
                                             "field": "LOCAL_PNL_NM",
-                                            "title": "Local Name",
+                                            "title": "LOCAL_PNL_NM",
                                             "editor": {
                                                 "xtype": "TextField",
                                                 "textCase": "upper"
@@ -300,7 +300,7 @@
                                         },
                                         {
                                             "field": "CONTACT_MAIL",
-                                            "title": "Contact Mail",
+                                            "title": "CONTACT_MAIL",
                                             "editor": {
                                                 "xtype": "TextField"
                                             },
@@ -339,7 +339,7 @@
                     "items": [
                         {
                             "field": "SITE_NO",
-                            "title": "Site",
+                            "title": "SITE_NO",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -350,7 +350,7 @@
                         },
                         {
                             "field": "EMP_NAME",
-                            "title": "Local Name",
+                            "title": "EMP_NAME",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -361,7 +361,7 @@
                         },
                         {
                             "field": "EMP_EMAIL",
-                            "title": "Email",
+                            "title": "EMP_EMAIL",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -383,7 +383,7 @@
                         },
                         {
                             "field": "EMP_NO",
-                            "title": "ID Card",
+                            "title": "EMP_NO",
                             "editor": {
                                 "xtype": "TextField"
                             },
@@ -394,7 +394,7 @@
                         },
                         {
                             "field": "ENABLED",
-                            "title": "Enabled",
+                            "title": "ENABLED",
                             "editor": {
                                 "xtype": "Switch",
                                 "on": "Y",
@@ -407,7 +407,7 @@
                         },
                         {
                             "field": "CREATE_USER_NM",
-                            "title": "Create User",
+                            "title": "CREATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -418,7 +418,7 @@
                         },
                         {
                             "field": "CREATE_TIME",
-                            "title": "Create Time",
+                            "title": "CREATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
@@ -431,7 +431,7 @@
                         },
                         {
                             "field": "UPDATE_USER_NM",
-                            "title": "Update User",
+                            "title": "UPDATE_USER_NM",
                             "editor": {
                                 "xtype": "Label"
                             },
@@ -442,7 +442,7 @@
                         },
                         {
                             "field": "UPDATE_TIME",
-                            "title": "Update Time",
+                            "title": "UPDATE_TIME",
                             "editor": {
                                 "xtype": "Label",
                                 "dataType": "Date",
