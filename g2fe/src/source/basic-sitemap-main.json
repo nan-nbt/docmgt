@@ -40,8 +40,8 @@
                     "opt": "="
                 },
                 {
-                    "field": "SSO",
-                    "title": "SSO",
+                    "field": "SSO_ACCT",
+                    "title": "SSO_ACCT",
                     "editor": {
                         "xtype": "TextField",
                         "textCase": "upper"
