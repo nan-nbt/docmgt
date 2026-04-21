@@ -18,14 +18,12 @@ public class MainDocManageService {
 
     private static final String DB_ALIAS = "_AP_CONN";
 
-    private static String updateTransInfoSQL = "UPDATE DOC_MANAGE DM SET TRANS_TIME = :TRANS_TIME, RETURN_TIME = :RETURN_TIME, DOC_STATUS = :DOC_STATUS, GROUPM_BO_ID = :GROUPM_BO_ID, GROUPD_BO_ID = :GROUPD_BO_ID, UPDATE_USER = :UPDATE_USER, UPDATE_TIME = :UPDATE_TIME WHERE DM.DOC_ID = :DOC_ID";
-    private static String updateReturnInfoSQL = "UPDATE DOC_MANAGE DM SET RETURN_TIME = :RETURN_TIME, DOC_STATUS = :DOC_STATUS, GROUPM_BO_ID = :GROUPM_BO_ID, GROUPD_BO_ID = :GROUPD_BO_ID, UPDATE_USER = :UPDATE_USER, UPDATE_TIME = :UPDATE_TIME WHERE DM.DOC_ID = :DOC_ID";
-    private static String updateDestroyInfoSQL = "UPDATE DOC_MANAGE DM SET DESTROY_TIME = :DESTROY_TIME, DOC_STATUS = :DOC_STATUS, UPDATE_USER = :UPDATE_USER, UPDATE_TIME = :UPDATE_TIME WHERE DM.DOC_ID = :DOC_ID";
-    
+    private static String updateTransInfoSQL = MetaFactory.getSql("V_UPD_TRANS_INFO", DB_ALIAS);
+    private static String updateReturnInfoSQL = MetaFactory.getSql("V_UPD_RETURN_INFO", DB_ALIAS);
+    private static String updateDestroyInfoSQL = MetaFactory.getSql("V_UPD_DESTROY_INFO", DB_ALIAS);    
     private static String getComboGroupMasterSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPM", DB_ALIAS);
     private static String getComboGroupDetailSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPD", DB_ALIAS);
-
-    private static String getMFPCServiceSQL = "SELECT BS1.SERVICE_NO, BS1.SERVICE_NAME, BS1.BASE_URL, BS1.ENDPOINT, BS1.METHOD FROM BASIC_SERVICE BS1 JOIN BASIC_SITE BS2 ON BS1.SITE_NO = BS2.SITE_NO WHERE BS1.SITE_NO = :SITE_NO AND BS1.ENABLED = :ENABLED AND BS2.ENABLED = :ENABLED";
+    private static String getMFPCServiceSQL = MetaFactory.getSql("V_GET_SERVICE_INFO", DB_ALIAS);
 
     public static void updateTransInfo(RequestInfo requestInfo, Map<String, Object> args) {
         Map<String, Object> params = new HashMap<>();
@@ -96,11 +94,11 @@ public class MainDocManageService {
     }
 
     public static Map<String, Object> getMFPCData(RequestInfo requestInfo, Map<String, Object> args) {
-        Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "ENABLED", "Y" };
+        Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "SERVICE_NO", args.get("SERVICE_NO"), "ENABLED", "Y" };
         Map<String, Object> service = DbUtils.queryFirst(DB_ALIAS, getMFPCServiceSQL, params);
 
         if (service == null || service.isEmpty()) {
-            return resultError(400, "BAD_REQUEST", "MFPC Service not found.");
+            return resultError(400, "BAD_REQUEST", (String) params[3] + " Service not found.");
         }
 
         try {
