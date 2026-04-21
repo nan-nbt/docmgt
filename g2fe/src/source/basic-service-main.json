@@ -1,0 +1,289 @@
+{
+    "isReport": false,
+    "hasQuery": true,
+    "pageCnt": 1,
+    "tplNm": "SingleTable",
+    "accNo": "_AP_CONN",
+    "mname": "DM_BASIC_SERVICE",
+    "page": {
+        "config": {
+            "xtype": "MultipleTable",
+            "useData": "useData"
+        },
+        "queryarea": {
+            "autoQuery": false,
+            "xtype": "QueryBar",
+            "dataConfig": {
+                "accNo": "_AP_CONN",
+                "modelName": "DM_BASIC_SERVICE"
+            },
+            "listeners": {
+                "onQuerying": "(args) => { return LOGIC.onQuerying(args); }"
+            },
+            "items": [
+                {
+                    "field": "SITE_NO",
+                    "title": "SITE_NO",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "condition": {
+                            "accNo": "_AP_CONN",
+                            "sqlNo": "V_COMBO_BASIC_SITEMAP",
+                            "opType": 2
+                        }
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                },
+                {
+                    "field": "SERVICE_NO",
+                    "title": "SERVICE_NO",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "SERVICE_NAME_UPPER",
+                    "title": "SERVICE_NAME_UPPER",
+                    "editor": {
+                        "xtype": "TextField",
+                        "textCase": "upper"
+                    },
+                    "noWhere": false,
+                    "opt": "%%"
+                },
+                {
+                    "field": "ENABLED",
+                    "title": "ENABLED",
+                    "editor": {
+                        "xtype": "Combo",
+                        "textField": "LABEL",
+                        "manual": false,
+                        "valueField": "VALUE",
+                        "staticData": [
+                            {
+                                "LABEL": "Y",
+                                "VALUE": "Y"
+                            },
+                            {
+                                "LABEL": "N",
+                                "VALUE": "N"
+                            }
+                        ],
+                        "supportAll": true
+                    },
+                    "noWhere": false,
+                    "opt": "="
+                }
+            ]
+        },
+        "detail": {},
+        "main": {
+            "xtype": "GridLayout",
+            "layoutConfig": [
+                12
+            ],
+            "items": [
+                {
+                    "xtype": "Table",
+                    "dataConfig": {
+                        "accNo": "_AP_CONN",
+                        "modelName": "DM_BASIC_SERVICE",
+                        "unitName": "DU_BASIC_SERVICE",
+                        "pager": true,
+                        "pageSize": 10
+                    },
+                    "toolbar": {
+                        "needButtons": [
+                            "add",
+                            "edit",
+                            "remove",
+                            "save",
+                            "cancel"
+                        ]
+                    },
+                    "rowNumbers": true,
+                    "checkbox": false,
+                    "items": [
+                        {
+                            "field": "SITE_NO",
+                            "title": "SITE_NO",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "SERVICE_NO",
+                            "title": "SERVICE_NO",
+                            "editor": {
+                                "xtype": "TextField",
+                                "textCase": "upper"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "SERVICE_NAME",
+                            "title": "SERVICE_NAME",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "BASE_URL",
+                            "title": "BASE_URL",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "ENDPOINT",
+                            "title": "ENDPOINT",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "METHOD",
+                            "title": "METHOD",
+                            "editor": {
+                                "xtype": "Combo",
+                                "staticData": [
+                                    {
+                                        "LABEL": "GET",
+                                        "VALUE": "GET"
+                                    },
+                                    {
+                                        "LABEL": "POST",
+                                        "VALUE": "POST"
+                                    },
+                                    {
+                                        "LABEL": "PUT",
+                                        "VALUE": "PUT"
+                                    },
+                                    {
+                                        "LABEL": "DELETE",
+                                        "VALUE": "DELETE"
+                                    }
+                                ],
+                                "textField": "LABEL",
+                                "manual": false,
+                                "valueField": "VALUE",
+                                "supportAll": false
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "ENABLED",
+                            "title": "ENABLED",
+                            "editor": {
+                                "xtype": "Switch",
+                                "on": "Y",
+                                "off": "N"
+                            },
+                            "must": true,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_USER_NM",
+                            "title": "CREATE_USER_NM",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "CREATE_TIME",
+                            "title": "CREATE_TIME",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_USER_NM",
+                            "title": "UPDATE_USER_NM",
+                            "editor": {
+                                "xtype": "Label"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "UPDATE_TIME",
+                            "title": "UPDATE_TIME",
+                            "editor": {
+                                "xtype": "Label",
+                                "dataType": "Date",
+                                "pattern": "yyyy/MM/dd HH:mm:ss"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        }
+                    ],
+                    "expandItems": [],
+                    "listeners": {
+                        "onNewRowing": "(args) => { return LOGIC.onNewRowing(args); }",
+                        "onNewRowed": "(args) => { LOGIC.onNewRowed(args); }",
+                        "onDeleteRowing": "(args) => { return LOGIC.onDeleteRowing(args); }"
+                    },
+                    "title": "Main Information",
+                    "version": 2
+                }
+            ]
+        }
+    },
+    "programsetting": {
+        "programmodel": "DM_BASIC_SERVICE",
+        "programaccno": "_AP_CONN",
+        "listeners": {
+            "onBeginEditing": "(args) => { return LOGIC.onBeginEditing(args); }"
+        },
+        "logicPath": "logic/basic-service-main"
+    },
+    "requires": [
+        "DataProvider",
+        "useData"
+    ]
+}
