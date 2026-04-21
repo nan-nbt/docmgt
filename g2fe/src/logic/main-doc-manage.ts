@@ -475,7 +475,7 @@ const logic = {
 
         const scanner = cmp("CMP_MFPC_SCAN");
 
-        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, site: site, uuid: newVal });
+        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, site: site, serviceNo: "SRV01", uuid: newVal });
         const result = response?.result ? response.result : null;
         const data = result?.data ? result.data : null;
 
@@ -511,7 +511,7 @@ const logic = {
                 break;
         }
     },
-    getMFPCData: async function ({ dataUtil, serviceUri, uuid, site }) {
+    getMFPCData: async function ({ dataUtil, serviceUri, site, serviceNo, uuid }) {
         let response;
 
         try {
@@ -522,6 +522,7 @@ const logic = {
                 serviceUri,
                 {
                     SITE_NO: site,
+                    SERVICE_NO: serviceNo,
                     UUID: uuid
                 },
                 "json",
