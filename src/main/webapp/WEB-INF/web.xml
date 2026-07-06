@@ -4,34 +4,9 @@
          version="3.0">
     <display-name>docmgt</display-name>
 
-    <servlet>
-        <servlet-name>AuthServlet</servlet-name>
-        <servlet-class>com.pouchen.client.AuthServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AuthServlet</servlet-name>
-        <url-pattern>/login/oauth2/code/openam</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>LoginSuccessServlet</servlet-name>
-        <servlet-class>com.pouchen.client.LoginSuccessServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoginSuccessServlet</servlet-name>
-        <url-pattern>/loginSuccess</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>com.pouchen.client.LogoutServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-
     <filter>
         <filter-name>CorsFilter</filter-name>
-        <filter-class>com.pouchen.servlet.CorsFilter</filter-class>
+        <filter-class>com.pouchen.oauth2.filter.CorsFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -46,7 +21,7 @@
 
     <filter>
         <filter-name>authFilter</filter-name>
-        <filter-class>com.pouchen.client.AuthFilter</filter-class>
+        <filter-class>com.pouchen.oauth2.filter.AuthFilter</filter-class>
     </filter>
 
     <filter-mapping>
