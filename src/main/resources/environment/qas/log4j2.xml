@@ -29,8 +29,8 @@
 			</DefaultRolloverStrategy>
 		</RollingFile>
         <Gelf name="gelf"
-              host="udp:${env:GRAYLOG_HOST:tw-log-buit01-qas.pouchen.com}"
-              port="${env:GRAYLOG_PORT:-12202}"
+              host="udp:tw-log-buit01-qas.pouchen.com"
+              port="12202"
               version="1.1"
               extractStackTrace="true"
               filterStackTrace="true"
@@ -48,7 +48,7 @@
             <DynamicMdcFields regex="mdc.*" />
             <DynamicMdcFields regex="(mdc|MDC)fields" />
             <DynamicMdcFieldType regex="my_field.*" type="String" />
-        </Gelf>		
+        </Gelf>
 	</Appenders>
 	<Loggers>
 		<Root level="info">
