@@ -29,8 +29,8 @@
 			</DefaultRolloverStrategy>
 		</RollingFile>
         <Gelf name="gelf"
-              host="udp:tw-log-buit01.pouchen.com"
-              port="12202"
+              host="udp:${env:GRAYLOG_HOST:-tw-log-buit01.pouchen.com}"
+              port="${env:GRAYLOG_PORT:-12202}"
               version="1.1"
               extractStackTrace="true"
               filterStackTrace="true"
