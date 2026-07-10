@@ -3,10 +3,13 @@
 	<Properties>
 		<!-- baseDir's value is a sample. Please set a real path on your server. -->
 		<Property name="baseDir">/u01/pcgfw/docmgt/logs</Property>
+		<Property name="type">g2fw</Property>
+		<Property name="APP_NAME">docmgt</Property>
+		<Property name="LOG_PATTERN">%d{HH:mm:ss:SSS} - %-5level  - %pid - %t - %c:%L - %m%n</Property>
 	</Properties>
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+			<PatternLayout pattern="${LOG_PATTERN}"/>
 		</Console>
 		<RollingFile name="RollingFile" fileName="${baseDir}/app.log" filePattern="${baseDir}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log">
 			<PatternLayout>
@@ -25,6 +28,27 @@
 				</Delete>
 			</DefaultRolloverStrategy>
 		</RollingFile>
+        <Gelf name="gelf"
+              host="udp:${env:GRAYLOG_HOST:-tw-log-buit01.pouchen.com}"
+              port="${env:GRAYLOG_PORT:-12202}"
+              version="1.1"
+              extractStackTrace="true"
+              filterStackTrace="true"
+              mdcProfiling="true"
+              includeFullMdc="true"
+              maximumMessageSize="8192"
+              originHost="%host{simple}">
+            <Field name="timestamp" pattern="%d{yyyy-MM-dd HH:mm:ss:SSS}"/>
+            <Field name="level" pattern="%level"/>
+            <Field name="simpleClassName" pattern="%C{1}"/>
+            <Field name="className" pattern="%C"/>
+            <Field name="server" pattern="%host"/>
+            <Field name="app" pattern="${APP_NAME}"/>
+			<Field name="type" pattern="${type}"/>
+            <DynamicMdcFields regex="mdc.*" />
+            <DynamicMdcFields regex="(mdc|MDC)fields" />
+            <DynamicMdcFieldType regex="my_field.*" type="String" />
+        </Gelf>
 	</Appenders>
 	<Loggers>
 		<Root level="debug">
