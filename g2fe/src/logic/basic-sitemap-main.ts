@@ -33,8 +33,8 @@ const logic = {
             return $$.Alert.show({ type: "warning", text: "No index row selected", timeout: 2000 });
         }
 
-        for (let i = 0; i < checkedRows.length; i++) {
-            du.newRow({ SITE_NO: query["SITE_NO"], ...checkedRows[i] });            
+        for (let value of checkedRows) {
+            du.newRow({ SITE_NO: query["SITE_NO"], ...checkedRows[value] });            
         }
     },
     /**

@@ -167,10 +167,10 @@ const logic = {
             // Document management data model
             () => dataUtil.getDataModel("DM_DOC_MANAGE")?.getUnit("DU_DOC_MANAGE")?.getRows?.(),
             // Direct data access methods
-            () => (dataUtil as any).getQueryResult?.(),
-            () => (dataUtil as any).getCurrentData?.(),
-            () => (dataUtil as any).data,
-            () => (dataUtil as any).resultSet
+            () => (dataUtil).getQueryResult?.(),
+            () => (dataUtil).getCurrentData?.(),
+            () => (dataUtil).data,
+            () => (dataUtil).resultSet
         ];
 
         for (const getData of dataSources) {
@@ -180,7 +180,7 @@ const logic = {
                     return Array.isArray(result) ? result : [result];
                 }
             } catch (error) {
-                // Continue to next data source
+                console.error("Error getting detail rows:", error);
             }
         }
 
@@ -247,7 +247,7 @@ const logic = {
             if (!masterDu) return [];
 
             // Try to get selected rows first, fallback to current row
-            const selectedRows = (masterDu as any).getSelectedRows?.() || [];
+            const selectedRows = (masterDu).getSelectedRows?.() || [];
             return selectedRows.length > 0 ? selectedRows : [masterDu.getCurrentRow?.()].filter(Boolean);
         } catch (error) {
             console.error("Error getting selected master rows:", error);
@@ -291,11 +291,11 @@ const logic = {
                     return timestamp + ' 00:00:00';
                 }
                 // Try to parse as number
-                const numValue = parseInt(timestamp);
-                if (!isNaN(numValue)) {
-                    timestamp = numValue;
-                } else {
+                const numValue = Number.parseInt(timestamp);
+                if (Number.isNaN(numValue)) {
                     return timestamp; // Return as-is if can't parse
+                } else {
+                    timestamp = numValue;
                 }
             }
 
@@ -303,7 +303,7 @@ const logic = {
             const date = new Date(timestamp);
 
             // Check if date is valid
-            if (isNaN(date.getTime())) {
+            if (Number.isNaN(date.getTime())) {
                 return '';
             }
 
@@ -449,7 +449,7 @@ const logic = {
                     const value = row[header];
                     // Escape commas and quotes in CSV
                     if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
-                        return '"' + value.replace(/"/g, '""') + '"';
+                        return '"' + value.replaceAll('"', '""') + '"';
                     }
                     return value || '';
                 }).join(',')
@@ -457,7 +457,7 @@ const logic = {
         ].join('\n');
 
         // Generate filename with timestamp
-        const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+        const timestamp = new Date().toISOString().slice(0, 19).replaceAll(':', '-');
         const fileName = `Document_Report_${timestamp}.csv`;
 
         // Create and trigger download
@@ -468,7 +468,7 @@ const logic = {
         link.download = fileName;
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
+        link.remove();
         URL.revokeObjectURL(downloadUrl);
     }
 };

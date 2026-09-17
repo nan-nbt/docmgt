@@ -12,5 +12,12 @@
     "src/i18n/*",
     "src/page/*",
     "src/source/*"
-  ]
+  ],
+  "compilerOptions": {
+    "target": "ESNEXT",
+    "lib": [
+      "ES2021",
+      "DOM"
+    ]
+  }
 }
