@@ -64,7 +64,7 @@ const logic = {
         }
 
         for (let value of checkedRows) {
-            du.newRow({ SITE_NO: query["SITE_NO"], ...checkedRows[value] });
+            du.newRow({ SITE_NO: query["SITE_NO"], ...value });
         }
     },
     /**
