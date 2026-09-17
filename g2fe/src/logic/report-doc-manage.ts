@@ -388,7 +388,7 @@ const logic = {
                     // Check if it's a timestamp field
                     const timestampMapping = timestampFieldMappings.find(mapping => mapping.key === fieldKey);
                     if (timestampMapping) {
-                        const timestamp = timestampMapping.variants.reduce((value, variant) => value || rowData[variant], null);
+                        const timestamp = timestampMapping.variants.reduce((value, variant) => value ?? rowData[variant], null);
                         processedRow[fieldKey] = this.formatTimestamp(timestamp);
                     }
                 }
