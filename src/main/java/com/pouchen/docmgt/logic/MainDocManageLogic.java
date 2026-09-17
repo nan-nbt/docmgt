@@ -3,14 +3,12 @@ package com.pouchen.docmgt.logic;
 import com.pouchen.module.datamodel.DataRow;
 import com.pouchen.module.datamodel.EventArgsDataUpdate;
 import com.pouchen.module.event.EventResponse;
+import com.pouchen.docmgt.constant.MainDocManageConstant;
 
 public class MainDocManageLogic {
     private MainDocManageLogic() {
 
     }
-
-    private static final String DOC_STATUS_DESC = "DOC_STATUS_DESC";
-    private static final String DOC_STATUS = "DOC_STATUS";
 
     public static class SetDocStatusDesc implements EventResponse<EventArgsDataUpdate> {
 
@@ -18,7 +16,7 @@ public class MainDocManageLogic {
         public void response(EventArgsDataUpdate args) {
             for (DataRow row : args.getRows()) {
                 String docStatusDesc = null;
-                Object docStatus = row.getData(DOC_STATUS);
+                Object docStatus = row.getData(MainDocManageConstant.DOC_STATUS);
                 int docStatusVal = docStatus == null ? 0 : Integer.parseInt(docStatus.toString());
                 switch (docStatusVal) {
                     case 1:
@@ -37,7 +35,7 @@ public class MainDocManageLogic {
                         docStatusDesc = "UNKNOWN STATUS";
                         break;
                 }
-                row.setData(DOC_STATUS_DESC, docStatusDesc);
+                row.setData(MainDocManageConstant.DOC_STATUS_DESC, docStatusDesc);
             }
         }
     }

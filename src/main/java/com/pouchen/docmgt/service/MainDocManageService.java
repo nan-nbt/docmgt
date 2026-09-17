@@ -10,92 +10,90 @@ import com.pouchen.module.dataaccess.DbUtils;
 import com.pouchen.module.meta.MetaFactory;
 import com.pouchen.module.util.HttpUtils;
 import com.pouchen.module.util.JsonUtils;
+import com.pouchen.docmgt.constant.CommonConstant;
+import com.pouchen.docmgt.constant.MainDocManageConstant;
 
 public class MainDocManageService {
     private MainDocManageService() {
 
     }
 
-    private static final String DB_ALIAS = "_AP_CONN";
-
-    private static String updateTransInfoSQL = MetaFactory.getSql("V_UPD_TRANS_INFO", DB_ALIAS);
-    private static String updateReturnInfoSQL = MetaFactory.getSql("V_UPD_RETURN_INFO", DB_ALIAS);
-    private static String updateDestroyInfoSQL = MetaFactory.getSql("V_UPD_DESTROY_INFO", DB_ALIAS);    
-    private static String getComboGroupMasterSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPM", DB_ALIAS);
-    private static String getComboGroupDetailSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPD", DB_ALIAS);
-    private static String getMFPCServiceSQL = MetaFactory.getSql("V_GET_SERVICE_INFO", DB_ALIAS);
+    private static String updateTransInfoSQL = MetaFactory.getSql("V_UPD_TRANS_INFO", CommonConstant.DB_ALIAS);
+    private static String updateReturnInfoSQL = MetaFactory.getSql("V_UPD_RETURN_INFO", CommonConstant.DB_ALIAS);
+    private static String updateDestroyInfoSQL = MetaFactory.getSql("V_UPD_DESTROY_INFO", CommonConstant.DB_ALIAS);    
+    private static String getComboGroupMasterSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPM", CommonConstant.DB_ALIAS);
+    private static String getComboGroupDetailSQL = MetaFactory.getSql("V_COMBO_BASIC_GROUPD", CommonConstant.DB_ALIAS);
+    private static String getMFPCServiceSQL = MetaFactory.getSql("V_GET_SERVICE_INFO", CommonConstant.DB_ALIAS);
 
     public static void updateTransInfo(RequestInfo requestInfo, Map<String, Object> args) {
         Map<String, Object> params = new HashMap<>();
         try {
-            params.put("DOC_ID", args.get("DOC_ID"));
-            params.put("TRANS_TIME", System.currentTimeMillis());
-            params.put("RETURN_TIME", null);
-            params.put("DOC_STATUS", 2);
-            params.put("GROUPM_BO_ID", args.get("GROUPM_BO_ID"));
-            params.put("GROUPD_BO_ID", args.get("GROUPD_BO_ID"));
-            params.put("UPDATE_USER", requestInfo.getUser().getPccUid());
-            params.put("UPDATE_TIME", System.currentTimeMillis());
-            DbUtils.execute(DB_ALIAS, updateTransInfoSQL, params);
-            DbUtils.commit(DB_ALIAS);
+            params.put(MainDocManageConstant.DOC_ID, args.get(MainDocManageConstant.DOC_ID));
+            params.put(MainDocManageConstant.TRANS_TIME, System.currentTimeMillis());
+            params.put(MainDocManageConstant.RETURN_TIME, null);
+            params.put(MainDocManageConstant.DOC_STATUS, 2);
+            params.put(MainDocManageConstant.GROUPM_BO_ID, args.get(MainDocManageConstant.GROUPM_BO_ID));
+            params.put(MainDocManageConstant.GROUPD_BO_ID, args.get(MainDocManageConstant.GROUPD_BO_ID));
+            params.put(MainDocManageConstant.UPDATE_USER, requestInfo.getUser().getPccUid());
+            params.put(MainDocManageConstant.UPDATE_TIME, System.currentTimeMillis());
+            DbUtils.execute(CommonConstant.DB_ALIAS, updateTransInfoSQL, params);
+            DbUtils.commit(CommonConstant.DB_ALIAS);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Failed to update data: " + e.getMessage(), e);
         }
     }
 
     public static void updateReturnInfo(RequestInfo requestInfo, Map<String, Object> args) {
         Map<String, Object> params = new HashMap<>();
         try {
-            params.put("DOC_ID", args.get("DOC_ID"));
-            params.put("RETURN_TIME", System.currentTimeMillis());
-            params.put("DOC_STATUS", 3);
-            params.put("GROUPM_BO_ID", null);
-            params.put("GROUPD_BO_ID", null);
-            params.put("UPDATE_USER", requestInfo.getUser().getPccUid());
-            params.put("UPDATE_TIME", System.currentTimeMillis());
-            DbUtils.execute(DB_ALIAS, updateReturnInfoSQL, params);
-            DbUtils.commit(DB_ALIAS);
+            params.put(MainDocManageConstant.DOC_ID, args.get(MainDocManageConstant.DOC_ID));
+            params.put(MainDocManageConstant.RETURN_TIME, System.currentTimeMillis());
+            params.put(MainDocManageConstant.DOC_STATUS, 3);
+            params.put(MainDocManageConstant.GROUPM_BO_ID, null);
+            params.put(MainDocManageConstant.GROUPD_BO_ID, null);
+            params.put(MainDocManageConstant.UPDATE_USER, requestInfo.getUser().getPccUid());
+            params.put(MainDocManageConstant.UPDATE_TIME, System.currentTimeMillis());
+            DbUtils.execute(CommonConstant.DB_ALIAS, updateReturnInfoSQL, params);
+            DbUtils.commit(CommonConstant.DB_ALIAS);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Failed to update data: " + e.getMessage(), e);
         }
     }
 
     public static void updateDestroyInfo(RequestInfo requestInfo, Map<String, Object> args) {
         Map<String, Object> params = new HashMap<>();
         try {
-            params.put("DOC_ID", args.get("DOC_ID"));
-            params.put("DESTROY_TIME", System.currentTimeMillis());
-            params.put("DOC_STATUS", 4);
-            params.put("UPDATE_USER", requestInfo.getUser().getPccUid());
-            params.put("UPDATE_TIME", System.currentTimeMillis());
-            DbUtils.execute(DB_ALIAS, updateDestroyInfoSQL, params);
-            DbUtils.commit(DB_ALIAS);
+            params.put(MainDocManageConstant.DOC_ID, args.get(MainDocManageConstant.DOC_ID));
+            params.put(MainDocManageConstant.DESTROY_TIME, System.currentTimeMillis());
+            params.put(MainDocManageConstant.DOC_STATUS, 4);
+            params.put(MainDocManageConstant.UPDATE_USER, requestInfo.getUser().getPccUid());
+            params.put(MainDocManageConstant.UPDATE_TIME, System.currentTimeMillis());
+            DbUtils.execute(CommonConstant.DB_ALIAS, updateDestroyInfoSQL, params);
+            DbUtils.commit(CommonConstant.DB_ALIAS);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Failed to update data: " + e.getMessage(), e);
         }
     }
 
-    public static List<Map<String, Object>> getComboGroupMaster(RequestInfo requestInfo, Map<String, Object> args) {
+    public static List<Map<String, Object>> getComboGroupMaster() {
         try {
-            return DbUtils.queryList(DB_ALIAS, getComboGroupMasterSQL);
+            return DbUtils.queryList(CommonConstant.DB_ALIAS, getComboGroupMasterSQL);
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new IllegalArgumentException("Failed to fetch data: " + e.getMessage(), e);
         }
     }
 
-    public static List<Map<String, Object>> getComboGroupDetail(RequestInfo requestInfo, Map<String, Object> args) {
+    public static List<Map<String, Object>> getComboGroupDetail() {
         try {
-            return DbUtils.queryList(DB_ALIAS, getComboGroupDetailSQL);
+            return DbUtils.queryList(CommonConstant.DB_ALIAS, getComboGroupDetailSQL);
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new IllegalArgumentException("Failed to fetch data: " + e.getMessage(), e);
         }
     }
 
     public static Map<String, Object> getMFPCData(RequestInfo requestInfo, Map<String, Object> args) {
         Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "SERVICE_NO", args.get("SERVICE_NO"), "ENABLED", "Y" };
-        Map<String, Object> service = DbUtils.queryFirst(DB_ALIAS, getMFPCServiceSQL, params);
+        Map<String, Object> service = DbUtils.queryFirst(CommonConstant.DB_ALIAS, getMFPCServiceSQL, params);
 
         if (service == null || service.isEmpty()) {
             return resultError(400, "BAD_REQUEST", (String) params[3] + " Service not found.");
