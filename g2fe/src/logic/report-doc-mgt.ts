@@ -1,5 +1,3 @@
-// import { $$ } from "g2fw";
-
 const logic = {
     /**
      * filter combo [cabinet, column, box] data in query area
