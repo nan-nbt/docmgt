@@ -1,7 +1,6 @@
 {
-  // "extends": "g2fw/declaration/g2fw-tsconfig.json",
   "include": [
-    "src/logic/**/*"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
@@ -18,6 +17,11 @@
     "lib": [
       "ES2021",
       "DOM"
-    ]
-  }
+    ],
+    "rootDir": "src",
+    "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
+    "skipLibCheck": true
+  },
+  "extends": "g2fw/declaration/g2fw-tsconfig.json"
 }
