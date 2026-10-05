@@ -15,27 +15,21 @@ const logic = {
      */
     onInputed: function ({ cmp, newVal, field, setParam }) {
         try {
-            switch (field) {
-                case "SITE_NO": {
-                    const doctype = cmp("CMP_COMBO_DOCTYPE");
-                    doctype.filter((value, key) => value["REF"] === newVal);
+            if (field === "SITE_NO") {
+                const doctype = cmp("CMP_COMBO_DOCTYPE");
+                doctype.filter((value, key) => value["REF"] === newVal);
 
-                    const category = cmp("CMP_COMBO_CATEGORY");
-                    category.filter((value, key) => value["REF"] === newVal);
+                const category = cmp("CMP_COMBO_CATEGORY");
+                category.filter((value, key) => value["REF"] === newVal);
 
-                    const status = cmp("CMP_COMBO_STATUS");
-                    status.filter((value, key) => value["REF"] === newVal);
+                const status = cmp("CMP_COMBO_STATUS");
+                status.filter((value, key) => value["REF"] === newVal);
 
-                    setParam({
-                        DOC_TYPE_DESC: null,
-                        DOC_CAT_DESC: null,
-                        DOC_STATUS_DESC: null
-                    })
-                    break;
-                }                   
-            
-                default:
-                    break;
+                setParam({
+                    DOC_TYPE_DESC: null,
+                    DOC_CAT_DESC: null,
+                    DOC_STATUS_DESC: null
+                });
             }
         } catch (error) {
             console.error("onInputed error:", error);
@@ -155,7 +149,7 @@ const logic = {
         if (!timestamp) return '';
 
         const date = new Date(timestamp);
-        if (isNaN(date.getTime())) return '';
+        if (Number.isNaN(date.getTime())) return '';
 
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -184,7 +178,7 @@ const logic = {
                     const value = row[header];
                     // Escape commas and quotes in CSV
                     if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
-                        return '"' + value.replace(/"/g, '""') + '"';
+                        return '"' + value.replaceAll('"', '""') + '"';
                     }
                     return value || '';
                 }).join(',')
@@ -192,7 +186,7 @@ const logic = {
         ].join('\n');
 
         // Generate filename with timestamp
-        const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+        const timestamp = new Date().toISOString().slice(0, 19).replaceAll(':', '-');
         const fileName = `Document_Query_${timestamp}.csv`;
 
         // Create and trigger download
@@ -203,7 +197,7 @@ const logic = {
         link.download = fileName;
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
+        link.remove();
         URL.revokeObjectURL(downloadUrl);
     }
 }

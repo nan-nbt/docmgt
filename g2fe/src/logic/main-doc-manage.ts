@@ -63,27 +63,21 @@ const logic = {
      */
     onInputedQuery: function ({ cmp, newVal, field, setParam }) {
         try {
-            switch (field) {
-                case "SITE_NO": {
-                    const doctype = cmp("CMP_COMBO_DOCTYPE");
-                    doctype.filter((value, key) => value["REF"] === newVal);
+            if (field === "SITE_NO") {
+                const doctype = cmp("CMP_COMBO_DOCTYPE");
+                doctype.filter((value, key) => value["REF"] === newVal);
 
-                    const category = cmp("CMP_COMBO_CATEGORY");
-                    category.filter((value, key) => value["REF"] === newVal);
+                const category = cmp("CMP_COMBO_CATEGORY");
+                category.filter((value, key) => value["REF"] === newVal);
 
-                    const status = cmp("CMP_COMBO_STATUS");
-                    status.filter((value, key) => value["REF"] === newVal);
+                const status = cmp("CMP_COMBO_STATUS");
+                status.filter((value, key) => value["REF"] === newVal);
 
-                    setParam({
-                        DOC_TYPE_DESC: null,
-                        DOC_CAT_DESC: null,
-                        DOC_STATUS_DESC: null
-                    })
-                    break;
-                }                   
-            
-                default:
-                    break;
+                setParam({
+                    DOC_TYPE_DESC: null,
+                    DOC_CAT_DESC: null,
+                    DOC_STATUS_DESC: null
+                });
             }
         } catch (error) {
             console.error("onInputed error:", error);
@@ -485,30 +479,26 @@ const logic = {
             return;
         }
 
-        switch (result.code) {
-            case 200:
-                scanner.setValue({
-                    MFPC_ID: data.MFPC_ID,
-                    MFPC_DOC_NO: data.MFPC_DOC_NO,
-                    MFPC_DOC_NAME: data.MFPC_DOC_NAME,
-                    MFPC_USERNAME: data.MFPC_USERNAME,
-                    MFPC_SSO: data.MFPC_SSO,
-                    MFPC_CARD_ID: data.MFPC_CARD_ID,
-                    MFPC_MACHINE_NAME: data.MFPC_MACHINE_NAME,
-                    MFPC_PRINTER_NAME: data.MFPC_PRINTER_NAME,
-                    MFPC_PRINT_TIME: data.MFPC_PRINT_TIME,
-                    MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
-                });
+        if (result.code === 200) {
+            scanner.setValue({
+                MFPC_ID: data.MFPC_ID,
+                MFPC_DOC_NO: data.MFPC_DOC_NO,
+                MFPC_DOC_NAME: data.MFPC_DOC_NAME,
+                MFPC_USERNAME: data.MFPC_USERNAME,
+                MFPC_SSO: data.MFPC_SSO,
+                MFPC_CARD_ID: data.MFPC_CARD_ID,
+                MFPC_MACHINE_NAME: data.MFPC_MACHINE_NAME,
+                MFPC_PRINTER_NAME: data.MFPC_PRINTER_NAME,
+                MFPC_PRINT_TIME: data.MFPC_PRINT_TIME,
+                MFPC_COUNT_PAGE: data.MFPC_COUNT_PAGE
+            });
 
-                scanner.setInfo(true, "SUCCESS", { SITE: site, UUID: newVal, MESSAGE: result.message });
-                scanner.setValue({ MFPC_UUID: null });
-                setTimeout(() => scanner.close(), 1000);
-                break;
-        
-            default:
-                scanner.setInfo(false, "FAIL", { SITE: site, UUID: newVal, MESSAGE: result.message });
-                scanner.setValue({ MFPC_UUID: null });
-                break;
+            scanner.setInfo(true, "SUCCESS", { SITE: site, UUID: newVal, MESSAGE: result.message });
+            scanner.setValue({ MFPC_UUID: null });
+            setTimeout(() => scanner.close(), 1000); 
+        } else {
+            scanner.setInfo(false, "FAIL", { SITE: site, UUID: newVal, MESSAGE: result.message });
+            scanner.setValue({ MFPC_UUID: null });
         }
     },
     getMFPCData: async function ({ dataUtil, serviceUri, site, serviceNo, uuid }) {
