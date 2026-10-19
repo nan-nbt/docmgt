@@ -91,7 +91,7 @@ public class MainDocManageService {
         }
     }
 
-    public static Map<String, Object> getMFPCData(RequestInfo requestInfo, Map<String, Object> args) {
+    public static Map<String, Object> callMFPCService(RequestInfo requestInfo, Map<String, Object> args) {
         Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "SERVICE_NO", args.get("SERVICE_NO"), "ENABLED", "Y" };
         Map<String, Object> service = DbUtils.queryFirst(CommonConstant.DB_ALIAS, getMFPCServiceSQL, params);
 
@@ -115,14 +115,26 @@ public class MainDocManageService {
                 return resultError(404, "NOT_FOUND", "Empty response body.");
             }
 
-            @SuppressWarnings("unchecked")
-            Map<String, Object> data = JsonUtils.deserialize(body, Map.class);
+            Object parsedObj = JsonUtils.deserialize(body, Object.class);
 
-            if (data == null || data.isEmpty()) {
+            if (parsedObj == null) {
                 return resultError(404, "NOT_FOUND", "Data not found.");
             }
 
-            return resutlSuccess(200, "OK", "Data found.", data);
+            if (parsedObj instanceof Map) {
+                @SuppressWarnings("unchecked")
+                Map<String, Object> data = (Map<String, Object>) parsedObj;
+                if (data.isEmpty()) {
+                    return resultError(404, "NOT_FOUND", "Data not found.");
+                }
+
+                return resutlSuccess(200, "OK", "Data found.", data);
+            }
+            else {
+                Map<String, Object> data = new HashMap<>();
+                data.put("value", parsedObj);
+                return resutlSuccess(200, "OK", "Data found.", data);
+            }
         } catch (Exception e) {
             return resultError(500, "INTERNAL_SERVER_ERROR", e.getMessage());
         }

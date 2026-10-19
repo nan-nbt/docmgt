@@ -2,7 +2,7 @@
 <Configuration status="WARN">
 	<Properties>
 	<!-- baseDir's value is a sample. Please set a real path on your server. -->
-		<Property name="baseDir">D:/u01/pcgfw/docmgt/logs</Property>
+		<Property name="baseDir">/u01/pcgfw/docmgt/logs</Property>
 	</Properties>	
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
