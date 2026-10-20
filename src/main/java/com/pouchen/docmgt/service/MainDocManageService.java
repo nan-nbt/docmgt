@@ -96,7 +96,7 @@ public class MainDocManageService {
         Map<String, Object> service = DbUtils.queryFirst(CommonConstant.DB_ALIAS, getMFPCServiceSQL, params);
 
         if (service == null || service.isEmpty()) {
-            return resultError(400, "BAD_REQUEST", (String) params[3] + " Service not found.");
+            return resultError(400, MainDocManageConstant.STATUS_BAD_REQUEST, (String) params[3] + " Service not found.");
         }
 
         try {
@@ -112,31 +112,31 @@ public class MainDocManageService {
 
             String body = response.get("body");
             if (body == null || body.trim().isEmpty()) {
-                return resultError(404, "NOT_FOUND", "Empty response body.");
+                return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Empty response body.");
             }
 
             Object parsedObj = JsonUtils.deserialize(body, Object.class);
 
             if (parsedObj == null) {
-                return resultError(404, "NOT_FOUND", "Data not found.");
+                return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
             }
 
             if (parsedObj instanceof Map) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> data = (Map<String, Object>) parsedObj;
                 if (data.isEmpty()) {
-                    return resultError(404, "NOT_FOUND", "Data not found.");
+                    return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
                 }
 
-                return resutlSuccess(200, "OK", "Data found.", data);
+                return resutlSuccess(200, MainDocManageConstant.STATUS_OK, "Data found.", data);
             }
             else {
                 Map<String, Object> data = new HashMap<>();
                 data.put("value", parsedObj);
-                return resutlSuccess(200, "OK", "Data found.", data);
+                return resutlSuccess(200, MainDocManageConstant.STATUS_OK, "Data found.", data);
             }
         } catch (Exception e) {
-            return resultError(500, "INTERNAL_SERVER_ERROR", e.getMessage());
+            return resultError(500, MainDocManageConstant.STATUS_INT_SRV_ERR, e.getMessage());
         }
     }
 
