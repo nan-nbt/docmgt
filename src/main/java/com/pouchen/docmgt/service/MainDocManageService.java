@@ -93,7 +93,7 @@ public class MainDocManageService {
 
     public static Map<String, Object> callMFPCService(RequestInfo requestInfo, Map<String, Object> args) {
         if (requestInfo.getAuthorization().isEmpty()) {
-            return resultError(401, MainDocManageConstant.STATUS_UNAUTHORIZED, "Authorization is empty or unauthorized.");
+            return resultError(401, MainDocManageConstant.STATUS_UNAUTHORIZED, "Authorization is empty.");
         }
 
         Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "SERVICE_NO", args.get("SERVICE_NO"), "ENABLED", "Y" };
@@ -121,54 +121,74 @@ public class MainDocManageService {
 
             Map<String, String> response = HttpUtils.post(serviceUrl, requestBody, headers);
 
-            String body = response.get("body");
-            if (body == null || body.trim().isEmpty()) {
-                return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Empty response body.");
+            String responseBody = response.get("body");
+            
+            int responseStatus = Integer.parseInt(response.get("status"));
+
+            if (responseStatus != 200) {
+                String errorStatus = switch (responseStatus) {
+                    case 400 -> MainDocManageConstant.STATUS_BAD_REQUEST;
+                    case 401 -> MainDocManageConstant.STATUS_UNAUTHORIZED;
+                    case 403 -> MainDocManageConstant.STATUS_FORBIDDEN;
+                    case 404 -> MainDocManageConstant.STATUS_NOT_FOUND;
+                    default  -> MainDocManageConstant.STATUS_INT_SRV_ERR;
+                };
+
+                return resultError(responseStatus, errorStatus, responseBody);
             }
 
-            Object parsedObj = JsonUtils.deserialize(body, Object.class);
-
-            if (parsedObj == null) {
-                return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
-            }
-
-            Map<String, Object> dataMap = new HashMap<>();
-
-            if (parsedObj instanceof Map) {
-                @SuppressWarnings("unchecked")
-                Map<String, Object> data = (Map<String, Object>) parsedObj;
-
-                if (data.isEmpty()) {
-                    return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
-                }
-                
-                dataMap = data;
-            }
-            else {
-                dataMap.put("value", parsedObj);
-            }
-
-            return resutlSuccess(200, MainDocManageConstant.STATUS_OK, "Data found.", dataMap);
-
+            return parseResponseBody(responseBody);
         } catch (Exception e) {
             return resultError(500, MainDocManageConstant.STATUS_INT_SRV_ERR, e.getMessage());
         }
     }
 
-    private static Map<String, Object> resutlSuccess (int code, String status, String message, Object data) {
+    private static Map<String, Object> parseResponseBody (String body) {
+        if (body == null || body.trim().isEmpty()) {
+            return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Empty response body.");
+        }
+
+        Object parsedObj = JsonUtils.deserialize(body, Object.class);
+
+        if (parsedObj == null) {
+            return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
+        }
+
+        Map<String, Object> dataMap = new HashMap<>();
+
+        if (parsedObj instanceof Map) {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> data = (Map<String, Object>) parsedObj;
+
+            if (data.isEmpty()) {
+                return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
+            }
+            
+            dataMap = data;
+        }
+        else {
+            dataMap.put("value", parsedObj);
+        }
+
+        return resultSuccess(200, MainDocManageConstant.STATUS_OK, "Data found.", dataMap);
+    }
+
+    private static Map<String, Object> buildResult(int code, String status, String message, Object data, boolean includeData) {
         Map<String, Object> result = new HashMap<>();
         result.put("code", code);
         result.put("status", status);
         result.put("message", message);
-        result.put("data", data);
+        if (includeData) {
+            result.put("data", data);
+        }
         return result;
     }
 
-    private static Map<String, Object> resultError (int code, String status, String message) {
-        Map<String, Object> result = new HashMap<>();
-        result.put("code", code);
-        result.put("status", status);
-        result.put("message", message);
-        return result;
+    private static Map<String, Object> resultSuccess(int code, String status, String message, Object data) {
+        return buildResult(code, status, message, data, true);
+    }
+
+    private static Map<String, Object> resultError(int code, String status, String message) {
+        return buildResult(code, status, message, null, false);
     }
 }

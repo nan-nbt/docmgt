@@ -356,7 +356,7 @@ const logic = {
                     const response = await this.callMFPCService({ dataUtil: dataUtil, serviceUri: _SERVICE_CALL_MFPC_SERVICE, site: site, serviceNo: "SRV02", uuid: uuid, method: "POST" });
                     const result = response?.result ? response.result : null;
 
-                    if (result.code !== 200 && result.data.value !== 1) {
+                    if (result.code !== 200 || result.data.value !== 1) {
                         return $$.Alert.show({ type: "warning", text: "MFPC data sync failed.", timeout: 2000 });
                     }
                 } 
