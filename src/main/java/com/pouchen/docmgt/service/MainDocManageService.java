@@ -96,19 +96,27 @@ public class MainDocManageService {
         Map<String, Object> service = DbUtils.queryFirst(CommonConstant.DB_ALIAS, getMFPCServiceSQL, params);
 
         if (service == null || service.isEmpty()) {
-            return resultError(400, MainDocManageConstant.STATUS_BAD_REQUEST, (String) params[3] + " Service not found.");
+            String serviceNo = args.get("SERVICE_NO") != null ? args.get("SERVICE_NO").toString() : "";
+            return resultError(400, MainDocManageConstant.STATUS_BAD_REQUEST, serviceNo + " Service not found.");
         }
 
         try {
-            String uuid = args.get("UUID").toString();
-            String requestBody = "[\"" + uuid + "\"]";
+            String serviceUrl = service.get("BASE_URL").toString() + service.get("ENDPOINT").toString();
+            String authType = service.get("AUTH_TYPE") != null ? service.get("AUTH_TYPE").toString() : "";
+            String authCode = service.get("AUTH_CODE") != null ? service.get("AUTH_CODE").toString() : "";
+            String authHeader = authType.isEmpty() ? authCode : authType + " " + authCode;
+            String requestBody = "[\"" + args.get("UUID").toString() + "\"]";
 
             Map<String, String> headers = new HashMap<>();
             headers.put("Content-Type", "application/json");
+            headers.put("Accept", "application/json, text/plain, */*");
+            headers.put("User-Agent", "PostmanRuntime/7.32.3");
 
-            String serviceUrl = service.get("BASE_URL").toString() + service.get("ENDPOINT").toString();
+            if (!authHeader.isEmpty()) {
+                headers.put("Authorization", authHeader);
+            }
 
-            Map<String, String> response = HttpUtils.post(serviceUrl, requestBody, headers, requestInfo, null);
+            Map<String, String> response = HttpUtils.post(serviceUrl, requestBody, headers);
 
             String body = response.get("body");
             if (body == null || body.trim().isEmpty()) {
@@ -121,20 +129,24 @@ public class MainDocManageService {
                 return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
             }
 
+            Map<String, Object> dataMap = new HashMap<>();
+
             if (parsedObj instanceof Map) {
                 @SuppressWarnings("unchecked")
                 Map<String, Object> data = (Map<String, Object>) parsedObj;
+
                 if (data.isEmpty()) {
                     return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
                 }
-
-                return resutlSuccess(200, MainDocManageConstant.STATUS_OK, "Data found.", data);
+                
+                dataMap = data;
             }
             else {
-                Map<String, Object> data = new HashMap<>();
-                data.put("value", parsedObj);
-                return resutlSuccess(200, MainDocManageConstant.STATUS_OK, "Data found.", data);
+                dataMap.put("value", parsedObj);
             }
+
+            return resutlSuccess(200, MainDocManageConstant.STATUS_OK, "Data found.", dataMap);
+
         } catch (Exception e) {
             return resultError(500, MainDocManageConstant.STATUS_INT_SRV_ERR, e.getMessage());
         }
