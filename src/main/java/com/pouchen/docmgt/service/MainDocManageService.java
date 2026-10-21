@@ -91,13 +91,12 @@ public class MainDocManageService {
         }
     }
 
-    public static Map<String, Object> callMFPCService(RequestInfo requestInfo, Map<String, Object> args) {
+    public static Map<String, Object> callMFPCService(Map<String, Object> args) {
         Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "SERVICE_NO", args.get("SERVICE_NO"), "ENABLED", "Y" };
         Map<String, Object> service = DbUtils.queryFirst(CommonConstant.DB_ALIAS, getMFPCServiceSQL, params);
 
         if (service == null || service.isEmpty()) {
-            String serviceNo = args.get("SERVICE_NO") != null ? args.get("SERVICE_NO").toString() : "";
-            return resultError(400, MainDocManageConstant.STATUS_BAD_REQUEST, serviceNo + " Service not found.");
+            return resultError(400, MainDocManageConstant.STATUS_BAD_REQUEST, (String) params[3] + " Service not found.");
         }
 
         try {
