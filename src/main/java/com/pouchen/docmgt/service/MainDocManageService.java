@@ -91,7 +91,11 @@ public class MainDocManageService {
         }
     }
 
-    public static Map<String, Object> callMFPCService(Map<String, Object> args) {
+    public static Map<String, Object> callMFPCService(RequestInfo requestInfo, Map<String, Object> args) {
+        if (requestInfo.getAuthorization().isEmpty()) {
+            return resultError(401, MainDocManageConstant.STATUS_UNAUTHORIZED, "Authorization is empty or unauthorized.");
+        }
+
         Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "SERVICE_NO", args.get("SERVICE_NO"), "ENABLED", "Y" };
         Map<String, Object> service = DbUtils.queryFirst(CommonConstant.DB_ALIAS, getMFPCServiceSQL, params);
 
