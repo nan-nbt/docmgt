@@ -15,4 +15,10 @@ public class MainDocManageConstant {
     public static final String UPDATE_USER = "UPDATE_USER";
     public static final String UPDATE_TIME = "UPDATE_TIME";
     public static final String DOC_STATUS_DESC = "DOC_STATUS_DESC";
+    public static final String STATUS_BAD_REQUEST = "BAD_REQUEST";
+    public static final String STATUS_UNAUTHORIZED = "UNAUTHORIZED";
+    public static final String STATUS_FORBIDDEN = "FORBIDDEN";
+    public static final String STATUS_NOT_FOUND = "NOT_FOUND";
+    public static final String STATUS_INT_SRV_ERR = "INTERNAL_SERVER_ERROR";
+    public static final String STATUS_OK = "OK";
 }

@@ -91,57 +91,104 @@ public class MainDocManageService {
         }
     }
 
-    public static Map<String, Object> getMFPCData(RequestInfo requestInfo, Map<String, Object> args) {
+    public static Map<String, Object> callMFPCService(RequestInfo requestInfo, Map<String, Object> args) {
+        if (requestInfo.getAuthorization().isEmpty()) {
+            return resultError(401, MainDocManageConstant.STATUS_UNAUTHORIZED, "Authorization is empty.");
+        }
+
         Object[] params = new Object[]{ "SITE_NO", args.get("SITE_NO"), "SERVICE_NO", args.get("SERVICE_NO"), "ENABLED", "Y" };
         Map<String, Object> service = DbUtils.queryFirst(CommonConstant.DB_ALIAS, getMFPCServiceSQL, params);
 
         if (service == null || service.isEmpty()) {
-            return resultError(400, "BAD_REQUEST", (String) params[3] + " Service not found.");
+            return resultError(400, MainDocManageConstant.STATUS_BAD_REQUEST, (String) params[3] + " Service not found.");
         }
 
         try {
-            String uuid = args.get("UUID").toString();
-            String requestBody = "[\"" + uuid + "\"]";
+            String serviceUrl = service.get("BASE_URL").toString() + service.get("ENDPOINT").toString();
+            String authType = service.get("AUTH_TYPE") != null ? service.get("AUTH_TYPE").toString() : "";
+            String authCode = service.get("AUTH_CODE") != null ? service.get("AUTH_CODE").toString() : "";
+            String authHeader = authType.isEmpty() ? authCode : authType + " " + authCode;
+            String requestBody = "[\"" + args.get("UUID").toString() + "\"]";
 
             Map<String, String> headers = new HashMap<>();
             headers.put("Content-Type", "application/json");
+            headers.put("Accept", "application/json, text/plain, */*");
+            headers.put("User-Agent", "PostmanRuntime/7.32.3");
 
-            String serviceUrl = service.get("BASE_URL").toString() + service.get("ENDPOINT").toString();
-
-            Map<String, String> response = HttpUtils.post(serviceUrl, requestBody, headers, requestInfo, null);
-
-            String body = response.get("body");
-            if (body == null || body.trim().isEmpty()) {
-                return resultError(404, "NOT_FOUND", "Empty response body.");
+            if (!authHeader.isEmpty()) {
+                headers.put("Authorization", authHeader);
             }
 
-            @SuppressWarnings("unchecked")
-            Map<String, Object> data = JsonUtils.deserialize(body, Map.class);
+            Map<String, String> response = HttpUtils.post(serviceUrl, requestBody, headers);
 
-            if (data == null || data.isEmpty()) {
-                return resultError(404, "NOT_FOUND", "Data not found.");
+            String responseBody = response.get("body");
+            
+            int responseStatus = Integer.parseInt(response.get("status"));
+
+            if (responseStatus != 200) {
+                String errorStatus = switch (responseStatus) {
+                    case 400 -> MainDocManageConstant.STATUS_BAD_REQUEST;
+                    case 401 -> MainDocManageConstant.STATUS_UNAUTHORIZED;
+                    case 403 -> MainDocManageConstant.STATUS_FORBIDDEN;
+                    case 404 -> MainDocManageConstant.STATUS_NOT_FOUND;
+                    default  -> MainDocManageConstant.STATUS_INT_SRV_ERR;
+                };
+
+                return resultError(responseStatus, errorStatus, responseBody);
             }
 
-            return resutlSuccess(200, "OK", "Data found.", data);
+            return parseResponseBody(responseBody);
         } catch (Exception e) {
-            return resultError(500, "INTERNAL_SERVER_ERROR", e.getMessage());
+            return resultError(500, MainDocManageConstant.STATUS_INT_SRV_ERR, e.getMessage());
         }
     }
 
-    private static Map<String, Object> resutlSuccess (int code, String status, String message, Object data) {
+    private static Map<String, Object> parseResponseBody (String body) {
+        if (body == null || body.trim().isEmpty()) {
+            return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Empty response body.");
+        }
+
+        Object parsedObj = JsonUtils.deserialize(body, Object.class);
+
+        if (parsedObj == null) {
+            return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
+        }
+
+        Map<String, Object> dataMap = new HashMap<>();
+
+        if (parsedObj instanceof Map) {
+            @SuppressWarnings("unchecked")
+            Map<String, Object> data = (Map<String, Object>) parsedObj;
+
+            if (data.isEmpty()) {
+                return resultError(404, MainDocManageConstant.STATUS_NOT_FOUND, "Data not found.");
+            }
+            
+            dataMap = data;
+        }
+        else {
+            dataMap.put("value", parsedObj);
+        }
+
+        return resultSuccess(200, MainDocManageConstant.STATUS_OK, "Data found.", dataMap);
+    }
+
+    private static Map<String, Object> buildResult(int code, String status, String message, Object data, boolean includeData) {
         Map<String, Object> result = new HashMap<>();
         result.put("code", code);
         result.put("status", status);
         result.put("message", message);
-        result.put("data", data);
+        if (includeData) {
+            result.put("data", data);
+        }
         return result;
     }
 
-    private static Map<String, Object> resultError (int code, String status, String message) {
-        Map<String, Object> result = new HashMap<>();
-        result.put("code", code);
-        result.put("status", status);
-        result.put("message", message);
-        return result;
+    private static Map<String, Object> resultSuccess(int code, String status, String message, Object data) {
+        return buildResult(code, status, message, data, true);
+    }
+
+    private static Map<String, Object> resultError(int code, String status, String message) {
+        return buildResult(code, status, message, null, false);
     }
 }

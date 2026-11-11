@@ -8,7 +8,7 @@ import Common from "./common";
 export const _SERVICE_UPDATE_TRANS_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateTransInfo";
 export const _SERVICE_UPDATE_RETURN_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateReturnInfo";
 export const _SERVICE_UPDATE_DESTROY_TIME = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.updateDestroyInfo";
-export const _SERVICE_GET_MFPC_DATA = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.getMFPCData";
+export const _SERVICE_CALL_MFPC_SERVICE = "/p/restws/com.pouchen.docmgt.service.MainDocManageService.callMFPCService";
 
 let _SELECTED_DOC_ID_ROW: string | null = null;
 let _SELECTED_SITE_NO_ROW: string | null = null;
@@ -348,6 +348,19 @@ const logic = {
             textYes: "Yes",
             textNo: "No",
             onYes: async () => {
+                const site = row.getData().SITE_NO;
+                const uuid = row.getData().DOC_NO;
+                const category = row.getData().DOC_CATEGORY;
+
+                if (category === 1) {
+                    const response = await this.callMFPCService({ dataUtil: dataUtil, serviceUri: _SERVICE_CALL_MFPC_SERVICE, site: site, serviceNo: "SRV02", uuid: uuid, method: "POST" });
+                    const result = response?.result ? response.result : null;
+
+                    if (result.code !== 200 || result.data.value !== 1) {
+                        return $$.Alert.show({ type: "warning", text: "MFPC data sync failed.", timeout: 2000 });
+                    }
+                } 
+
                 await this.syncDocStatus({ actionType: "DESTROY", dataUtil: dataUtil, serviceUri: _SERVICE_UPDATE_DESTROY_TIME });
             },
             onNo: async () => { return true; }
@@ -469,7 +482,7 @@ const logic = {
 
         const scanner = cmp("CMP_MFPC_SCAN");
 
-        const response = await this.getMFPCData({ dataUtil: dataUtil, serviceUri: _SERVICE_GET_MFPC_DATA, site: site, serviceNo: "SRV01", uuid: newVal });
+        const response = await this.callMFPCService({ dataUtil: dataUtil, serviceUri: _SERVICE_CALL_MFPC_SERVICE, site: site, serviceNo: "SRV01", uuid: newVal, method: "POST" });
         const result = response?.result ? response.result : null;
         const data = result?.data ? result.data : null;
 
@@ -501,7 +514,7 @@ const logic = {
             scanner.setValue({ MFPC_UUID: null });
         }
     },
-    getMFPCData: async function ({ dataUtil, serviceUri, site, serviceNo, uuid }) {
+    callMFPCService: async function ({ dataUtil, serviceUri, site, serviceNo, uuid, method }) {
         let response;
 
         try {
@@ -516,7 +529,7 @@ const logic = {
                     UUID: uuid
                 },
                 "json",
-                "POST"
+                method
             );
         } catch (e) {
             $$.Alert.show(e.message);

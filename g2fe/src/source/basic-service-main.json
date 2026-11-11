@@ -201,6 +201,41 @@
                             "sortable": false
                         },
                         {
+                            "field": "AUTH_TYPE",
+                            "title": "AUTH_TYPE",
+                            "editor": {
+                                "xtype": "Combo",
+                                "textField": "LABEL",
+                                "manual": false,
+                                "valueField": "VALUE",
+                                "staticData": [
+                                    {
+                                        "LABEL": "Basic",
+                                        "VALUE": "Basic"
+                                    },
+                                    {
+                                        "LABEL": "Bearer",
+                                        "VALUE": "Bearer"
+                                    }
+                                ]
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
+                            "field": "AUTH_CODE",
+                            "title": "AUTH_CODE",
+                            "editor": {
+                                "xtype": "TextField"
+                            },
+                            "must": false,
+                            "width": 0.1,
+                            "freeze": false,
+                            "sortable": false
+                        },
+                        {
                             "field": "ENABLED",
                             "title": "ENABLED",
                             "editor": {
