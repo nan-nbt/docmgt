@@ -54,3 +54,7 @@ out/
 
 ### OpenCode ###
 .opencode/
+
+### Gitlab CI/CD ###
+.gitlab-ci.yml
+
